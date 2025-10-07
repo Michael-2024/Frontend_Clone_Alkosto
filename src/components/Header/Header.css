@@ -1,0 +1,462 @@
+.header {
+  background: #004797;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Header superior */
+.header-top {
+  background: #004797;
+  color: white;
+  padding: 8px 0;
+  font-size: 14px;
+}
+/* Contenedor para centrar el contenido */
+.header-top-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Selector de ubicación */
+.location-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.location-selector:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.location-icon {
+  font-size: 16px;
+}
+
+.location-text {
+  font-size: 14px;
+}
+
+/* Flecha desplegable */
+.dropdown-arrow {
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+/* Menú desplegable de ubicación */
+.location-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: 8px;
+  min-width: 200px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.location-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.location-item:hover {
+  background-color: #f0f0f0;
+  color: #004797;
+}
+
+.header-links {
+  display: flex;
+  gap: 20px;
+}
+
+.header-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header-links a:hover {
+  text-decoration: underline;
+}
+
+.header-main {
+    padding: 15px 0;
+    color: #004797;
+}
+
+.header-main-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo {
+  text-decoration: none;
+  color: #d0d0d0;
+  font-size: 28px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+  flex: 1;
+  display: flex;
+  max-width: 700px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Selector de categoría */
+.search-category {
+  padding: 12px 15px;
+  border: none;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  min-width: 180px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  font-size: 15px;
+  outline: none;
+}
+
+.search-bar input:focus {
+  background-color: #f9f9f9;
+}
+
+.search-button {
+  padding: 12px 30px;
+  background: #004797;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: 600;
+}
+
+/* Efecto hover para el botón de búsqueda */
+.search-button:hover {
+  background: #004797;
+}
+
+.search-icon {
+  font-size: 18px;
+}
+
+.search-text {
+  font-size: 15px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.header-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  position: relative;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+/* Efecto hover para las acciones del header */
+.header-action:hover {
+  color: #004797;
+}
+
+.header-action .icon {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.header-action .text {
+  font-weight: 500;
+}
+
+/* User menu */
+.account-menu-container {
+  position: relative;
+}
+
+.account-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.account-name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Dropdown del menú de cuenta */
+.account-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  margin-top: 15px;
+  min-width: 380px;
+  max-width: 400px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.account-dropdown-arrow {
+  position: absolute;
+  top: -8px;
+  right: 30px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+}
+
+.account-dropdown-content {
+  padding: 0;
+}
+
+/* Sección de bienvenida */
+.account-welcome {
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.welcome-text {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.user-name {
+  font-weight: bold;
+  color: #004797;
+}
+
+.close-session {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.close-session:hover {
+  color: #004797;
+}
+
+/* Sección de login */
+.account-login-section {
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.login-description {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: #004797;
+}
+
+.btn-continue {
+  width: 100%;
+  padding: 12px;
+  background-color: #004797;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-continue:hover {
+  background-color: #002875;
+}
+
+/* Menú de opciones */
+.account-menu-section {
+  padding: 10px 0;
+}
+
+.account-menu-section.gray-section {
+  background-color: #f5f5f5;
+}
+
+.account-menu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.account-menu-item:last-child {
+  border-bottom: none;
+}
+
+.account-menu-item:hover {
+  background-color: #f9f9f9;
+}
+
+.item-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.item-text {
+  flex: 1;
+}
+
+.item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.item-description {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.3;
+}
+
+.account-menu-item:hover .item-title {
+  color: #0033A0;
+}
+
+/* Carrito */
+.cart-link {
+  position: relative;
+}
+
+.cart-text {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.cart-counter {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: #FF4444;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .header-main-content {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .search-bar {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .header-top-content {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .logo h1 {
+    font-size: 24px;
+  }
+}
+
+
