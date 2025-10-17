@@ -47,10 +47,16 @@ const LoginPassword = () => {
           </Link>
           <div className="login-content">
             <div className="login-heading">
-              <h2 className="login-title">Ingresa con tu contraseña</h2>
+              <h2 className="login-title">Ingresa tu contraseña</h2>
               <div className="email-display">
-                <p className="email-label-login">Correo electrónico:</p>
-                <span className="email-value-left">{email}</span>
+                <p className="email-label-login">Estás ingresando con:</p>
+                <span className="email-value-left">{email}</span>{' '}
+                <Link 
+                  to={`/login/options?email=${encodeURIComponent(email)}`}
+                  className="modify-link-inline"
+                >
+                  Modificar
+                </Link>
               </div>
             </div>
             <div className="register-form-container">
@@ -77,7 +83,21 @@ const LoginPassword = () => {
                 <button type="submit" className="continue-button" disabled={isSubmitting}>
                   Ingresar
                 </button>
-                <button type="button" className="forgot-password-button" onClick={() => alert('Funcionalidad no implementada')}>¿Olvidaste tu contraseña?</button>
+                <div className="login-help-section">
+                  <p className="login-help-title">Tengo problemas para ingresar</p>
+                  <Link 
+                    to={`/forgot-password?email=${encodeURIComponent(email)}`}
+                    className="login-help-link"
+                  >
+                    Olvidé mi contraseña
+                  </Link>
+                  <Link 
+                    to={`/login/options?email=${encodeURIComponent(email)}`}
+                    className="login-help-link"
+                  >
+                    Probar otro método para ingresar
+                  </Link>
+                </div>
               </form>
             </div>
           </div>

@@ -45,6 +45,37 @@ class UserController {
     }
   }
 
+  // Métodos para recuperación de contraseña
+  verifyResetCode(email, code, generatedCode) {
+    if (code === generatedCode) {
+      return true;
+    }
+    return false;
+  }
+
+  resetPassword(email, newPassword) {
+    const users = this.getAllUsers() || [];
+    const userIndex = users.findIndex(user => user.email === email);
+    
+    if (userIndex === -1) {
+      throw new Error('Usuario no encontrado');
+    }
+
+    // Actualizar la contraseña del usuario
+    users[userIndex].password = newPassword;
+    
+    // Guardar los cambios
+    localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
+    
+    return true;
+  }
+
+  // Obtener usuario por email
+  getUserByEmail(email) {
+    const users = this.getAllUsers() || [];
+    return users.find(user => user.email === email);
+  }
+
   // Obtener todos los usuarios registrados
   getAllUsers() {
     const usersJSON = localStorage.getItem(this.USERS_KEY);

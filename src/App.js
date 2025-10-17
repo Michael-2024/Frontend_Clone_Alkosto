@@ -12,6 +12,9 @@ import CartController from './controllers/CartController';
 import LoginOptions from './views/Login/LoginOptions';
 import LoginPassword from './views/Login/LoginPassword';
 import LoginCode from './views/Login/LoginCode';
+import ForgotPassword from './views/ForgotPassword/ForgotPassword';
+import ForgotPasswordVerify from './views/ForgotPassword/ForgotPasswordVerify';
+import ForgotPasswordReset from './views/ForgotPassword/ForgotPasswordReset';
 import './App.css';
 
 function App() {
@@ -36,6 +39,9 @@ function App() {
         <Route path="/login/options" element={<LoginOptions />} />
         <Route path="/login/password" element={<LoginPassword />} />
         <Route path="/login/code" element={<LoginCode />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/forgot-password/verify" element={<ForgotPasswordVerify />} />
+        <Route path="/forgot-password/reset" element={<ForgotPasswordReset />} />
         {/* Resto de rutas con layout normal */}
         <Route path="*" element={
           <div className="app">

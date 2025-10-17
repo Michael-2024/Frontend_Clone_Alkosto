@@ -8,7 +8,7 @@ const RegisterLayout = ({ children }) => {
       <header className="register-header">
         <div className="register-header-content">
           <Link to="/" className="register-logo">
-            <img src="/assets/logo-alkosto.png" alt="Alkosto" />
+            <img src="/assets/logo-alkosto.svg" alt="Alkosto" />
           </Link>
           <div className="register-security-message">
             <span>Compra seguro y en menos pasos.</span>

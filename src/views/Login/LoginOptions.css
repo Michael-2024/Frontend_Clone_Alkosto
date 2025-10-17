@@ -18,6 +18,44 @@
   margin-bottom: 2rem;
 }
 
+.forgot-password-button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #0053a0;
+  background: none;
+  border: none;
+  padding: 1rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.forgot-password-button:hover {
+  text-decoration: underline;
+}
+
+.forgot-password-link {
+  display: block;
+  color: #0053a0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+.modify-link-inline {
+  margin-left: 0.5rem;
+  color: #0053a0;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
 .login-heading {
   flex: 1;
   max-width: 320px;
@@ -44,6 +82,28 @@
   border-radius: 4px;
   padding: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.login-help-section {
+  background: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  border-radius: 4px;
+}
+
+.login-help-title {
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.login-help-link {
+  display: block;
+  color: #0053a0;
+  text-decoration: underline;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
 }
 
 .login-options-list {
