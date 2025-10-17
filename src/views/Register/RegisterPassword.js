@@ -79,12 +79,14 @@ const RegisterPassword = () => {
       });
       
       if (result.success) {
-        // Asegurar que el usuario queda logueado
-        UserController.login(email, form.password);
-        
-        // Mensaje y redirección
-        alert('¡Tu cuenta ha sido creada exitosamente!');
-        navigate('/');
+        // Redirigir a verificación en lugar de login automático
+        navigate('/verify', { 
+          state: { 
+            email, 
+            phone, 
+            fromRegister: true 
+          } 
+        });
       }
     } catch (error) {
       console.error('Error al registrar:', error);

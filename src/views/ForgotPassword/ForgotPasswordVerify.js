@@ -1,6 +1,7 @@
 // src/views/ForgotPassword/ForgotPasswordVerify.js
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import UserController from '../../controllers/UserController';
 import './ForgotPassword.css';
 
 const ForgotPasswordVerify = () => {
@@ -8,87 +9,97 @@ const ForgotPasswordVerify = () => {
   const navigate = useNavigate();
   const { email, generatedCode } = location.state || {};
   
-  const [inputEmail, setInputEmail] = useState(email || '');
+  const [code, setCode] = useState('');
   const [error, setError] = useState('');
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    // Si llegamos aquí sin datos, mostrar el modal automáticamente
-    if (email && generatedCode) {
-      // Simular que el email fue "enviado"
-      alert(`Código de recuperación: ${generatedCode}\n(En producción, esto se enviaría por email)`);
-      setShowModal(true);
+    // Si llegamos aquí sin email o código, redirigir a inicio
+    if (!email || !generatedCode) {
+      navigate('/forgot-password');
     }
-  }, [email, generatedCode]);
+  }, [email, generatedCode, navigate]);
 
-  const handleEmailSubmit = (e) => {
+  const handleCodeSubmit = (e) => {
     e.preventDefault();
+    setError('');
     
-    if (!inputEmail || !inputEmail.includes('@')) {
-      setError('Por favor ingresa un correo electrónico válido');
+    if (!code) {
+      setError('Por favor ingresa el código de verificación');
       return;
     }
 
-    setShowModal(true);
+    if (code.length !== 6) {
+      setError('El código debe tener 6 dígitos');
+      return;
+    }
+
+    // Verificar el código
+    const isValid = UserController.verifyResetCode(email, code, generatedCode);
+    
+    if (isValid) {
+      // Código válido, navegar a reset password
+      navigate('/forgot-password/reset', { state: { email, verifiedCode: code } });
+    } else {
+      setError('Código de verificación incorrecto');
+    }
   };
 
-  const handleContinue = () => {
-    setShowModal(false);
-    // En producción, aquí se verificaría el código del email
-    navigate('/forgot-password/reset', { state: { email: inputEmail } });
+  const handleResendCode = () => {
+    // Simular reenvío de código
+    alert(`Código reenviado: ${generatedCode}\n(En producción, esto se enviaría por email)`);
   };
 
   return (
     <div className="forgot-password-container">
       <div className="forgot-password-content">
-        <Link to="/login" className="back-link">
+        <Link to="/forgot-password" className="back-link">
           ← Volver
         </Link>
 
-        <h1>Nueva contraseña</h1>
+        <h1>Verificación de código</h1>
 
         <div className="verify-instructions">
-          <p>Escribe tu correo</p>
+          <p>Ingresa el código de 6 dígitos que enviamos a:</p>
+          <p className="email-display">{email}</p>
         </div>
 
-        <form onSubmit={handleEmailSubmit}>
+        <form onSubmit={handleCodeSubmit}>
           <div className="form-group">
-            <label htmlFor="email">Correo electrónico</label>
+            <label htmlFor="code">Código de verificación</label>
             <input
-              type="email"
-              id="email"
-              value={inputEmail}
-              onChange={(e) => setInputEmail(e.target.value)}
-              placeholder="abc@123.com"
+              type="text"
+              id="code"
+              value={code}
+              onChange={(e) => {
+                const value = e.target.value.replace(/\D/g, '');
+                if (value.length <= 6) {
+                  setCode(value);
+                }
+              }}
+              placeholder="123456"
               className={error ? 'input-error' : ''}
-              readOnly={!!email}
+              maxLength={6}
+              autoFocus
             />
             {error && <p className="error-message">{error}</p>}
           </div>
 
           <button type="submit" className="continue-btn">
-            Continuar
+            Verificar código
           </button>
+
+          <div className="help-section">
+            <p className="help-title">¿No recibiste el código?</p>
+            <button 
+              type="button" 
+              className="help-link-btn" 
+              onClick={handleResendCode}
+            >
+              Reenviar código
+            </button>
+          </div>
         </form>
       </div>
-
-      {/* Modal de confirmación de envío */}
-      {showModal && (
-        <div className="modal-overlay" onClick={handleContinue}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={handleContinue}>
-              ✕
-            </button>
-            <h2>Nueva contraseña</h2>
-            <div className="modal-message">
-              <div className="icon-warning">⚠️</div>
-              <p>
-                Te enviamos un correo electrónico con un enlace para restablecer tu contraseña.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

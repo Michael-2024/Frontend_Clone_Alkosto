@@ -39,6 +39,9 @@ class UserController {
         userData.password
       );
       this.currentUser.phone = userData.phone || '';
+      this.currentUser.emailVerified = userData.emailVerified || false;
+      this.currentUser.phoneVerified = userData.phoneVerified || false;
+      this.currentUser.estadoCuenta = userData.estadoCuenta || 'pendiente';
       this.currentUser.addresses = userData.addresses || [];
       this.currentUser.orders = userData.orders || [];
       this.currentUser.createdAt = new Date(userData.createdAt);
@@ -58,7 +61,7 @@ class UserController {
     const userIndex = users.findIndex(user => user.email === email);
     
     if (userIndex === -1) {
-      throw new Error('Usuario no encontrado');
+      return { success: false, message: 'Usuario no encontrado' };
     }
 
     // Actualizar la contraseña del usuario
@@ -67,7 +70,7 @@ class UserController {
     // Guardar los cambios
     localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
     
-    return true;
+    return { success: true, message: 'Contraseña actualizada exitosamente' };
   }
 
   // Obtener usuario por email
@@ -143,6 +146,9 @@ class UserController {
         userData.password
       );
       this.currentUser.phone = userData.phone || '';
+      this.currentUser.emailVerified = userData.emailVerified || false;
+      this.currentUser.phoneVerified = userData.phoneVerified || false;
+      this.currentUser.estadoCuenta = userData.estadoCuenta || 'pendiente';
       this.currentUser.addresses = userData.addresses || [];
       this.currentUser.orders = userData.orders || [];
       this.currentUser.createdAt = new Date(userData.createdAt);
@@ -193,7 +199,78 @@ class UserController {
     this.saveUser();
     return true;
   }
+
+  // Métodos para verificación RF04
+  
+  // Marcar email como verificado
+  verifyEmail(email) {
+    const users = this.getAllUsers();
+    const userIndex = users.findIndex(u => u.email === email);
+    
+    if (userIndex !== -1) {
+      users[userIndex].emailVerified = true;
+      this.checkAndActivateAccount(users[userIndex]);
+      this.saveAllUsers(users);
+      
+      // Si es el usuario actual, actualizar también
+      if (this.currentUser && this.currentUser.email === email) {
+        this.currentUser.emailVerified = true;
+        this.checkAndActivateAccount(this.currentUser);
+        this.saveUser();
+      }
+      
+      return { success: true, message: 'Correo verificado exitosamente' };
+    }
+    
+    return { success: false, message: 'Usuario no encontrado' };
+  }
+
+  // Marcar teléfono como verificado
+  verifyPhone(email) {
+    const users = this.getAllUsers();
+    const userIndex = users.findIndex(u => u.email === email);
+    
+    if (userIndex !== -1) {
+      users[userIndex].phoneVerified = true;
+      this.checkAndActivateAccount(users[userIndex]);
+      this.saveAllUsers(users);
+      
+      // Si es el usuario actual, actualizar también
+      if (this.currentUser && this.currentUser.email === email) {
+        this.currentUser.phoneVerified = true;
+        this.checkAndActivateAccount(this.currentUser);
+        this.saveUser();
+      }
+      
+      return { success: true, message: 'Teléfono verificado exitosamente' };
+    }
+    
+    return { success: false, message: 'Usuario no encontrado' };
+  }
+
+  // Verificar y activar cuenta si correo o teléfono están verificados
+  checkAndActivateAccount(user) {
+    if (user.emailVerified || user.phoneVerified) {
+      user.estadoCuenta = 'validado';
+    }
+  }
+
+  // Obtener usuario con información de verificación
+  getUserVerificationStatus(email) {
+    const user = this.getUserByEmail(email);
+    if (user) {
+      return {
+        email: user.email,
+        phone: user.phone,
+        emailVerified: user.emailVerified || false,
+        phoneVerified: user.phoneVerified || false,
+        estadoCuenta: user.estadoCuenta || 'pendiente'
+      };
+    }
+    return null;
+  }
 }
+
 
 // Exportar una única instancia (Singleton)
 export default new UserController();

@@ -15,6 +15,8 @@ import LoginCode from './views/Login/LoginCode';
 import ForgotPassword from './views/ForgotPassword/ForgotPassword';
 import ForgotPasswordVerify from './views/ForgotPassword/ForgotPasswordVerify';
 import ForgotPasswordReset from './views/ForgotPassword/ForgotPasswordReset';
+import Verification from './views/Verification/Verification';
+import SearchResults from './views/Search/SearchResults';
 import './App.css';
 
 function App() {
@@ -42,6 +44,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/forgot-password/verify" element={<ForgotPasswordVerify />} />
         <Route path="/forgot-password/reset" element={<ForgotPasswordReset />} />
+        <Route path="/verify" element={<Verification />} />
         {/* Resto de rutas con layout normal */}
         <Route path="*" element={
           <div className="app">
@@ -50,6 +53,7 @@ function App() {
             <main className="main-content">
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/search" element={<SearchResults />} />
                 <Route path="/producto/:id" element={<ProductDetail />} />
                 <Route path="/carrito" element={<Cart />} />
                 <Route path="/categoria/:categoria" element={<Home />} />

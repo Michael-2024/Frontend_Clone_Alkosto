@@ -7,6 +7,9 @@ class User {
     this.lastName = lastName;
     this.password = password; // En producción, nunca almacenaríamos contraseñas en frontend
     this.phone = ''; // Nuevo campo
+    this.emailVerified = false; // Estado de verificación de correo
+    this.phoneVerified = false; // Estado de verificación de teléfono
+    this.estadoCuenta = 'pendiente'; // pendiente | validado
     this.createdAt = new Date();
     this.addresses = [];
     this.orders = [];
@@ -39,6 +42,9 @@ class User {
       firstName: this.firstName,
       lastName: this.lastName,
       phone: this.phone, // Incluir teléfono
+      emailVerified: this.emailVerified,
+      phoneVerified: this.phoneVerified,
+      estadoCuenta: this.estadoCuenta,
       createdAt: this.createdAt,
       addresses: this.addresses,
       orders: this.orders

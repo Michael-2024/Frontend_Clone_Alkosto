@@ -1,5 +1,5 @@
 // src/views/ForgotPassword/ForgotPasswordReset.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import './ForgotPassword.css';
@@ -7,13 +7,20 @@ import './ForgotPassword.css';
 const ForgotPasswordReset = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { email } = location.state || {};
+  const { email, verifiedCode } = location.state || {};
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    // Si llegamos aquí sin email o código verificado, redirigir
+    if (!email || !verifiedCode) {
+      navigate('/forgot-password');
+    }
+  }, [email, verifiedCode, navigate]);
 
   const handleResetPassword = (e) => {
     e.preventDefault();

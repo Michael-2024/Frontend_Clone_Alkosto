@@ -10,7 +10,6 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [verificationCode, setVerificationCode] = useState('');
   const [generatedCode, setGeneratedCode] = useState('');
   // Controla si mostramos el resumen del email (después de un submit válido)
   const [showSummary, setShowSummary] = useState(false);
