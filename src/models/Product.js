@@ -1,6 +1,6 @@
 // Modelo de Producto
 class Product {
-  constructor(id, name, price, originalPrice, discount, image, category, rating, stock) {
+  constructor(id, name, price, originalPrice, discount, image, category, rating, stock, description = '') {
     this.id = id;
     this.name = name;
     this.price = price;
@@ -10,6 +10,7 @@ class Product {
     this.category = category;
     this.rating = rating;
     this.stock = stock;
+    this.description = description;
   }
 
   getDiscountPercentage() {
