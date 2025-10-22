@@ -68,6 +68,44 @@ npm start
 
 El frontend estará disponible en `http://localhost:3000`
 
+3. Ejecutar pruebas:
+```bash
+npm test
+```
+
+## 🧪 Testing
+
+El proyecto cuenta con **92 pruebas unitarias** que cubren las funcionalidades principales:
+
+### Pruebas Implementadas
+
+#### RF01 - Registrar Usuario (50 pruebas)
+- ✅ Validación de formulario (nombre, apellido, teléfono, email)
+- ✅ Validación de teléfono celular (10 dígitos, inicia con 3)
+- ✅ Creación y confirmación de contraseña
+- ✅ Flujo completo de registro
+
+#### RF02 - Iniciar Sesión (35 pruebas)
+- ✅ Opciones de autenticación (WhatsApp, SMS, Email, Contraseña)
+- ✅ Login con contraseña
+- ✅ Validación de credenciales
+- ✅ Manejo de errores
+
+### Ejecutar Pruebas
+
+```bash
+# Todas las pruebas
+npm test
+
+# Pruebas específicas
+npm test -- --testPathPattern="Register"
+
+# Con cobertura
+npm test -- --coverage
+```
+
+Para más detalles, consulta [docs/TESTING.md](docs/TESTING.md)
+
 ## 🎨 Patrón de Diseño MVC
 
 ### Models (Modelos)
@@ -101,6 +139,9 @@ Manejan la lógica de negocio y la comunicación entre modelos y vistas:
 - [x] Persistencia del carrito en localStorage
 - [x] Cálculo de subtotales y envío
 - [x] Diseño responsive mobile-first
+- [x] Sistema de registro de usuarios (RF01)
+- [x] Sistema de inicio de sesión (RF02)
+- [x] Pruebas unitarias completas (92 tests)
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -130,9 +171,9 @@ La aplicación está optimizada para:
 
 ### Frontend
 1. ⏳ Conectar con API de Django
-2. ⏳ Implementar autenticación de usuarios
-3. ⏳ Mejorar manejo de estado (Context API/Redux)
-4. ⏳ Agregar tests unitarios
+2. ⏳ Mejorar manejo de estado (Context API/Redux)
+3. ✅ Agregar tests unitarios (92 pruebas implementadas)
+4. ⏳ Agregar tests e2e con Cypress
 
 ## 📝 Notas
 
