@@ -104,16 +104,16 @@
 
 .logo {
   text-decoration: none;
-  color: #d0d0d0;
-  font-size: 28px;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
   white-space: nowrap;
+  padding: 5px 0;
 }
 
-.logo h1 {
-  margin: 0;
-  font-size: 32px;
-  letter-spacing: 2px;
+.logo-img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Barra de búsqueda */
@@ -235,10 +235,11 @@
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   margin-top: 15px;
-  min-width: 380px;
-  max-width: 400px;
+  min-width: 420px;
+  max-width: 450px;
   z-index: 1000;
   overflow: hidden;
+    max-height: 650px;
 }
 
 .account-dropdown-arrow {
@@ -254,18 +255,29 @@
 
 .account-dropdown-content {
   padding: 0;
+  max-height: 640px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Sección de bienvenida */
 .account-welcome {
+  padding: 0;
+}
+
+.welcome-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
   border-bottom: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
 }
 
 .welcome-text {
   font-size: 16px;
   color: #333;
-  margin-bottom: 12px;
+  margin: 0;
 }
 
 .user-name {
@@ -273,18 +285,28 @@
   color: #004797;
 }
 
-.close-session {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #666;
-  text-decoration: none;
+.close-session-link {
+  background: none;
+  border: none;
+  color: #FF6B00;
   font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
   transition: color 0.3s;
+  padding: 0;
 }
 
-.close-session:hover {
-  color: #004797;
+.close-session-link:hover {
+  color: #FF4F00;
+  text-decoration: underline;
+}
+
+/* Lista de opciones del menú */
+.account-menu-list {
+  padding: 0;
+  max-height: 450px;
+  overflow-y: auto;
 }
 
 /* Sección de login */
@@ -361,11 +383,12 @@
   display: flex;
   align-items: flex-start;
   gap: 15px;
-  padding: 15px 20px;
+  padding: 16px 20px;
   color: #333;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
   border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
 }
 
 .account-menu-item:last-child {
@@ -373,13 +396,16 @@
 }
 
 .account-menu-item:hover {
-  background-color: #f9f9f9;
+  background-color: #f0f7ff;
+  border-left: 3px solid #004797;
+  padding-left: 17px;
 }
 
 .item-icon {
-  font-size: 24px;
+  font-size: 26px;
   flex-shrink: 0;
   margin-top: 2px;
+  filter: grayscale(20%);
 }
 
 .item-text {
@@ -387,20 +413,27 @@
 }
 
 .item-title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: #333;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
+  line-height: 1.2;
 }
 
 .item-description {
   font-size: 12px;
   color: #666;
-  line-height: 1.3;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .account-menu-item:hover .item-title {
-  color: #0033A0;
+  color: #004797;
+}
+
+.account-menu-item:hover .item-icon {
+  transform: scale(1.1);
+  filter: grayscale(0%);
 }
 
 /* Carrito */

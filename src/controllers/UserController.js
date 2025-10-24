@@ -13,6 +13,50 @@ class UserController {
     this.listeners = [];
   }
 
+  // Utilidades de favoritos por usuario
+  getFavoritesKey(userId) {
+    return `alkosto_favorites_${userId}`;
+  }
+
+  getFavorites(userId) {
+    const key = this.getFavoritesKey(userId);
+    try {
+      return JSON.parse(localStorage.getItem(key) || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  addFavorite(productId) {
+    if (!this.currentUser) return;
+    const key = this.getFavoritesKey(this.currentUser.id);
+    const favs = this.getFavorites(this.currentUser.id);
+    if (!favs.includes(productId)) {
+      const next = [...favs, productId];
+      localStorage.setItem(key, JSON.stringify(next));
+    }
+  }
+
+  removeFavorite(productId) {
+    if (!this.currentUser) return;
+    const key = this.getFavoritesKey(this.currentUser.id);
+    const favs = this.getFavorites(this.currentUser.id);
+    const next = favs.filter(id => id !== productId);
+    localStorage.setItem(key, JSON.stringify(next));
+  }
+
+  // Si hay un intento de favorito pendiente antes de autenticarse, aplicarlo al iniciar sesión/registrarse
+  syncPendingFavorite() {
+    try {
+      const pending = localStorage.getItem('pendingFavoriteProductId');
+      if (pending && this.currentUser) {
+        const productId = isNaN(Number(pending)) ? pending : Number(pending);
+        this.addFavorite(productId);
+        localStorage.removeItem('pendingFavoriteProductId');
+      }
+    } catch (_) { /* noop */ }
+  }
+
   // Añadir método para notificar a los componentes sobre cambios de autenticación
   addAuthListener(callback) {
     this.listeners.push(callback);
@@ -114,6 +158,8 @@ class UserController {
     // Guardar como usuario actual
     this.currentUser = newUser;
     this.saveUser();
+    // Aplicar intento de favorito si existe
+    this.syncPendingFavorite();
     this.notifyAuthChange();
     return { success: true, user: this.currentUser };
   }
@@ -130,6 +176,7 @@ class UserController {
     if (email === 'admin@alkosto.com' && password === 'admin123') {
       this.currentUser = new User('admin', email, 'Admin', 'Alkosto');
       this.saveUser();
+      this.syncPendingFavorite();
       this.notifyAuthChange();
       return { success: true, user: this.currentUser };
     }
@@ -153,6 +200,7 @@ class UserController {
       this.currentUser.orders = userData.orders || [];
       this.currentUser.createdAt = new Date(userData.createdAt);
       this.saveUser();
+      this.syncPendingFavorite();
       this.notifyAuthChange();
       return { success: true, user: this.currentUser };
     }
