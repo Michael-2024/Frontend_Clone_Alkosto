@@ -152,7 +152,7 @@ const Header = ({ cartItemsCount }) => {
         <div className="container">
           <div className="header-main-content">
             <Link to="/" className="logo">
-              <h1>ALKOSTO</h1>
+            <img src="/assets/logo-alkosto.svg" alt="Alkosto" className="logo-img" />
             </Link>
 
             <form className="search-bar" onSubmit={handleSearch}>
@@ -199,13 +199,65 @@ const Header = ({ cartItemsCount }) => {
                       {/* Sección de bienvenida o login */}
                       {isLoggedIn ? (
                         <div className="account-welcome">
-                          <div className="welcome-text">
-                            Bienvenido/a <span className="user-name">{userName}</span>
+                          <div className="welcome-header">
+                            <div className="welcome-text">
+                              Bienvenido/a <span className="user-name">{userName}</span>
+                            </div>
+                            <button onClick={handleLogout} className="close-session-link">
+                              Cerrar sesión
+                            </button>
                           </div>
-                          <button onClick={handleLogout} className="close-session">
-                            <i className="icon">🚪</i>
-                            <span>Cerrar sesión</span>
-                          </button>
+                          
+                          {/* Opciones del menú de usuario */}
+                          <div className="account-menu-list">
+                            <Link to="/perfil/mi-cuenta" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
+                              <i className="item-icon">🏠</i>
+                              <div className="item-text">
+                                <div className="item-title">Mi cuenta</div>
+                                <div className="item-description">Aquí podrás consultar todos tus movimientos</div>
+                              </div>
+                            </Link>
+
+                            <Link to="/perfil/datos" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
+                              <i className="item-icon">👤</i>
+                              <div className="item-text">
+                                <div className="item-title">Mi Perfil</div>
+                                <div className="item-description">Revisa y edita tus datos personales</div>
+                              </div>
+                            </Link>
+
+                            <Link to="/perfil/pedidos" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
+                              <i className="item-icon">📦</i>
+                              <div className="item-text">
+                                <div className="item-title">Mis Pedidos</div>
+                                <div className="item-description">Gestiona tus pedidos, devoluciones y fechas de entrega</div>
+                              </div>
+                            </Link>
+
+                            <Link to="/perfil/pagos" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
+                              <i className="item-icon">💳</i>
+                              <div className="item-text">
+                                <div className="item-title">Métodos de Pago</div>
+                                <div className="item-description">Agrega y valida tus métodos de pago</div>
+                              </div>
+                            </Link>
+
+                            <Link to="/perfil/direcciones" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
+                              <i className="item-icon">📍</i>
+                              <div className="item-text">
+                                <div className="item-title">Direcciones de envío</div>
+                                <div className="item-description">Agrega, edita y/o elimina una dirección</div>
+                              </div>
+                            </Link>
+
+                              <Link to="/perfil" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
+                              <i className="item-icon">❤️</i>
+                              <div className="item-text">
+                                <div className="item-title">Mi lista de Favoritos</div>
+                                <div className="item-description">Guarda y revisa tus productos</div>
+                              </div>
+                            </Link>
+                          </div>
                         </div>
                       ) : (
                         <div className="account-login-section">

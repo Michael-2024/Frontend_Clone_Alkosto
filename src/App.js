@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SkipLink from './components/SkipLink/SkipLink';
 import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
 import Footer from './components/Footer/Footer';
@@ -17,6 +18,7 @@ import ForgotPasswordVerify from './views/ForgotPassword/ForgotPasswordVerify';
 import ForgotPasswordReset from './views/ForgotPassword/ForgotPasswordReset';
 import Verification from './views/Verification/Verification';
 import SearchResults from './views/Search/SearchResults';
+import Profile from './views/Profile/Profile';
 import './App.css';
 
 function App() {
@@ -48,14 +50,16 @@ function App() {
         {/* Resto de rutas con layout normal */}
         <Route path="*" element={
           <div className="app">
+            <SkipLink />
             <Header cartItemsCount={cartItemsCount} />
             <Navigation />
-            <main className="main-content">
+            <main id="main" className="main-content" role="main">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/producto/:id" element={<ProductDetail />} />
                 <Route path="/carrito" element={<Cart />} />
+                <Route path="/perfil" element={<Profile />} />
                 <Route path="/categoria/:categoria" element={<Home />} />
                 <Route path="/ofertas" element={<Home />} />
               </Routes>

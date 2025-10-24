@@ -1,0 +1,115 @@
+
+> alkosto-clone-frontend@1.0.0 test
+> react-scripts test RF01_Integration.test.js --watchAll=false
+
+FAIL src/__tests__/RF01_Integration.test.js
+  RF01 - REGISTRAR USUARIO - Pruebas de Integración
+    1. Integración User Model ↔ UserController
+      ✓ 1.1 Crear usuario a través del controlador persiste en modelo correcto (3 ms)
+      ✓ 1.2 Múltiples usuarios registrados mantienen independencia (2 ms)
+      ✓ 1.3 Usuario registrado puede hacer login posteriormente (1 ms)
+    2. Integración UserController ↔ localStorage
+      ✓ 2.1 Usuario registrado se guarda en localStorage con estructura correcta (2 ms)
+      ✓ 2.2 Cerrar sesión elimina usuario actual pero mantiene lista (2 ms)
+      ✓ 2.3 Recargar página recupera usuario desde localStorage
+      ✓ 2.4 Datos de usuario incluyen timestamps y metadatos (2 ms)
+    3. Integración con Sistema de Verificación (RF04)
+      ✓ 3.1 Usuario registrado inicia con estado "pendiente" (1 ms)
+      ✓ 3.2 Verificar email cambia estado a "validado" (1 ms)
+      ✓ 3.3 Verificar teléfono cambia estado a "validado" (1 ms)
+      ✓ 3.4 Obtener estado de verificación de usuario (1 ms)
+    4. Validación de Emails Duplicados
+      ✓ 4.1 isEmailRegistered detecta email ya existente
+      ✓ 4.2 isEmailRegistered distingue mayúsculas (case-sensitive)
+      ✓ 4.3 Múltiples usuarios con diferentes emails
+    5. Integración con Sistema de Favoritos
+      ✓ 5.1 Usuario registrado puede agregar favoritos
+      ✓ 5.2 Eliminar favorito funciona correctamente
+      ✕ 5.3 Favoritos son únicos por usuario (4 ms)
+      ✓ 5.4 syncPendingFavorite aplica favorito pendiente al registrarse
+    6. Integración con Recuperación de Contraseña
+      ✓ 6.1 resetPassword actualiza contraseña de usuario registrado (1 ms)
+      ✓ 6.2 getUserByEmail encuentra usuario registrado
+      ✓ 6.3 getUserByEmail retorna undefined para email no registrado
+      ✓ 6.4 verifyResetCode valida código correcto
+      ✓ 6.5 verifyResetCode rechaza código incorrecto
+    7. Sistema de Notificación de Cambios
+      ✓ 7.1 addAuthListener registra callback correctamente (1 ms)
+      ✓ 7.2 notifyAuthChange llama a todos los listeners
+      ✓ 7.3 Registro dispara notificación de cambio de auth (1 ms)
+      ✓ 7.4 Logout dispara notificación de cambio de auth
+      ✓ 7.5 Unsubscribe elimina listener (1 ms)
+    8. Flujo Completo End-to-End (Integración Total)
+      ✓ 8.1 Flujo completo: Registro → Login → Favoritos → Logout (1 ms)
+      ✓ 8.2 Flujo completo: Registro → Verificación Email → Estado Validado
+      ✓ 8.3 Flujo completo: Registro → Recuperar Contraseña → Login (3 ms)
+    9. Casos Edge y Manejo de Errores
+      ✕ 9.1 localStorage corrupto no rompe la aplicación (18 ms)
+      ✓ 9.2 Registrar con datos mínimos requeridos (1 ms)
+      ✓ 9.3 Cerrar sesión sin usuario logueado
+      ✓ 9.4 Agregar favorito sin usuario logueado no causa error
+      ✓ 9.5 Verificar email de usuario no existente
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas de Integración › 5. Integración con Sistema de Favoritos › 5.3 Favoritos son únicos por usuario
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 2
+
+      Array [
+        100,
+        200,
+    +   300,
+    +   400,
+      ]
+
+    [0m [90m 476 |[39m       [36mconst[39m fav2 [33m=[39m [33mUserController[39m[33m.[39mgetFavorites(user2[33m.[39mid)[33m;[39m
+     [90m 477 |[39m
+    [31m[1m>[22m[39m[90m 478 |[39m       expect(fav1)[33m.[39mtoEqual([[35m100[39m[33m,[39m [35m200[39m])[33m;[39m
+     [90m     |[39m                    [31m[1m^[22m[39m
+     [90m 479 |[39m       expect(fav2)[33m.[39mtoEqual([[35m300[39m[33m,[39m [35m400[39m])[33m;[39m
+     [90m 480 |[39m     })[33m;[39m
+     [90m 481 |[39m[0m
+
+      at Object.<anonymous> (src/__tests__/RF01_Integration.test.js:478:20)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas de Integración › 9. Casos Edge y Manejo de Errores › 9.1 localStorage corrupto no rompe la aplicación
+
+    expect(received).not.toThrow()
+
+    Error name:    "SyntaxError"
+    Error message: "Unexpected token 'i', \"invalid json {]\" is not valid JSON"
+
+        [0m [90m 128 |[39m     [36mconst[39m usersJSON [33m=[39m localStorage[33m.[39mgetItem([36mthis[39m[33m.[39m[33mUSERS_KEY[39m)[33m;[39m
+         [90m 129 |[39m     [36mif[39m (usersJSON) {
+        [31m[1m>[22m[39m[90m 130 |[39m       [36mreturn[39m [33mJSON[39m[33m.[39mparse(usersJSON)[33m;[39m
+         [90m     |[39m                   [31m[1m^[22m[39m
+         [90m 131 |[39m     }
+         [90m 132 |[39m     [36mreturn[39m [][33m;[39m
+         [90m 133 |[39m   }[0m
+
+      at UserController.getAllUsers (src/controllers/UserController.js:130:19)
+      at src/__tests__/RF01_Integration.test.js:776:24
+      at Object.<anonymous> (node_modules/expect/build/toThrowMatchers.js:83:11)
+      at Object.toThrow (node_modules/expect/build/index.js:382:21)
+      at Object.<anonymous> (src/__tests__/RF01_Integration.test.js:777:14)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+      at Object.<anonymous> (src/__tests__/RF01_Integration.test.js:777:14)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 34 passed, 36 total
+Snapshots:   0 total
+Time:        1.186 s
+Ran all test suites matching /RF01_Integration.test.js/i.

@@ -1,0 +1,1684 @@
+
+> alkosto-clone-frontend@1.0.0 test
+> react-scripts test RF01_Register.test.js --coverage --watchAll=false
+
+  console.warn
+    ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+
+    [0m [90m 198 |[39m     
+     [90m 199 |[39m     [36mconst[39m renderRegisterForm [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 200 |[39m       [36mreturn[39m render(
+     [90m     |[39m                    [31m[1m^[22m[39m
+     [90m 201 |[39m         [33m<[39m[33mBrowserRouter[39m[33m>[39m
+     [90m 202 |[39m           [33m<[39m[33mRegister[39m [33m/[39m[33m>[39m
+     [90m 203 |[39m         [33m<[39m[33m/[39m[33mBrowserRouter[39m[33m>[39m[0m
+
+      at warnOnce (node_modules/react-router/lib/deprecations.ts:9:13)
+      at logDeprecation (node_modules/react-router/lib/deprecations.ts:14:3)
+      at Object.logV6DeprecationWarnings [as UNSAFE_logV6DeprecationWarnings] (node_modules/react-router/lib/deprecations.ts:26:5)
+      at node_modules/react-router-dom/index.tsx:816:25
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at renderRegisterForm (src/__tests__/RF01_Register.test.js:200:20)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:208:7)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.warn
+    ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+    [0m [90m 198 |[39m     
+     [90m 199 |[39m     [36mconst[39m renderRegisterForm [33m=[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 200 |[39m       [36mreturn[39m render(
+     [90m     |[39m                    [31m[1m^[22m[39m
+     [90m 201 |[39m         [33m<[39m[33mBrowserRouter[39m[33m>[39m
+     [90m 202 |[39m           [33m<[39m[33mRegister[39m [33m/[39m[33m>[39m
+     [90m 203 |[39m         [33m<[39m[33m/[39m[33mBrowserRouter[39m[33m>[39m[0m
+
+      at warnOnce (node_modules/react-router/lib/deprecations.ts:9:13)
+      at logDeprecation (node_modules/react-router/lib/deprecations.ts:14:3)
+      at Object.logV6DeprecationWarnings [as UNSAFE_logV6DeprecationWarnings] (node_modules/react-router/lib/deprecations.ts:37:5)
+      at node_modules/react-router-dom/index.tsx:816:25
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at renderRegisterForm (src/__tests__/RF01_Register.test.js:200:20)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:208:7)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.error
+    Error: Uncaught [TypeError: Cannot read properties of undefined (reading 'search')]
+        at reportException (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+        at innerInvokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+        at invokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+        at HTMLUnknownElementImpl._dispatch (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+        at HTMLUnknownElementImpl.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+        at HTMLUnknownElement.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+        at Object.invokeGuardedCallbackDev (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+        at invokeGuardedCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+        at beginWork$1 (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+        at performUnitOfWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+        at workLoopSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+        at renderRootSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+        at performConcurrentWorkOnRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+        at flushActQueue (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2667:24)
+        at act (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2582:11)
+        at /workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/act-compat.js:47:25
+        at renderRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:190:26)
+        at render (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:292:10)
+        at Object.<anonymous> (/workspaces/Frontend_Clone_Alkosto/src/__tests__/RF01_Register.test.js:771:13)
+        at Promise.then.completed (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:391:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:316:10)
+        at _callCircusTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:218:40)
+        at _runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:155:3)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:66:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:25:3)
+        at runAndTransformResultsToJestFormat (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+        at jestAdapter (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
+        at runTestInternal (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:389:16)
+        at runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:475:34)
+        at TestRunner.runTests (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/index.js:101:12)
+        at TestScheduler.scheduleTests (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/TestScheduler.js:333:13)
+        at runJest (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/runJest.js:404:19)
+        at _run10000 (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:320:7)
+        at runCLI (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:173:3)
+        at Object.run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-cli/build/cli/index.js:155:37) TypeError: Cannot read properties of undefined (reading 'search')
+        at Register (/workspaces/Frontend_Clone_Alkosto/src/views/Register/Register.js:13:47)
+        at renderWithHooks (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+        at mountIndeterminateComponent (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+        at beginWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+        at HTMLUnknownElement.callCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+        at HTMLUnknownElement.callTheUserObjectsOperation (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+        at innerInvokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:338:25)
+        at invokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+        at HTMLUnknownElementImpl._dispatch (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+        at HTMLUnknownElementImpl.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+        at HTMLUnknownElement.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+        at Object.invokeGuardedCallbackDev (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+        at invokeGuardedCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+        at beginWork$1 (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+        at performUnitOfWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+        at workLoopSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+        at renderRootSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+        at performConcurrentWorkOnRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+        at flushActQueue (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2667:24)
+        at act (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2582:11)
+        at /workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/act-compat.js:47:25
+        at renderRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:190:26)
+        at render (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:292:10)
+        at Object.<anonymous> (/workspaces/Frontend_Clone_Alkosto/src/__tests__/RF01_Register.test.js:771:13)
+        at Promise.then.completed (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:391:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:316:10)
+        at _callCircusTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:218:40)
+        at _runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:155:3)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:66:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:25:3)
+        at runAndTransformResultsToJestFormat (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+        at jestAdapter (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
+        at runTestInternal (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:389:16)
+        at runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:475:34)
+        at TestRunner.runTests (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/index.js:101:12)
+        at TestScheduler.scheduleTests (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/TestScheduler.js:333:13)
+        at runJest (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/runJest.js:404:19)
+        at _run10000 (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:320:7)
+        at runCLI (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:173:3)
+        at Object.run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-cli/build/cli/index.js:155:37)
+
+    [0m [90m 769 |[39m
+     [90m 770 |[39m     test([32m'10.2 Input de teléfono solo acepta números'[39m[33m,[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 771 |[39m       render(
+     [90m     |[39m             [31m[1m^[22m[39m
+     [90m 772 |[39m         [33m<[39m[33mBrowserRouter[39m[33m>[39m
+     [90m 773 |[39m           [33m<[39m[33mRegister[39m [33m/[39m[33m>[39m
+     [90m 774 |[39m         [33m<[39m[33m/[39m[33mBrowserRouter[39m[33m>[39m[0m
+
+      at VirtualConsole.<anonymous> (node_modules/jsdom/lib/jsdom/virtual-console.js:29:45)
+      at reportException (node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:70:28)
+      at innerInvokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+      at HTMLUnknownElementImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+      at HTMLUnknownElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+      at HTMLUnknownElement.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+      at Object.invokeGuardedCallbackDev (node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+      at invokeGuardedCallback (node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:771:13)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.error
+    Error: Uncaught [TypeError: Cannot read properties of undefined (reading 'search')]
+        at reportException (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+        at innerInvokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+        at invokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+        at HTMLUnknownElementImpl._dispatch (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+        at HTMLUnknownElementImpl.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+        at HTMLUnknownElement.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+        at Object.invokeGuardedCallbackDev (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+        at invokeGuardedCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+        at beginWork$1 (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+        at performUnitOfWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+        at workLoopSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+        at renderRootSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+        at recoverFromConcurrentError (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+        at performConcurrentWorkOnRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+        at flushActQueue (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2667:24)
+        at act (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2582:11)
+        at /workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/act-compat.js:47:25
+        at renderRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:190:26)
+        at render (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:292:10)
+        at Object.<anonymous> (/workspaces/Frontend_Clone_Alkosto/src/__tests__/RF01_Register.test.js:771:13)
+        at Promise.then.completed (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:391:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:316:10)
+        at _callCircusTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:218:40)
+        at _runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:155:3)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:66:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:25:3)
+        at runAndTransformResultsToJestFormat (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+        at jestAdapter (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
+        at runTestInternal (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:389:16)
+        at runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:475:34)
+        at TestRunner.runTests (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/index.js:101:12)
+        at TestScheduler.scheduleTests (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/TestScheduler.js:333:13)
+        at runJest (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/runJest.js:404:19)
+        at _run10000 (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:320:7)
+        at runCLI (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:173:3)
+        at Object.run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-cli/build/cli/index.js:155:37) TypeError: Cannot read properties of undefined (reading 'search')
+        at Register (/workspaces/Frontend_Clone_Alkosto/src/views/Register/Register.js:13:47)
+        at renderWithHooks (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+        at mountIndeterminateComponent (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+        at beginWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+        at HTMLUnknownElement.callCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+        at HTMLUnknownElement.callTheUserObjectsOperation (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+        at innerInvokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:338:25)
+        at invokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+        at HTMLUnknownElementImpl._dispatch (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+        at HTMLUnknownElementImpl.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+        at HTMLUnknownElement.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+        at Object.invokeGuardedCallbackDev (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+        at invokeGuardedCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+        at beginWork$1 (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+        at performUnitOfWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+        at workLoopSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+        at renderRootSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+        at recoverFromConcurrentError (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+        at performConcurrentWorkOnRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+        at flushActQueue (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2667:24)
+        at act (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2582:11)
+        at /workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/act-compat.js:47:25
+        at renderRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:190:26)
+        at render (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:292:10)
+        at Object.<anonymous> (/workspaces/Frontend_Clone_Alkosto/src/__tests__/RF01_Register.test.js:771:13)
+        at Promise.then.completed (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:391:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:316:10)
+        at _callCircusTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:218:40)
+        at _runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:155:3)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:66:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:25:3)
+        at runAndTransformResultsToJestFormat (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+        at jestAdapter (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
+        at runTestInternal (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:389:16)
+        at runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:475:34)
+        at TestRunner.runTests (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/index.js:101:12)
+        at TestScheduler.scheduleTests (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/TestScheduler.js:333:13)
+        at runJest (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/runJest.js:404:19)
+        at _run10000 (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:320:7)
+        at runCLI (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:173:3)
+        at Object.run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-cli/build/cli/index.js:155:37)
+
+    [0m [90m 769 |[39m
+     [90m 770 |[39m     test([32m'10.2 Input de teléfono solo acepta números'[39m[33m,[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 771 |[39m       render(
+     [90m     |[39m             [31m[1m^[22m[39m
+     [90m 772 |[39m         [33m<[39m[33mBrowserRouter[39m[33m>[39m
+     [90m 773 |[39m           [33m<[39m[33mRegister[39m [33m/[39m[33m>[39m
+     [90m 774 |[39m         [33m<[39m[33m/[39m[33mBrowserRouter[39m[33m>[39m[0m
+
+      at VirtualConsole.<anonymous> (node_modules/jsdom/lib/jsdom/virtual-console.js:29:45)
+      at reportException (node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:70:28)
+      at innerInvokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+      at HTMLUnknownElementImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+      at HTMLUnknownElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+      at HTMLUnknownElement.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+      at Object.invokeGuardedCallbackDev (node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+      at invokeGuardedCallback (node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at recoverFromConcurrentError (node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:771:13)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.error
+    The above error occurred in the <Register> component:
+    
+        at Register (/workspaces/Frontend_Clone_Alkosto/src/views/Register/Register.js:13:47)
+        at Router (/workspaces/Frontend_Clone_Alkosto/node_modules/react-router/lib/components.tsx:421:13)
+        at BrowserRouter (/workspaces/Frontend_Clone_Alkosto/node_modules/react-router-dom/index.tsx:789:3)
+    
+    Consider adding an error boundary to your tree to customize error handling behavior.
+    Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+    [0m [90m 769 |[39m
+     [90m 770 |[39m     test([32m'10.2 Input de teléfono solo acepta números'[39m[33m,[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 771 |[39m       render(
+     [90m     |[39m             [31m[1m^[22m[39m
+     [90m 772 |[39m         [33m<[39m[33mBrowserRouter[39m[33m>[39m
+     [90m 773 |[39m           [33m<[39m[33mRegister[39m [33m/[39m[33m>[39m
+     [90m 774 |[39m         [33m<[39m[33m/[39m[33mBrowserRouter[39m[33m>[39m[0m
+
+      at logCapturedError (node_modules/react-dom/cjs/react-dom.development.js:18704:23)
+      at update.callback (node_modules/react-dom/cjs/react-dom.development.js:18737:5)
+      at callCallback (node_modules/react-dom/cjs/react-dom.development.js:15036:12)
+      at commitUpdateQueue (node_modules/react-dom/cjs/react-dom.development.js:15057:9)
+      at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom.development.js:23430:13)
+      at commitLayoutMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25931:9)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:771:13)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.error
+    Error: Uncaught [TypeError: Cannot read properties of undefined (reading 'search')]
+        at reportException (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+        at innerInvokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+        at invokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+        at HTMLUnknownElementImpl._dispatch (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+        at HTMLUnknownElementImpl.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+        at HTMLUnknownElement.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+        at Object.invokeGuardedCallbackDev (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+        at invokeGuardedCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+        at beginWork$1 (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+        at performUnitOfWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+        at workLoopSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+        at renderRootSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+        at performConcurrentWorkOnRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+        at flushActQueue (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2667:24)
+        at act (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2582:11)
+        at /workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/act-compat.js:47:25
+        at renderRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:190:26)
+        at render (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:292:10)
+        at Object.<anonymous> (/workspaces/Frontend_Clone_Alkosto/src/__tests__/RF01_Register.test.js:787:13)
+        at Promise.then.completed (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:391:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:316:10)
+        at _callCircusTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:218:40)
+        at _runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:155:3)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:66:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:25:3)
+        at runAndTransformResultsToJestFormat (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+        at jestAdapter (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
+        at runTestInternal (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:389:16)
+        at runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:475:34)
+        at TestRunner.runTests (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/index.js:101:12)
+        at TestScheduler.scheduleTests (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/TestScheduler.js:333:13)
+        at runJest (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/runJest.js:404:19)
+        at _run10000 (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:320:7)
+        at runCLI (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:173:3)
+        at Object.run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-cli/build/cli/index.js:155:37) TypeError: Cannot read properties of undefined (reading 'search')
+        at Register (/workspaces/Frontend_Clone_Alkosto/src/views/Register/Register.js:13:47)
+        at renderWithHooks (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+        at mountIndeterminateComponent (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+        at beginWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+        at HTMLUnknownElement.callCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+        at HTMLUnknownElement.callTheUserObjectsOperation (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+        at innerInvokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:338:25)
+        at invokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+        at HTMLUnknownElementImpl._dispatch (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+        at HTMLUnknownElementImpl.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+        at HTMLUnknownElement.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+        at Object.invokeGuardedCallbackDev (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+        at invokeGuardedCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+        at beginWork$1 (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+        at performUnitOfWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+        at workLoopSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+        at renderRootSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+        at performConcurrentWorkOnRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+        at flushActQueue (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2667:24)
+        at act (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2582:11)
+        at /workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/act-compat.js:47:25
+        at renderRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:190:26)
+        at render (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:292:10)
+        at Object.<anonymous> (/workspaces/Frontend_Clone_Alkosto/src/__tests__/RF01_Register.test.js:787:13)
+        at Promise.then.completed (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:391:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:316:10)
+        at _callCircusTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:218:40)
+        at _runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:155:3)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:66:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:25:3)
+        at runAndTransformResultsToJestFormat (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+        at jestAdapter (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
+        at runTestInternal (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:389:16)
+        at runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:475:34)
+        at TestRunner.runTests (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/index.js:101:12)
+        at TestScheduler.scheduleTests (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/TestScheduler.js:333:13)
+        at runJest (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/runJest.js:404:19)
+        at _run10000 (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:320:7)
+        at runCLI (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:173:3)
+        at Object.run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-cli/build/cli/index.js:155:37)
+
+    [0m [90m 785 |[39m
+     [90m 786 |[39m     test([32m'10.3 Validación de teléfono se activa después del primer input'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 787 |[39m       render(
+     [90m     |[39m             [31m[1m^[22m[39m
+     [90m 788 |[39m         [33m<[39m[33mBrowserRouter[39m[33m>[39m
+     [90m 789 |[39m           [33m<[39m[33mRegister[39m [33m/[39m[33m>[39m
+     [90m 790 |[39m         [33m<[39m[33m/[39m[33mBrowserRouter[39m[33m>[39m[0m
+
+      at VirtualConsole.<anonymous> (node_modules/jsdom/lib/jsdom/virtual-console.js:29:45)
+      at reportException (node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:70:28)
+      at innerInvokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+      at HTMLUnknownElementImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+      at HTMLUnknownElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+      at HTMLUnknownElement.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+      at Object.invokeGuardedCallbackDev (node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+      at invokeGuardedCallback (node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:787:13)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.error
+    Error: Uncaught [TypeError: Cannot read properties of undefined (reading 'search')]
+        at reportException (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+        at innerInvokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+        at invokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+        at HTMLUnknownElementImpl._dispatch (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+        at HTMLUnknownElementImpl.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+        at HTMLUnknownElement.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+        at Object.invokeGuardedCallbackDev (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+        at invokeGuardedCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+        at beginWork$1 (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+        at performUnitOfWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+        at workLoopSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+        at renderRootSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+        at recoverFromConcurrentError (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+        at performConcurrentWorkOnRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+        at flushActQueue (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2667:24)
+        at act (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2582:11)
+        at /workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/act-compat.js:47:25
+        at renderRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:190:26)
+        at render (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:292:10)
+        at Object.<anonymous> (/workspaces/Frontend_Clone_Alkosto/src/__tests__/RF01_Register.test.js:787:13)
+        at Promise.then.completed (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:391:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:316:10)
+        at _callCircusTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:218:40)
+        at _runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:155:3)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:66:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:25:3)
+        at runAndTransformResultsToJestFormat (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+        at jestAdapter (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
+        at runTestInternal (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:389:16)
+        at runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:475:34)
+        at TestRunner.runTests (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/index.js:101:12)
+        at TestScheduler.scheduleTests (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/TestScheduler.js:333:13)
+        at runJest (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/runJest.js:404:19)
+        at _run10000 (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:320:7)
+        at runCLI (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:173:3)
+        at Object.run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-cli/build/cli/index.js:155:37) TypeError: Cannot read properties of undefined (reading 'search')
+        at Register (/workspaces/Frontend_Clone_Alkosto/src/views/Register/Register.js:13:47)
+        at renderWithHooks (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+        at mountIndeterminateComponent (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+        at beginWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+        at HTMLUnknownElement.callCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+        at HTMLUnknownElement.callTheUserObjectsOperation (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+        at innerInvokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:338:25)
+        at invokeEventListeners (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+        at HTMLUnknownElementImpl._dispatch (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+        at HTMLUnknownElementImpl.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+        at HTMLUnknownElement.dispatchEvent (/workspaces/Frontend_Clone_Alkosto/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+        at Object.invokeGuardedCallbackDev (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+        at invokeGuardedCallback (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+        at beginWork$1 (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+        at performUnitOfWork (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+        at workLoopSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+        at renderRootSync (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+        at recoverFromConcurrentError (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+        at performConcurrentWorkOnRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+        at flushActQueue (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2667:24)
+        at act (/workspaces/Frontend_Clone_Alkosto/node_modules/react/cjs/react.development.js:2582:11)
+        at /workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/act-compat.js:47:25
+        at renderRoot (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:190:26)
+        at render (/workspaces/Frontend_Clone_Alkosto/node_modules/@testing-library/react/dist/pure.js:292:10)
+        at Object.<anonymous> (/workspaces/Frontend_Clone_Alkosto/src/__tests__/RF01_Register.test.js:787:13)
+        at Promise.then.completed (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:391:28)
+        at new Promise (<anonymous>)
+        at callAsyncCircusFn (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/utils.js:316:10)
+        at _callCircusTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:218:40)
+        at _runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:155:3)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:66:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at _runTestsForDescribeBlock (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:60:9)
+        at run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/run.js:25:3)
+        at runAndTransformResultsToJestFormat (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
+        at jestAdapter (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
+        at runTestInternal (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:389:16)
+        at runTest (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/runTest.js:475:34)
+        at TestRunner.runTests (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-runner/build/index.js:101:12)
+        at TestScheduler.scheduleTests (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/TestScheduler.js:333:13)
+        at runJest (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/runJest.js:404:19)
+        at _run10000 (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:320:7)
+        at runCLI (/workspaces/Frontend_Clone_Alkosto/node_modules/@jest/core/build/cli/index.js:173:3)
+        at Object.run (/workspaces/Frontend_Clone_Alkosto/node_modules/jest-cli/build/cli/index.js:155:37)
+
+    [0m [90m 785 |[39m
+     [90m 786 |[39m     test([32m'10.3 Validación de teléfono se activa después del primer input'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 787 |[39m       render(
+     [90m     |[39m             [31m[1m^[22m[39m
+     [90m 788 |[39m         [33m<[39m[33mBrowserRouter[39m[33m>[39m
+     [90m 789 |[39m           [33m<[39m[33mRegister[39m [33m/[39m[33m>[39m
+     [90m 790 |[39m         [33m<[39m[33m/[39m[33mBrowserRouter[39m[33m>[39m[0m
+
+      at VirtualConsole.<anonymous> (node_modules/jsdom/lib/jsdom/virtual-console.js:29:45)
+      at reportException (node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:70:28)
+      at innerInvokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+      at HTMLUnknownElementImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+      at HTMLUnknownElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+      at HTMLUnknownElement.dispatchEvent (node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+      at Object.invokeGuardedCallbackDev (node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+      at invokeGuardedCallback (node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at recoverFromConcurrentError (node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:787:13)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.error
+    The above error occurred in the <Register> component:
+    
+        at Register (/workspaces/Frontend_Clone_Alkosto/src/views/Register/Register.js:13:47)
+        at Router (/workspaces/Frontend_Clone_Alkosto/node_modules/react-router/lib/components.tsx:421:13)
+        at BrowserRouter (/workspaces/Frontend_Clone_Alkosto/node_modules/react-router-dom/index.tsx:789:3)
+    
+    Consider adding an error boundary to your tree to customize error handling behavior.
+    Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+    [0m [90m 785 |[39m
+     [90m 786 |[39m     test([32m'10.3 Validación de teléfono se activa después del primer input'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 787 |[39m       render(
+     [90m     |[39m             [31m[1m^[22m[39m
+     [90m 788 |[39m         [33m<[39m[33mBrowserRouter[39m[33m>[39m
+     [90m 789 |[39m           [33m<[39m[33mRegister[39m [33m/[39m[33m>[39m
+     [90m 790 |[39m         [33m<[39m[33m/[39m[33mBrowserRouter[39m[33m>[39m[0m
+
+      at logCapturedError (node_modules/react-dom/cjs/react-dom.development.js:18704:23)
+      at update.callback (node_modules/react-dom/cjs/react-dom.development.js:18737:5)
+      at callCallback (node_modules/react-dom/cjs/react-dom.development.js:15036:12)
+      at commitUpdateQueue (node_modules/react-dom/cjs/react-dom.development.js:15057:9)
+      at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom.development.js:23430:13)
+      at commitLayoutMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24727:9)
+      at commitLayoutEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24713:7)
+      at commitLayoutEffects (node_modules/react-dom/cjs/react-dom.development.js:24651:3)
+      at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26862:5)
+      at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26721:5)
+      at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25931:9)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25848:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:787:13)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+FAIL src/__tests__/RF01_Register.test.js (6.236 s)
+  RF01 - REGISTRAR USUARIO - Pruebas Unitarias Completas
+    1. Modelo User - Pruebas de Caja Blanca
+      ✓ 1.1 Constructor crea usuario con todos los campos requeridos (3 ms)
+      ✓ 1.2 getFullName() retorna nombre completo correctamente (1 ms)
+      ✓ 1.3 toJSON() serializa correctamente el usuario (1 ms)
+      ✓ 1.4 Constructor sin password asigna null (1 ms)
+    2. UserController - Pruebas de Registro
+      ✓ 2.1 registerUser() crea usuario exitosamente con datos válidos (1 ms)
+      ✓ 2.2 Usuario registrado se guarda en localStorage (1 ms)
+      ✓ 2.3 Usuario registrado queda como currentUser (1 ms)
+      ✓ 2.4 isEmailRegistered() detecta emails duplicados
+      ✓ 2.5 getAllUsers() retorna lista de usuarios registrados (1 ms)
+    3. Validaciones - Pruebas de Caja Negra
+      ✓ 3.1 Email válido se muestra correctamente (156 ms)
+      ✓ 3.2 Validación de campo "Nombres" vacío (70 ms)
+      ✓ 3.3 Validación de campo "Apellidos" vacío (32 ms)
+      ✕ 3.4 Validación de teléfono vacío (1042 ms)
+      ✕ 3.5 Validación de teléfono con menos de 10 dígitos (1011 ms)
+      ✕ 3.6 Validación de teléfono que no empieza con 3 (1008 ms)
+      ✓ 3.7 Validación de términos y condiciones no aceptados (27 ms)
+      ✓ 3.8 Teléfono válido con 10 dígitos empezando en 3 (9 ms)
+    4. Valores Límite (Boundary Testing)
+      ✓ 4.1 Teléfono: 9 dígitos (límite inferior - inválido) (1 ms)
+      ✓ 4.2 Teléfono: 10 dígitos (válido)
+      ✕ 4.3 Teléfono: 11 dígitos (límite superior - debe truncarse) (9 ms)
+      ✓ 4.4 Nombre: 1 carácter (límite inferior - válido)
+      ✓ 4.5 Nombre: cadena vacía (inválido)
+      ✓ 4.6 Nombre: solo espacios (inválido) (1 ms)
+    5. Partición de Equivalencia
+      5.1 Teléfono - Particiones
+        ✓ Partición válida: 10 dígitos, empieza con 3
+        ✓ Partición inválida: No empieza con 3 (1 ms)
+        ✓ Partición inválida: Longitud incorrecta
+      5.2 Email - Particiones
+        ✓ Partición válida: Formato email correcto (1 ms)
+        ✓ Partición inválida: Formato email incorrecto (1 ms)
+      5.3 Nombres/Apellidos - Particiones
+        ✓ Partición válida: Texto con contenido
+        ✓ Partición inválida: Texto vacío o solo espacios
+    6. Flujo Completo de Registro (Happy Path)
+      ✕ 6.1 Registro exitoso con datos válidos navega a password (30 ms)
+      ✓ 6.2 Botón "Continuar" deshabilitado durante envío (27 ms)
+    7. Elementos de UI Presentes
+      ✓ 7.1 Renderiza el título "Crea tu cuenta" (6 ms)
+      ✓ 7.2 Muestra el email recibido por parámetro (8 ms)
+      ✓ 7.3 Renderiza botón "Modificar" email (14 ms)
+      ✓ 7.4 Renderiza campos del formulario (16 ms)
+      ✓ 7.5 Renderiza prefijo telefónico +57 (5 ms)
+      ✓ 7.6 Renderiza link de términos y condiciones (6 ms)
+      ✓ 7.7 Renderiza botón "Volver" (4 ms)
+    8. Funcionalidad de Modificar Email
+      ✓ 8.1 Clic en "Modificar" muestra input de edición (44 ms)
+      ✓ 8.2 Cancelar restaura vista original (28 ms)
+      ✓ 8.3 Guardar con email válido actualiza el email (34 ms)
+      ✓ 8.4 Botón Guardar deshabilitado con email inválido (28 ms)
+    9. Manejo de Errores y Mensajes
+      ✓ 9.1 Errores se limpian al corregir campos (23 ms)
+      ✕ 9.2 Múltiples errores se muestran simultáneamente (1018 ms)
+      ✓ 9.3 Clase CSS "error" se aplica a campos inválidos (22 ms)
+    10. Cobertura de Caminos Críticos
+      ✓ 10.1 Camino: Sin email en URL redirige a home (8 ms)
+      ✕ 10.2 Input de teléfono solo acepta números (57 ms)
+      ✕ 10.3 Validación de teléfono se activa después del primer input (36 ms)
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas Unitarias Completas › 3. Validaciones - Pruebas de Caja Negra › 3.4 Validación de teléfono vacío
+
+    Unable to find an element with the text: /ingresa tu número de teléfono/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"register-layout"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"register-header"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"register-header-content"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33mclass[39m=[32m"register-logo"[39m
+                [33mhref[39m=[32m"/"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m"Alkosto"[39m
+                  [33msrc[39m=[32m"/assets/logo-alkosto.svg"[39m
+                [36m/>[39m
+              [36m</a>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"register-security-message"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mCompra seguro y en menos pasos.[0m
+                [36m</span>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"register-body"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"register-page"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"register-container"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"back-button"[39m
+                  [33mhref[39m=[32m"/"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"back-arrow"[39m
+                  [36m>[39m
+                    [0m←[0m
+                  [36m</span>[39m
+                  [0m Volver[0m
+                [36m</a>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"register-content"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"register-heading"[39m
+                  [36m>[39m
+                    [36m<h2[39m
+                      [33mclass[39m=[32m"register-title"[39m
+                    [36m>[39m
+                      [0mCrea tu cuenta[0m
+                      [36m<br />[39m
+                      [0mcompletando los datos[0m
+                    [36m</h2>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"email-display"[39m
+                    [36m>[39m
+                      [36m<p[39m
+                        [33mclass[39m=[32m"email-label-left"[39m
+                      [36m>[39m
+                        [0mCorreo electrónico ingresado:[0m
+                      [36m</p>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"email-value-container"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"email-value-left"[39m
+                        [36m>[39m
+                          [0mtest@example.com[0m
+                        [36m</span>[39m
+                        [36m<button[39m
+                          [33mclass[39m=[32m"modify-button"[39m
+                          [33mtype[39m=[32m"button"[39m
+                        [36m>[39m
+                          [0mModificar[0m
+                        [36m</button>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"register-form-container"[39m
+                  [36m>[39m
+                    [36m<form[39m
+                      [33mclass[39m=[32m"register-form"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m""[39m
+                          [33mname[39m=[32m"firstName"[39m
+                          [33mplaceholder[39m=[32m"Nombres"[39m
+                          [33mtype[39m=[32m"text"[39m
+                          [33mvalue[39m=[32m"Juan"[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m""[39m
+                          [33mname[39m=[32m"lastName"[39m
+                          [33mplaceholder[39m=[32m"Apellidos"[39m
+                          [33mtype[39m=[32m"text"[39m
+                          [33mvalue[39m=[32m"Pérez"[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group phone-group"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"phone-prefix"[39m
+                        [36m>[39m
+                          [36m<div[39m
+                            [33mclass[39m=[32m"colombia-flag"[39m
+                          [36m/>[39m
+                          [36m<span>[39m
+                            [0m+57[0m
+                          [36m</span>[39m
+                        [36m</div>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"phone-input-container"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"phone-input error"[39m
+                            [33mmaxlength[39m=[32m"10"[39m
+                            [33mname[39m=[32m"phone"[39m
+                            [33mplaceholder[39m=[32m"Teléfono celular"[39m
+                            [33mtype[39m=[32m"tel"[39m
+                            [33mvalue[39m=[32m""[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group checkbox-group"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"checkbox-label"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mname[39m=[32m"agreeTerms"[39m
+                            [33mtype[39m=[32m"checkbox"[39m
+                          [36m/>[39m
+                          [36m<span>[39m
+                            [0mAutorizo el uso de mis datos en los siguientes [0m
+                          [36m</span>[39m
+                          [36m<a[39m
+                            [33mclass[39m=[32m"terms-link"[39m
+                            [33mhref[39m=[32m"/terminos"[39m
+                          [36m>[39m
+                            [0mtérminos y condiciones[0m
+                          [36m</a>[39m
+                        [36m</label>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"error-message"[39m
+                        [36m>[39m
+                          [0mDebes aceptar los términos y condiciones[0m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"continue-button"[39m
+                        [33mtype[39m=[32m"submit"[39m
+                      [36m>[39m
+                        [0mContinuar[0m
+                      [36m</button>[39m
+                    [36m</form>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 250 |[39m       fireEvent[33m.[39mclick(submitButton)[33m;[39m
+     [90m 251 |[39m
+    [31m[1m>[22m[39m[90m 252 |[39m       [36mawait[39m waitFor(() [33m=>[39m {
+     [90m     |[39m                    [31m[1m^[22m[39m
+     [90m 253 |[39m         [36mconst[39m error [33m=[39m screen[33m.[39mgetByText([35m/ingresa tu número de teléfono/i[39m)[33m;[39m
+     [90m 254 |[39m         expect(error)[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 255 |[39m       })[33m;[39m[0m
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:252:20)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas Unitarias Completas › 3. Validaciones - Pruebas de Caja Negra › 3.5 Validación de teléfono con menos de 10 dígitos
+
+    Unable to find an element with the text: /número celular válido de 10 dígitos/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"register-layout"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"register-header"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"register-header-content"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33mclass[39m=[32m"register-logo"[39m
+                [33mhref[39m=[32m"/"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m"Alkosto"[39m
+                  [33msrc[39m=[32m"/assets/logo-alkosto.svg"[39m
+                [36m/>[39m
+              [36m</a>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"register-security-message"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mCompra seguro y en menos pasos.[0m
+                [36m</span>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"register-body"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"register-page"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"register-container"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"back-button"[39m
+                  [33mhref[39m=[32m"/"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"back-arrow"[39m
+                  [36m>[39m
+                    [0m←[0m
+                  [36m</span>[39m
+                  [0m Volver[0m
+                [36m</a>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"register-content"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"register-heading"[39m
+                  [36m>[39m
+                    [36m<h2[39m
+                      [33mclass[39m=[32m"register-title"[39m
+                    [36m>[39m
+                      [0mCrea tu cuenta[0m
+                      [36m<br />[39m
+                      [0mcompletando los datos[0m
+                    [36m</h2>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"email-display"[39m
+                    [36m>[39m
+                      [36m<p[39m
+                        [33mclass[39m=[32m"email-label-left"[39m
+                      [36m>[39m
+                        [0mCorreo electrónico ingresado:[0m
+                      [36m</p>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"email-value-container"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"email-value-left"[39m
+                        [36m>[39m
+                          [0mtest@example.com[0m
+                        [36m</span>[39m
+                        [36m<button[39m
+                          [33mclass[39m=[32m"modify-button"[39m
+                          [33mtype[39m=[32m"button"[39m
+                        [36m>[39m
+                          [0mModificar[0m
+                        [36m</button>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"register-form-container"[39m
+                  [36m>[39m
+                    [36m<form[39m
+                      [33mclass[39m=[32m"register-form"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m""[39m
+                          [33mname[39m=[32m"firstName"[39m
+                          [33mplaceholder[39m=[32m"Nombres"[39m
+                          [33mtype[39m=[32m"text"[39m
+                          [33mvalue[39m=[32m""[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m""[39m
+                          [33mname[39m=[32m"lastName"[39m
+                          [33mplaceholder[39m=[32m"Apellidos"[39m
+                          [33mtype[39m=[32m"text"[39m
+                          [33mvalue[39m=[32m""[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group phone-group"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"phone-prefix"[39m
+                        [36m>[39m
+                          [36m<div[39m
+                            [33mclass[39m=[32m"colombia-flag"[39m
+                          [36m/>[39m
+                          [36m<span>[39m
+                            [0m+57[0m
+                          [36m</span>[39m
+                        [36m</div>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"phone-input-container"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"phone-input "[39m
+                            [33mmaxlength[39m=[32m"10"[39m
+                            [33mname[39m=[32m"phone"[39m
+                            [33mplaceholder[39m=[32m"Teléfono celular"[39m
+                            [33mtype[39m=[32m"tel"[39m
+                            [33mvalue[39m=[32m"300123"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group checkbox-group"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"checkbox-label"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mname[39m=[32m"agreeTerms"[39m
+                            [33mtype[39m=[32m"checkbox"[39m
+                          [36m/>[39m
+                          [36m<span>[39m
+                            [0mAutorizo el uso de mis datos en los siguientes [0m
+                          [36m</span>[39m
+                          [36m<a[39m
+                            [33mclass[39m=[32m"terms-link"[39m
+                            [33mhref[39m=[32m"/terminos"[39m
+                          [36m>[39m
+                            [0mtérminos y condiciones[0m
+                          [36m</a>[39m
+                        [36m</label>[39m
+                      [36m</div>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"continue-button"[39m
+                        [33mtype[39m=[32m"submit"[39m
+                      [36m>[39m
+                        [0mContinuar[0m
+                      [36m</button>[39m
+                    [36m</form>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 262 |[39m       fireEvent[33m.[39mchange(phoneInput[33m,[39m { target[33m:[39m { value[33m:[39m [32m'300123'[39m } })[33m;[39m
+     [90m 263 |[39m
+    [31m[1m>[22m[39m[90m 264 |[39m       [36mawait[39m waitFor(() [33m=>[39m {
+     [90m     |[39m                    [31m[1m^[22m[39m
+     [90m 265 |[39m         [36mconst[39m error [33m=[39m screen[33m.[39mgetByText([35m/número celular válido de 10 dígitos/i[39m)[33m;[39m
+     [90m 266 |[39m         expect(error)[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 267 |[39m       })[33m;[39m[0m
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:264:20)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas Unitarias Completas › 3. Validaciones - Pruebas de Caja Negra › 3.6 Validación de teléfono que no empieza con 3
+
+    Unable to find an element with the text: /el número debe empezar con '3'/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"register-layout"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"register-header"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"register-header-content"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33mclass[39m=[32m"register-logo"[39m
+                [33mhref[39m=[32m"/"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m"Alkosto"[39m
+                  [33msrc[39m=[32m"/assets/logo-alkosto.svg"[39m
+                [36m/>[39m
+              [36m</a>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"register-security-message"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mCompra seguro y en menos pasos.[0m
+                [36m</span>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"register-body"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"register-page"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"register-container"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"back-button"[39m
+                  [33mhref[39m=[32m"/"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"back-arrow"[39m
+                  [36m>[39m
+                    [0m←[0m
+                  [36m</span>[39m
+                  [0m Volver[0m
+                [36m</a>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"register-content"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"register-heading"[39m
+                  [36m>[39m
+                    [36m<h2[39m
+                      [33mclass[39m=[32m"register-title"[39m
+                    [36m>[39m
+                      [0mCrea tu cuenta[0m
+                      [36m<br />[39m
+                      [0mcompletando los datos[0m
+                    [36m</h2>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"email-display"[39m
+                    [36m>[39m
+                      [36m<p[39m
+                        [33mclass[39m=[32m"email-label-left"[39m
+                      [36m>[39m
+                        [0mCorreo electrónico ingresado:[0m
+                      [36m</p>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"email-value-container"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"email-value-left"[39m
+                        [36m>[39m
+                          [0mtest@example.com[0m
+                        [36m</span>[39m
+                        [36m<button[39m
+                          [33mclass[39m=[32m"modify-button"[39m
+                          [33mtype[39m=[32m"button"[39m
+                        [36m>[39m
+                          [0mModificar[0m
+                        [36m</button>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"register-form-container"[39m
+                  [36m>[39m
+                    [36m<form[39m
+                      [33mclass[39m=[32m"register-form"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m""[39m
+                          [33mname[39m=[32m"firstName"[39m
+                          [33mplaceholder[39m=[32m"Nombres"[39m
+                          [33mtype[39m=[32m"text"[39m
+                          [33mvalue[39m=[32m""[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m""[39m
+                          [33mname[39m=[32m"lastName"[39m
+                          [33mplaceholder[39m=[32m"Apellidos"[39m
+                          [33mtype[39m=[32m"text"[39m
+                          [33mvalue[39m=[32m""[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group phone-group"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"phone-prefix"[39m
+                        [36m>[39m
+                          [36m<div[39m
+                            [33mclass[39m=[32m"colombia-flag"[39m
+                          [36m/>[39m
+                          [36m<span>[39m
+                            [0m+57[0m
+                          [36m</span>[39m
+                        [36m</div>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"phone-input-container"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"phone-input "[39m
+                            [33mmaxlength[39m=[32m"10"[39m
+                            [33mname[39m=[32m"phone"[39m
+                            [33mplaceholder[39m=[32m"Teléfono celular"[39m
+                            [33mtype[39m=[32m"tel"[39m
+                            [33mvalue[39m=[32m"2001234567"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group checkbox-group"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"checkbox-label"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mname[39m=[32m"agreeTerms"[39m
+                            [33mtype[39m=[32m"checkbox"[39m
+                          [36m/>[39m
+                          [36m<span>[39m
+                            [0mAutorizo el uso de mis datos en los siguientes [0m
+                          [36m</span>[39m
+                          [36m<a[39m
+                            [33mclass[39m=[32m"terms-link"[39m
+                            [33mhref[39m=[32m"/terminos"[39m
+                          [36m>[39m
+                            [0mtérminos y condiciones[0m
+                          [36m</a>[39m
+                        [36m</label>[39m
+                      [36m</div>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"continue-button"[39m
+                        [33mtype[39m=[32m"submit"[39m
+                      [36m>[39m
+                        [0mContinuar[0m
+                      [36m</button>[39m
+                    [36m</form>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 274 |[39m       fireEvent[33m.[39mchange(phoneInput[33m,[39m { target[33m:[39m { value[33m:[39m [32m'2001234567'[39m } })[33m;[39m
+     [90m 275 |[39m
+    [31m[1m>[22m[39m[90m 276 |[39m       [36mawait[39m waitFor(() [33m=>[39m {
+     [90m     |[39m                    [31m[1m^[22m[39m
+     [90m 277 |[39m         [36mconst[39m error [33m=[39m screen[33m.[39mgetByText([35m/el número debe empezar con '3'/i[39m)[33m;[39m
+     [90m 278 |[39m         expect(error)[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 279 |[39m       })[33m;[39m[0m
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:276:20)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas Unitarias Completas › 4. Valores Límite (Boundary Testing) › 4.3 Teléfono: 11 dígitos (límite superior - debe truncarse)
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 10
+    Received:    11
+
+    [0m [90m 345 |[39m       
+     [90m 346 |[39m       [90m// El maxLength debe limitar a 10[39m
+    [31m[1m>[22m[39m[90m 347 |[39m       expect(phoneInput[33m.[39mvalue[33m.[39mlength)[33m.[39mtoBeLessThanOrEqual([35m10[39m)[33m;[39m
+     [90m     |[39m                                       [31m[1m^[22m[39m
+     [90m 348 |[39m     })[33m;[39m
+     [90m 349 |[39m
+     [90m 350 |[39m     test([32m'4.4 Nombre: 1 carácter (límite inferior - válido)'[39m[33m,[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:347:39)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas Unitarias Completas › 6. Flujo Completo de Registro (Happy Path) › 6.1 Registro exitoso con datos válidos navega a password
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: StringContaining "email=test@example.com"
+    Received: "/register/password?email=test%40example.com&firstName=Juan&lastName=P%C3%A9rez&phone=3001234567"
+
+    Number of calls: 1
+
+    [0m [90m 475 |[39m
+     [90m 476 |[39m       [90m// Verificar que se pasaron los parámetros correctos[39m
+    [31m[1m>[22m[39m[90m 477 |[39m       expect(mockNavigate)[33m.[39mtoHaveBeenCalledWith(
+     [90m     |[39m                            [31m[1m^[22m[39m
+     [90m 478 |[39m         expect[33m.[39mstringContaining([32m'email=test@example.com'[39m)
+     [90m 479 |[39m       )[33m;[39m
+     [90m 480 |[39m       expect(mockNavigate)[33m.[39mtoHaveBeenCalledWith([0m
+
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:477:28)
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas Unitarias Completas › 9. Manejo de Errores y Mensajes › 9.2 Múltiples errores se muestran simultáneamente
+
+    Unable to find an element with the text: /ingresa tu número de teléfono/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"register-layout"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"register-header"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"register-header-content"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33mclass[39m=[32m"register-logo"[39m
+                [33mhref[39m=[32m"/"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m"Alkosto"[39m
+                  [33msrc[39m=[32m"/assets/logo-alkosto.svg"[39m
+                [36m/>[39m
+              [36m</a>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"register-security-message"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mCompra seguro y en menos pasos.[0m
+                [36m</span>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"register-body"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"register-page"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"register-container"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"back-button"[39m
+                  [33mhref[39m=[32m"/"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"back-arrow"[39m
+                  [36m>[39m
+                    [0m←[0m
+                  [36m</span>[39m
+                  [0m Volver[0m
+                [36m</a>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"register-content"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"register-heading"[39m
+                  [36m>[39m
+                    [36m<h2[39m
+                      [33mclass[39m=[32m"register-title"[39m
+                    [36m>[39m
+                      [0mCrea tu cuenta[0m
+                      [36m<br />[39m
+                      [0mcompletando los datos[0m
+                    [36m</h2>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"email-display"[39m
+                    [36m>[39m
+                      [36m<p[39m
+                        [33mclass[39m=[32m"email-label-left"[39m
+                      [36m>[39m
+                        [0mCorreo electrónico ingresado:[0m
+                      [36m</p>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"email-value-container"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"email-value-left"[39m
+                        [36m>[39m
+                          [0mtest@example.com[0m
+                        [36m</span>[39m
+                        [36m<button[39m
+                          [33mclass[39m=[32m"modify-button"[39m
+                          [33mtype[39m=[32m"button"[39m
+                        [36m>[39m
+                          [0mModificar[0m
+                        [36m</button>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"register-form-container"[39m
+                  [36m>[39m
+                    [36m<form[39m
+                      [33mclass[39m=[32m"register-form"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m"error"[39m
+                          [33mname[39m=[32m"firstName"[39m
+                          [33mplaceholder[39m=[32m"Nombres"[39m
+                          [33mtype[39m=[32m"text"[39m
+                          [33mvalue[39m=[32m""[39m
+                        [36m/>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"error-message"[39m
+                        [36m>[39m
+                          [0mIngresa tu nombre[0m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m"error"[39m
+                          [33mname[39m=[32m"lastName"[39m
+                          [33mplaceholder[39m=[32m"Apellidos"[39m
+                          [33mtype[39m=[32m"text"[39m
+                          [33mvalue[39m=[32m""[39m
+                        [36m/>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"error-message"[39m
+                        [36m>[39m
+                          [0mIngresa tu apellido[0m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group phone-group"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"phone-prefix"[39m
+                        [36m>[39m
+                          [36m<div[39m
+                            [33mclass[39m=[32m"colombia-flag"[39m
+                          [36m/>[39m
+                          [36m<span>[39m
+                            [0m+57[0m
+                          [36m</span>[39m
+                        [36m</div>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"phone-input-container"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"phone-input error"[39m
+                            [33mmaxlength[39m=[32m"10"[39m
+                            [33mname[39m=[32m"phone"[39m
+                            [33mplaceholder[39m=[32m"Teléfono celular"[39m
+                            [33mtype[39m=[32m"tel"[39m
+                            [33mvalue[39m=[32m""[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"form-group checkbox-group"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"checkbox-label"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mname[39m=[32m"agreeTerms"[39m
+                            [33mtype[39m=[32m"checkbox"[39m
+                          [36m/>[39m
+                          [36m<span>[39m
+                            [0mAutorizo el uso de mis datos en los siguientes [0m
+                          [36m</span>[39m
+                          [36m<a[39m
+                            [33mclass[39m=[32m"terms-link"[39m
+                            [33mhref[39m=[32m"/terminos"[39m
+                          [36m>[39m
+                            [0mtérminos y condiciones[0m
+                          [36m</a>[39m
+                        [36m</label>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"error-message"[39m
+                        [36m>[39m
+                          [0mDebes aceptar los términos y condiciones[0m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<button[39m
+                        [33mclass[39m=[32m"continue-button"[39m
+                        [33mtype[39m=[32m"submit"[39m
+                      [36m>[39m
+                        [0mContinuar[0m
+                      [36m</button>[39m
+                    [36m</form>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 720 |[39m       fireEvent[33m.[39mclick(submitButton)[33m;[39m
+     [90m 721 |[39m
+    [31m[1m>[22m[39m[90m 722 |[39m       [36mawait[39m waitFor(() [33m=>[39m {
+     [90m     |[39m                    [31m[1m^[22m[39m
+     [90m 723 |[39m         expect(screen[33m.[39mgetByText([35m/ingresa tu nombre/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 724 |[39m         expect(screen[33m.[39mgetByText([35m/ingresa tu apellido/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 725 |[39m         expect(screen[33m.[39mgetByText([35m/ingresa tu número de teléfono/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m[0m
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:722:20)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas Unitarias Completas › 10. Cobertura de Caminos Críticos › 10.2 Input de teléfono solo acepta números
+
+    TypeError: Cannot read properties of undefined (reading 'search')
+
+    [0m [90m 11 |[39m   
+     [90m 12 |[39m   [90m// Obtener email de URL o localStorage [39m
+    [31m[1m>[22m[39m[90m 13 |[39m   [36mconst[39m params [33m=[39m [36mnew[39m [33mURLSearchParams[39m(location[33m.[39msearch)[33m;[39m
+     [90m    |[39m                                               [31m[1m^[22m[39m
+     [90m 14 |[39m   [36mconst[39m emailFromURL [33m=[39m params[33m.[39m[36mget[39m([32m'email'[39m) [33m||[39m [32m''[39m[33m;[39m
+     [90m 15 |[39m   [36mconst[39m emailFromStorage [33m=[39m localStorage[33m.[39mgetItem([32m'pendingEmail'[39m) [33m||[39m [32m''[39m[33m;[39m
+     [90m 16 |[39m   [0m
+
+      at Register (src/views/Register/Register.js:13:47)
+      at renderWithHooks (node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+      at mountIndeterminateComponent (node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27465:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at recoverFromConcurrentError (node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:771:13)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  ● RF01 - REGISTRAR USUARIO - Pruebas Unitarias Completas › 10. Cobertura de Caminos Críticos › 10.3 Validación de teléfono se activa después del primer input
+
+    TypeError: Cannot read properties of undefined (reading 'search')
+
+    [0m [90m 11 |[39m   
+     [90m 12 |[39m   [90m// Obtener email de URL o localStorage [39m
+    [31m[1m>[22m[39m[90m 13 |[39m   [36mconst[39m params [33m=[39m [36mnew[39m [33mURLSearchParams[39m(location[33m.[39msearch)[33m;[39m
+     [90m    |[39m                                               [31m[1m^[22m[39m
+     [90m 14 |[39m   [36mconst[39m emailFromURL [33m=[39m params[33m.[39m[36mget[39m([32m'email'[39m) [33m||[39m [32m''[39m[33m;[39m
+     [90m 15 |[39m   [36mconst[39m emailFromStorage [33m=[39m localStorage[33m.[39mgetItem([32m'pendingEmail'[39m) [33m||[39m [32m''[39m[33m;[39m
+     [90m 16 |[39m   [0m
+
+      at Register (src/views/Register/Register.js:13:47)
+      at renderWithHooks (node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+      at mountIndeterminateComponent (node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+      at beginWork$1 (node_modules/react-dom/cjs/react-dom.development.js:27465:14)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26599:12)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at recoverFromConcurrentError (node_modules/react-dom/cjs/react-dom.development.js:25889:20)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25789:22)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/RF01_Register.test.js:787:13)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+--------------------------------|---------|----------|---------|---------|--------------------------------------
+File                            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                    
+--------------------------------|---------|----------|---------|---------|--------------------------------------
+All files                       |   10.46 |      9.6 |    9.15 |   10.93 |                                      
+ src                            |       0 |      100 |       0 |       0 |                                      
+  App.js                        |       0 |      100 |       0 |       0 | 25-37                                
+  index.js                      |       0 |      100 |     100 |       0 | 6-7                                  
+ src/components/Banner          |       0 |      100 |       0 |       0 |                                      
+  Banner.js                     |       0 |      100 |       0 |       0 | 4-5                                  
+ src/components/Carousel        |       0 |        0 |       0 |       0 |                                      
+  Carousel.js                   |       0 |        0 |       0 |       0 | 4-69                                 
+ src/components/CategorySection |       0 |        0 |       0 |       0 |                                      
+  CategorySection.js            |       0 |        0 |       0 |       0 | 4-163                                
+ src/components/Footer          |       0 |      100 |       0 |       0 |                                      
+  Footer.js                     |       0 |      100 |       0 |       0 | 5-6                                  
+ src/components/Header          |       0 |        0 |       0 |       0 |                                      
+  Header.js                     |       0 |        0 |       0 |       0 | 6-283                                
+ src/components/Navigation      |       0 |        0 |       0 |       0 |                                      
+  Navigation.js                 |       0 |        0 |       0 |       0 | 5-88                                 
+ src/components/ProductCard     |       0 |        0 |       0 |       0 |                                      
+  ProductCard.js                |       0 |        0 |       0 |       0 | 5-10                                 
+ src/components/ProductGrid     |       0 |        0 |       0 |       0 |                                      
+  ProductGrid.js                |       0 |        0 |       0 |       0 | 5-17                                 
+ src/components/SkipLink        |       0 |      100 |       0 |       0 |                                      
+  SkipLink.js                   |       0 |      100 |       0 |       0 | 4-5                                  
+ src/controllers                |   19.52 |     8.08 |   19.69 |   20.61 |                                      
+  CartController.js             |       0 |        0 |       0 |       0 | 6-71                                 
+  CategoryController.js         |       0 |      100 |       0 |       0 | 6-61                                 
+  ProductController.js          |       0 |        0 |       0 |       0 | 7-52                                 
+  UserController.js             |   25.62 |     8.79 |   34.21 |   27.21 | 6,18-45,53-64,77-123,176-207,230-318 
+ src/layouts/RegisterLayout     |     100 |      100 |     100 |     100 |                                      
+  RegisterLayout.js             |     100 |      100 |     100 |     100 |                                      
+ src/models                     |   25.45 |       10 |      12 |      28 |                                      
+  Cart.js                       |       0 |        0 |       0 |       0 | 4-39                                 
+  Category.js                   |       0 |        0 |       0 |       0 | 4-11                                 
+  Product.js                    |       0 |        0 |       0 |       0 | 4-26                                 
+  User.js                       |   77.77 |      100 |   42.85 |   77.77 | 23-35                                
+ src/services                   |       0 |        0 |       0 |       0 |                                      
+  SearchService.js              |       0 |        0 |       0 |       0 | 8-144                                
+  VerificationService.js        |       0 |        0 |       0 |       0 | 6-135                                
+ src/utils                      |       0 |        0 |       0 |       0 |                                      
+  userUtils.js                  |       0 |        0 |       0 |       0 | 5-31                                 
+ src/views/Cart                 |       0 |        0 |       0 |       0 |                                      
+  Cart.js                       |       0 |        0 |       0 |       0 | 6-100                                
+ src/views/ForgotPassword       |       0 |        0 |       0 |       0 |                                      
+  ForgotPassword.js             |       0 |        0 |       0 |       0 | 9-113                                
+  ForgotPasswordReset.js        |       0 |        0 |       0 |       0 | 7-110                                
+  ForgotPasswordVerify.js       |       0 |        0 |       0 |       0 | 7-76                                 
+ src/views/Home                 |       0 |      100 |       0 |       0 |                                      
+  Home.js                       |       0 |      100 |       0 |       0 | 9-58                                 
+ src/views/Login                |       0 |        0 |       0 |       0 |                                      
+  LoginCode.js                  |       0 |        0 |       0 |       0 | 7-134                                
+  LoginOptions.js               |       0 |        0 |       0 |       0 | 7-110                                
+  LoginPassword.js              |       0 |        0 |       0 |       0 | 7-76                                 
+ src/views/ProductDetail        |       0 |        0 |       0 |       0 |                                      
+  ProductDetail.js              |       0 |        0 |       0 |       0 | 8-255                                
+ src/views/Profile              |       0 |        0 |       0 |       0 |                                      
+  Profile.js                    |       0 |        0 |       0 |       0 | 9-93                                 
+ src/views/Register             |   50.75 |    44.62 |   73.33 |   51.93 |                                      
+  Register.js                   |   73.62 |    57.44 |     100 |   76.13 | 33,54-69,103-112,143                 
+  RegisterPassword.js           |       0 |        0 |       0 |       0 | 7-98                                 
+ src/views/Search               |       0 |        0 |       0 |       0 |                                      
+  SearchResults.js              |       0 |        0 |       0 |       0 | 8-189                                
+ src/views/Verification         |       0 |        0 |       0 |       0 |                                      
+  Verification.js               |       0 |        0 |       0 |       0 | 9-253                                
+--------------------------------|---------|----------|---------|---------|--------------------------------------
+Test Suites: 1 failed, 1 total
+Tests:       8 failed, 41 passed, 49 total
+Snapshots:   0 total
+Time:        10.262 s
+Ran all test suites matching /RF01_Register.test.js/i.
