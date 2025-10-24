@@ -1,0 +1,27 @@
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 9999;
+  padding: 12px 20px;
+  background: var(--color-primary, #004797);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-md, 8px);
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: var(--shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.1));
+  transition: var(--transition-fast, 150ms ease);
+}
+
+.skip-link:focus {
+  left: 20px;
+  outline: 3px solid var(--color-secondary, #FF6B00);
+  outline-offset: 2px;
+}
+
+.skip-link:hover:focus {
+  background: var(--color-primary-dark, #002875);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl, 0 20px 25px rgba(0, 0, 0, 0.15));
+}
