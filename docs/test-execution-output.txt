@@ -1,0 +1,136 @@
+
+> alkosto-clone-frontend@1.0.0 test
+> react-scripts test --watchAll=false --testPathPattern=SystemTests|AcceptanceTests
+
+PASS src/__tests__/SystemTests.test.js
+  ● Console
+
+    console.warn
+      ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+
+    [0m [90m 346 |[39m     
+     [90m 347 |[39m     test([32m'ST06.1 - El componente Home se renderiza sin errores'[39m[33m,[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 348 |[39m       [36mconst[39m { unmount } [33m=[39m render(
+     [90m     |[39m                                 [31m[1m^[22m[39m
+     [90m 349 |[39m         [33m<[39m[33mMemoryRouter[39m[33m>[39m
+     [90m 350 |[39m           [33m<[39m[33mHome[39m [33m/[39m[33m>[39m
+     [90m 351 |[39m         [33m<[39m[33m/[39m[33mMemoryRouter[39m[33m>[39m[0m
+
+      at warnOnce (node_modules/react-router/lib/deprecations.ts:9:13)
+      at logDeprecation (node_modules/react-router/lib/deprecations.ts:14:3)
+      at logV6DeprecationWarnings (node_modules/react-router/lib/deprecations.ts:26:5)
+      at node_modules/react-router/lib/components.tsx:257:25
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/SystemTests.test.js:348:33)
+
+    console.warn
+      ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+    [0m [90m 346 |[39m     
+     [90m 347 |[39m     test([32m'ST06.1 - El componente Home se renderiza sin errores'[39m[33m,[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 348 |[39m       [36mconst[39m { unmount } [33m=[39m render(
+     [90m     |[39m                                 [31m[1m^[22m[39m
+     [90m 349 |[39m         [33m<[39m[33mMemoryRouter[39m[33m>[39m
+     [90m 350 |[39m           [33m<[39m[33mHome[39m [33m/[39m[33m>[39m
+     [90m 351 |[39m         [33m<[39m[33m/[39m[33mMemoryRouter[39m[33m>[39m[0m
+
+      at warnOnce (node_modules/react-router/lib/deprecations.ts:9:13)
+      at logDeprecation (node_modules/react-router/lib/deprecations.ts:14:3)
+      at logV6DeprecationWarnings (node_modules/react-router/lib/deprecations.ts:37:5)
+      at node_modules/react-router/lib/components.tsx:257:25
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/SystemTests.test.js:348:33)
+
+PASS src/__tests__/AcceptanceTests.test.js
+  ● Console
+
+    console.warn
+      ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+
+    [0m [90m 39 |[39m     test([32m'AC01.1 - DADO que estoy en la página principal, CUANDO la página carga, ENTONCES veo productos destacados'[39m[33m,[39m () [33m=>[39m {
+     [90m 40 |[39m       [90m// GIVEN - Renderizar página principal[39m
+    [31m[1m>[22m[39m[90m 41 |[39m       render(
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 42 |[39m         [33m<[39m[33mMemoryRouter[39m[33m>[39m
+     [90m 43 |[39m           [33m<[39m[33mHome[39m [33m/[39m[33m>[39m
+     [90m 44 |[39m         [33m<[39m[33m/[39m[33mMemoryRouter[39m[33m>[39m[0m
+
+      at warnOnce (node_modules/react-router/lib/deprecations.ts:9:13)
+      at logDeprecation (node_modules/react-router/lib/deprecations.ts:14:3)
+      at logV6DeprecationWarnings (node_modules/react-router/lib/deprecations.ts:26:5)
+      at node_modules/react-router/lib/components.tsx:257:25
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/AcceptanceTests.test.js:41:13)
+
+    console.warn
+      ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+    [0m [90m 39 |[39m     test([32m'AC01.1 - DADO que estoy en la página principal, CUANDO la página carga, ENTONCES veo productos destacados'[39m[33m,[39m () [33m=>[39m {
+     [90m 40 |[39m       [90m// GIVEN - Renderizar página principal[39m
+    [31m[1m>[22m[39m[90m 41 |[39m       render(
+     [90m    |[39m             [31m[1m^[22m[39m
+     [90m 42 |[39m         [33m<[39m[33mMemoryRouter[39m[33m>[39m
+     [90m 43 |[39m           [33m<[39m[33mHome[39m [33m/[39m[33m>[39m
+     [90m 44 |[39m         [33m<[39m[33m/[39m[33mMemoryRouter[39m[33m>[39m[0m
+
+      at warnOnce (node_modules/react-router/lib/deprecations.ts:9:13)
+      at logDeprecation (node_modules/react-router/lib/deprecations.ts:14:3)
+      at logV6DeprecationWarnings (node_modules/react-router/lib/deprecations.ts:37:5)
+      at node_modules/react-router/lib/components.tsx:257:25
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (src/__tests__/AcceptanceTests.test.js:41:13)
+
+
+Test Suites: 2 passed, 2 total
+Tests:       75 passed, 75 total
+Snapshots:   0 total
+Time:        1.9 s, estimated 2 s
+Ran all test suites matching /SystemTests|AcceptanceTests/i.
