@@ -19,6 +19,14 @@ import ForgotPasswordReset from './views/ForgotPassword/ForgotPasswordReset';
 import Verification from './views/Verification/Verification';
 import SearchResults from './views/Search/SearchResults';
 import Profile from './views/Profile/Profile';
+import Account from './views/Account/Account';
+import AccountProfile from './views/Account/AccountProfile';
+import Addresses from './views/Account/Addresses';
+import Orders from './views/Account/Orders';
+import PaymentMethods from './views/Account/PaymentMethods';
+import Tracking from './views/Tracking/Tracking';
+import AccountFavorites from './views/Account/Favorites';
+import Invoice from './views/Account/Invoice';
 import './App.css';
 
 function App() {
@@ -59,6 +67,14 @@ function App() {
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/producto/:id" element={<ProductDetail />} />
                 <Route path="/carrito" element={<Cart />} />
+                <Route path="/perfil/mi-cuenta" element={<Account />} />
+                <Route path="/perfil/datos" element={<AccountProfile />} />
+                <Route path="/perfil/direcciones" element={<Addresses />} />
+                <Route path="/perfil/pedidos" element={<Orders />} />
+                <Route path="/perfil/pagos" element={<PaymentMethods />} />
+                <Route path="/perfil/favoritos" element={<AccountFavorites />} />
+                <Route path="/perfil/factura" element={<Invoice />} />
+                <Route path="/seguimiento" element={<Tracking />} />
                 <Route path="/perfil" element={<Profile />} />
                 <Route path="/categoria/:categoria" element={<Home />} />
                 <Route path="/ofertas" element={<Home />} />

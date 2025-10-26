@@ -229,13 +229,27 @@ class UserController {
   updateUserInfo(updates) {
     if (!this.currentUser) return false;
     
-    const allowedUpdates = ['firstName', 'lastName', 'email'];
+    const allowedUpdates = ['firstName', 'lastName', 'email', 'phone'];
     allowedUpdates.forEach(prop => {
       if (updates[prop]) {
         this.currentUser[prop] = updates[prop];
       }
     });
     
+    this.saveUser();
+    return true;
+  }
+
+  // Actualizar contraseña del usuario actual y persistir en lista de usuarios
+  updatePassword(newPassword) {
+    if (!this.currentUser) return false;
+    const users = this.getAllUsers();
+    const idx = users.findIndex(u => u.id === this.currentUser.id);
+    if (idx !== -1) {
+      users[idx].password = newPassword;
+      this.saveAllUsers(users);
+    }
+    this.currentUser.password = newPassword;
     this.saveUser();
     return true;
   }

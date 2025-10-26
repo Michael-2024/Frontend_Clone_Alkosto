@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import SearchService from '../../services/SearchService';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import CartController from '../../controllers/CartController';
 import './SearchResults.css';
 
 const SearchResults = () => {
@@ -67,6 +68,11 @@ const SearchResults = () => {
 
   // Obtener categorías únicas de los resultados
   const categorias = [...new Set(productos.map(p => p.category))];
+
+  const handleAddToCart = (product) => {
+    CartController.addToCart(product, 1);
+    alert(`${product.name} agregado al carrito`);
+  };
 
   return (
     <div className="search-results-page">
@@ -186,7 +192,7 @@ const SearchResults = () => {
             ) : (
               <div className="products-grid">
                 {productos.map(producto => (
-                  <ProductCard key={producto.id} product={producto} />
+                  <ProductCard key={producto.id} product={producto} onAddToCart={handleAddToCart} />
                 ))}
               </div>
             )}
