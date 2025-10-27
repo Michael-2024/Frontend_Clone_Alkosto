@@ -1,0 +1,291 @@
+/* Contenedor principal del menú */
+.megamenu-nav {
+  background-color: #02266e;
+  position: relative;
+  z-index: 1000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.megamenu-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.megamenu-container-fluid {
+  width: 100%;
+}
+
+/* Lista principal del menú */
+.megamenu-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2px;
+}
+
+.megamenu-item {
+  position: relative;
+}
+
+/* Botones del menú principal */
+.megamenu-button {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.megamenu-button:hover,
+.megamenu-button.active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Dropdown / Menú desplegable */
+.megamenu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 800px;
+  max-width: 900px;
+  display: flex;
+  animation: slideDown 0.2s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Columna izquierda - Sidebar de subcategorías */
+.megamenu-sidebar {
+  background-color: #fafafa;
+  min-width: 220px;
+  padding: 20px 0;
+  border-right: 1px solid #e0e0e0;
+}
+
+.megamenu-sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  color: #333;
+  fontSize: 14px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  font-weight: 400;
+}
+
+.megamenu-sidebar-item.highlight {
+  color: #ff6600;
+  font-weight: 600;
+}
+
+.megamenu-sidebar-item:hover {
+  background-color: #f0f0f0;
+  padding-left: 24px;
+}
+
+.megamenu-arrow {
+  color: #ff6600;
+  font-size: 12px;
+}
+
+/* Columna derecha - Contenido principal */
+.megamenu-content {
+  flex: 1;
+  padding: 25px;
+  background-color: white;
+}
+
+/* Header del contenido */
+.megamenu-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.megamenu-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.megamenu-view-all {
+  font-size: 13px;
+  color: #ff6600;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.megamenu-view-all:hover {
+  color: #ff8533;
+}
+
+/* Sección de marcas */
+.megamenu-section {
+  margin-bottom: 20px;
+}
+
+.megamenu-section-title {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.megamenu-brands {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.megamenu-brand-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background-color: white;
+  cursor: pointer;
+}
+
+.megamenu-brand-card:hover {
+  border-color: #ff6600;
+  box-shadow: 0 2px 8px rgba(255, 102, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.megamenu-brand-icon {
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.megamenu-brand-name {
+  font-size: 12px;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Productos relacionados */
+.megamenu-related {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #fff9f5;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+.megamenu-related strong {
+  color: #333;
+}
+
+.megamenu-related-links {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.megamenu-related-links a {
+  color: #ff6600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.megamenu-related-links a:hover {
+  color: #ff8533;
+  text-decoration: underline;
+}
+
+.megamenu-separator {
+  color: #ddd;
+}
+
+/* Botón especial (Navidad/Hiperofertas) */
+.megamenu-special {
+  margin-left: auto;
+}
+
+.megamenu-special-link {
+  display: block;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #ff6600, #ff8533);
+  color: white;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 102, 0, 0.3);
+}
+
+.megamenu-special-link:hover {
+  background: linear-gradient(135deg, #ff8533, #ff6600);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .megamenu-dropdown {
+    min-width: 600px;
+  }
+  
+  .megamenu-brands {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .megamenu-list {
+    flex-wrap: wrap;
+  }
+  
+  .megamenu-button {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+  
+  .megamenu-dropdown {
+    min-width: auto;
+    width: 100vw;
+    left: -20px;
+  }
+  
+  .megamenu-brands {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

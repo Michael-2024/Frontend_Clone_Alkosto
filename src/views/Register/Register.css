@@ -1,0 +1,341 @@
+.register-page {
+  width: 100%;
+  background-color: #f5f5f5;
+  min-height: 60vh;
+  padding: 1rem 0;
+}
+
+.register-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  color: #E75114;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.back-arrow {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+.register-content {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.register-heading {
+  flex: 1;
+  max-width: 320px;
+}
+
+.register-title {
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.register-form-container {
+  flex: 1;
+  min-width: 340px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.email-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.email-label {
+  color: #666;
+  margin-right: 0.5rem;
+}
+
+.email-value {
+  font-weight: 600;
+}
+
+.modify-button {
+  color: #E75114;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+/* Estilos para edición de email */
+.email-edit {
+  width: 100%;
+}
+
+.email-edit-label {
+  color: #666;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.email-edit-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.email-edit-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.email-edit-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.email-save-button,
+.email-cancel-button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.email-save-button {
+  background: #E75114;
+  color: white;
+  border: none;
+}
+
+.email-save-button:disabled {
+  background: #f3a583;
+  cursor: not-allowed;
+}
+
+.email-cancel-button {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.8rem; /* Aumentar el margen inferior */
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0055a5;
+  box-shadow: 0 0 0 2px rgba(0, 85, 165, 0.1);
+}
+
+.phone-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.2rem; /* Mayor margen para el grupo del teléfono */
+}
+
+.phone-prefix {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  color: #333;
+  font-weight: 600;
+  gap: 0.5rem;
+}
+
+/* Bandera de Colombia */
+.colombia-flag {
+  width: 24px;
+  height: 16px;
+  background: linear-gradient(
+    to bottom,
+    #FCD116 0%,
+    #FCD116 50%,
+    #003893 50%,
+    #003893 75%,
+    #CE1126 75%,
+    #CE1126 100%
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 1px rgba(0,0,0,0.5);
+}
+
+.phone-input-container {
+  position: relative;
+  flex: 1;
+}
+
+.phone-input {
+  width: 100%;
+  border-radius: 0 4px 4px 0 !important;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.phone-error-message {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 5px;
+  color: #d00;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.error-icon {
+  margin-right: 5px;
+  font-size: 0.9rem;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1.5rem; /* Espacio adicional después del mensaje de error */
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 0.2rem;
+  margin-right: 0.5rem;
+}
+
+.terms-link {
+  color: #E75114;
+  text-decoration: none;
+  margin-left: 0.3rem;
+}
+
+.error-message {
+  color: #d00;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+input.error {
+  border-color: #d00;
+  background-color: #fff0f0;
+}
+
+.continue-button {
+  width: 100%;
+  padding: 0.875rem;
+  border: none;
+  background: #E75114;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.continue-button:hover {
+  background: #d13f00;
+}
+
+.continue-button:disabled {
+  background: #f3a583;
+  cursor: not-allowed;
+}
+
+/* Nuevo estilo para email en columna izquierda */
+.email-display {
+  margin-top: 2rem;
+}
+
+.email-label-left {
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.email-value-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.email-value-left {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Estilo para error de teléfono con icono */
+.phone-error {
+  color: #d00;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.error-icon {
+  margin-right: 0.5rem;
+  color: #d00;
+}
+
+@media (max-width: 768px) {
+  .register-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .register-heading {
+    max-width: none;
+  }
+}
