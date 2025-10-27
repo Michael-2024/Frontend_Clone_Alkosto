@@ -4,10 +4,12 @@ import CartController from '../../controllers/CartController';
 import './Cart.css';
 
 const Cart = () => {
-  const [cart, setCart] = useState(CartController.getCart());
+  // Usamos un "tick" para forzar re-render sin perder métodos de la clase Cart
+  const [tick, setTick] = useState(0);
+  const cart = CartController.getCart();
 
   const updateCart = () => {
-    setCart({ ...CartController.getCart() });
+    setTick((t) => t + 1);
   };
 
   const handleRemoveItem = (productId) => {

@@ -68,6 +68,11 @@ npm start
 
 El frontend estará disponible en `http://localhost:3000`
 
+### Rutas relevantes
+
+- `/perfil/mi-cuenta` Vista de "Mi cuenta" del usuario (dashboard con accesos rápidos)
+- `/perfil` Favoritos del usuario
+
 ## 🎨 Patrón de Diseño MVC
 
 ### Models (Modelos)

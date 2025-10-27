@@ -250,7 +250,7 @@ const Header = ({ cartItemsCount }) => {
                               </div>
                             </Link>
 
-                              <Link to="/perfil" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
+                              <Link to="/perfil/favoritos" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
                               <i className="item-icon">❤️</i>
                               <div className="item-text">
                                 <div className="item-title">Mi lista de Favoritos</div>
