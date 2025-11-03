@@ -1,23 +1,22 @@
-.category-section {
-  padding: 50px 0;
-  background-color: #f5f5f5;
-}
 
-.category-section .section-title {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 35px;
-  color: #333;
-  font-weight: bold;
+.category-section {
+  padding: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  height: 450px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 15px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+  padding: 15px;
+  height: 100%;
 }
 
 .category-card {
@@ -25,51 +24,51 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 10px;
+  justify-content: center;
+  padding: 8px 5px;
   border-radius: 8px;
   transition: all 0.3s ease;
   background-color: #fff;
   border: 1px solid #e0e0e0;
+  height: 100%;
 }
 
 .category-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 51, 160, 0.15);
   border-color: #0033A0;
 }
 
 /* Contenedor del icono - diseño tipo Alkosto */
 .category-icon-container {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .category-card:hover .category-icon-container {
   transform: scale(1.05);
 }
 
-.category-icon {
-  font-size: 48px;
-  display: block;
-}
 
 .category-name {
-  font-size: 13px;
+  font-size: 10px;
   color: #333;
   text-align: center;
   font-weight: 500;
   margin: 0;
   transition: color 0.3s ease;
-  line-height: 1.3;
-  min-height: 34px;
+  line-height: 1.2;
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 24px;
 }
 
 .category-card:hover .category-name {
@@ -101,9 +100,9 @@
 .category-card.highlight::before {
   content: '🔥';
   position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 16px;
+  top: 3px;
+  right: 3px;
+  font-size: 12px;
   animation: pulse 1.5s infinite;
 }
 
@@ -116,23 +115,55 @@
   }
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .category-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 12px;
-  }
+/* Scrollbar personalizado */
+.category-section::-webkit-scrollbar {
+  width: 6px;
 }
 
-@media (max-width: 768px) {
+.category-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.category-section::-webkit-scrollbar-thumb {
+  background: #0033A0;
+  border-radius: 4px;
+}
+
+.category-section::-webkit-scrollbar-thumb:hover {
+  background: #002875;
+}
+
+/* Responsive - en tablets y móviles vuelve al diseño completo */
+@media (max-width: 1024px) {
+  .category-section {
+    padding: 50px 20px;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 0;
+    height: auto;
+    overflow-y: visible;
+  }
+
   .category-grid {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-rows: auto;
+    gap: 12px;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: auto;
+    padding: 0;
+  }
+
+  .category-card {
+    padding: 15px 10px;
+    height: auto;
   }
 
   .category-icon-container {
     width: 70px;
     height: 70px;
+    margin-bottom: 8px;
   }
 
   .category-icon {
@@ -141,16 +172,32 @@
 
   .category-name {
     font-size: 12px;
+    height: auto;
     min-height: 30px;
   }
+}
 
-  .category-section .section-title {
-    font-size: 24px;
-    margin-bottom: 25px;
+@media (max-width: 768px) {
+  .category-section {
+    padding: 35px 15px;
   }
 
-  .category-section {
-    padding: 35px 0;
+  .category-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+  }
+
+  .category-icon-container {
+    width: 65px;
+    height: 65px;
+  }
+
+  .category-icon {
+    font-size: 36px;
+  }
+
+  .category-name {
+    font-size: 11px;
   }
 }
 
@@ -178,4 +225,9 @@
     min-height: 28px;
   }
 }
-
+.category-image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 12px;
+}
