@@ -4,9 +4,17 @@ class Cart {
     this.items = [];
   }
 
+  // Asegura que siempre sea un array
+  ensureArray() {
+    if (!Array.isArray(this.items)) {
+      this.items = [];
+    }
+  }
+
   addItem(product, quantity = 1) {
+    this.ensureArray();
     const existingItem = this.items.find(item => item.product.id === product.id);
-    
+
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
@@ -15,10 +23,12 @@ class Cart {
   }
 
   removeItem(productId) {
+    this.ensureArray();
     this.items = this.items.filter(item => item.product.id !== productId);
   }
 
   updateQuantity(productId, quantity) {
+    this.ensureArray();
     const item = this.items.find(item => item.product.id === productId);
     if (item) {
       item.quantity = quantity;
@@ -26,13 +36,17 @@ class Cart {
   }
 
   getTotal() {
+    this.ensureArray();
     return this.items.reduce((total, item) => {
-      return total + (item.product.price * item.quantity);
+      const price = item?.product?.price ?? 0;
+      const qty = item?.quantity ?? 0;
+      return total + price * qty;
     }, 0);
   }
 
   getTotalItems() {
-    return this.items.reduce((total, item) => total + item.quantity, 0);
+    this.ensureArray();
+    return this.items.reduce((total, item) => total + (item?.quantity ?? 0), 0);
   }
 
   clear() {
