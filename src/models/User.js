@@ -41,6 +41,7 @@ class User {
       email: this.email,
       firstName: this.firstName,
       lastName: this.lastName,
+      password: this.password, // Incluir contraseña (en producción debería ser hasheada)
       phone: this.phone, // Incluir teléfono
       emailVerified: this.emailVerified,
       phoneVerified: this.phoneVerified,
