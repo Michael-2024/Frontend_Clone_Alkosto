@@ -1682,3 +1682,8 @@ Tests:       8 failed, 41 passed, 49 total
 Snapshots:   0 total
 Time:        10.262 s
 Ran all test suites matching /RF01_Register.test.js/i.
+
+
+SIN CAMBIOS EN NOVIEMBRE
+
+SE MUEVE A LA CARPTE DE PRUEBAS
