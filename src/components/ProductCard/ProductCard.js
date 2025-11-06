@@ -1,10 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CartController from '../../controllers/CartController';
 import './ProductCard.css';
 
 const ProductCard = ({ product, onAddToCart }) => {
-  const handleAddToCart = () => {
-    onAddToCart(product);
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (onAddToCart) {
+      CartController.addToCart(product, 1);
+      onAddToCart(product);
+    }
   };
 
   return (

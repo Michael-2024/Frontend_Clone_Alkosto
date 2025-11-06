@@ -5,6 +5,7 @@ import CategorySection from '../../components/CategorySection/CategorySection';
 import ProductGrid from '../../components/ProductGrid/ProductGrid';
 import ProductController from '../../controllers/ProductController';
 import CartController from '../../controllers/CartController';
+import CartDrawer from '../../components/CartDrawer/CartDrawer';
 import './Home.css';
 
 const Home = () => {
@@ -13,6 +14,10 @@ const Home = () => {
   const [bestSellers, setBestSellers] = useState([]);
   const [recommended, setRecommended] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
+  const [showCartDrawer, setShowCartDrawer] = useState(false);
+  const [addedProduct, setAddedProduct] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   const carouselSlides = [
     {
@@ -52,7 +57,11 @@ const Home = () => {
 
   const handleAddToCart = (product) => {
     CartController.addToCart(product, 1);
-    alert(`${product.name} agregado al carrito`);
+    const cart = CartController.getCart();
+    setAddedProduct(product);
+    setCartItems(cart.items);
+    setCartTotal(cart.getTotal());
+    setShowCartDrawer(true);
   };
 
   return (
@@ -138,6 +147,15 @@ const Home = () => {
           </div>
         </section>
       </div>
+
+      {/* Cart Drawer */}
+      <CartDrawer
+        isOpen={showCartDrawer}
+        onClose={() => setShowCartDrawer(false)}
+        addedProduct={addedProduct}
+        cartItems={cartItems}
+        cartTotal={cartTotal}
+      />
     </div>
   );
 };

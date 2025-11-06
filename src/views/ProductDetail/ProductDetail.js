@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import ProductController from '../../controllers/ProductController';
 import CartController from '../../controllers/CartController';
 import UserController from '../../controllers/UserController';
+import CartDrawer from '../../components/CartDrawer/CartDrawer';
 import './ProductDetail.css';
 
 const ProductDetail = () => {
@@ -14,6 +15,9 @@ const ProductDetail = () => {
   const [showFavModal, setShowFavModal] = useState(false);
   const [favEmail, setFavEmail] = useState('');
   const [favEmailError, setFavEmailError] = useState('');
+  const [showCartDrawer, setShowCartDrawer] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     const foundProduct = ProductController.getProductById(id);
@@ -34,7 +38,10 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     if (product) {
       CartController.addToCart(product, quantity);
-      alert(`${quantity} x ${product.name} agregado(s) al carrito`);
+      const cart = CartController.getCart();
+      setCartItems(cart.items);
+      setCartTotal(cart.getTotal());
+      setShowCartDrawer(true);
     }
   };
 
@@ -265,6 +272,15 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Cart Drawer */}
+      <CartDrawer
+        isOpen={showCartDrawer}
+        onClose={() => setShowCartDrawer(false)}
+        addedProduct={product}
+        cartItems={cartItems}
+        cartTotal={cartTotal}
+      />
     </div>
   );
 };
