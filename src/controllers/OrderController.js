@@ -146,6 +146,75 @@ class OrderController {
   }
 
   /**
+   * Cancelar un pedido (RF19 - Cancelar pedidos)
+   * @param {string} orderId - ID del pedido
+   * @param {string} reason - Motivo de la cancelación
+   * @param {string} userId - ID del usuario que cancela (para validación)
+   * @returns {Object} - {success: boolean, message: string, order?: Order}
+   */
+  cancelOrder(orderId, reason, userId) {
+    try {
+      // Buscar el pedido
+      const order = this.getOrderById(orderId);
+
+      if (!order) {
+        return {
+          success: false,
+          message: 'Pedido no encontrado'
+        };
+      }
+
+      // Verificar que el pedido pertenezca al usuario
+      if (order.userId !== userId) {
+        return {
+          success: false,
+          message: 'No tienes permisos para cancelar este pedido'
+        };
+      }
+
+      // Validar si el pedido puede ser cancelado según las políticas
+      const cancellationCheck = order.canBeCancelled();
+      
+      if (!cancellationCheck.canCancel) {
+        return {
+          success: false,
+          message: cancellationCheck.reason
+        };
+      }
+
+      // Cancelar el pedido
+      const cancelResult = order.cancel(reason);
+
+      if (!cancelResult.success) {
+        return cancelResult;
+      }
+
+      // Guardar cambios
+      this.saveOrdersToStorage();
+
+      // Generar notificación de cancelación
+      NotificationController.notifyOrderCancelled(
+        order.userId,
+        orderId,
+        order.trackingNumber,
+        reason
+      );
+
+      return {
+        success: true,
+        message: 'Pedido cancelado exitosamente',
+        order: order
+      };
+    } catch (error) {
+      console.error('Error al cancelar pedido:', error);
+      return {
+        success: false,
+        message: 'Error al procesar la cancelación del pedido'
+      };
+    }
+  }
+
+  /**
    * Obtener todos los pedidos
    * @returns {Array} - Lista de todos los pedidos
    */
@@ -244,6 +313,14 @@ class OrderController {
           order.createdAt = new Date(orderData.createdAt);
           order.updatedAt = new Date(orderData.updatedAt);
           order.trackingNumber = orderData.trackingNumber;
+          
+          // Restaurar datos de cancelación si existen
+          if (orderData.cancellationReason) {
+            order.cancellationReason = orderData.cancellationReason;
+          }
+          if (orderData.cancelledAt) {
+            order.cancelledAt = new Date(orderData.cancelledAt);
+          }
 
           return order;
         });

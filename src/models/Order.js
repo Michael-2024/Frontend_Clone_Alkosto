@@ -56,6 +56,127 @@ class Order {
     this.updatedAt = new Date();
   }
 
+  /**
+   * Verifica si el pedido puede ser cancelado según las políticas
+   * Política: Solo se puede cancelar si:
+   * - El estado es "pendiente" o "procesando"
+   * - No han pasado más de 24 horas desde la creación
+   * - No ha sido enviado ni entregado
+   * @returns {Object} - {canCancel: boolean, reason?: string}
+   */
+  canBeCancelled() {
+    // No se puede cancelar si ya está cancelado
+    if (this.status === 'cancelado') {
+      return {
+        canCancel: false,
+        reason: 'El pedido ya está cancelado'
+      };
+    }
+
+    // No se puede cancelar si ya fue entregado
+    if (this.status === 'entregado') {
+      return {
+        canCancel: false,
+        reason: 'El pedido ya fue entregado. Para devoluciones contacta al servicio al cliente'
+      };
+    }
+
+    // No se puede cancelar si ya fue enviado (Cliente A: útil siempre que no se haya enviado)
+    if (this.status === 'enviado') {
+      return {
+        canCancel: false,
+        reason: 'El pedido ya está en camino. Contacta al servicio al cliente para más información'
+      };
+    }
+
+    // Verificar límite de tiempo de 24 horas (Cliente B: límite de tiempo)
+    const now = new Date();
+    const createdAt = new Date(this.createdAt);
+    const hoursSinceCreation = (now - createdAt) / (1000 * 60 * 60);
+
+    if (hoursSinceCreation > 24) {
+      return {
+        canCancel: false,
+        reason: 'El plazo de cancelación (24 horas) ha expirado'
+      };
+    }
+
+    // Solo se puede cancelar si está en estado "pendiente" o "procesando"
+    if (this.status === 'pendiente' || this.status === 'procesando') {
+      return {
+        canCancel: true
+      };
+    }
+
+    return {
+      canCancel: false,
+      reason: 'El pedido no puede ser cancelado en su estado actual'
+    };
+  }
+
+  /**
+   * Obtiene la fecha límite para cancelar el pedido (24 horas después de la creación)
+   * @returns {Date} - Fecha límite de cancelación
+   */
+  getCancellationDeadline() {
+    const deadline = new Date(this.createdAt);
+    deadline.setHours(deadline.getHours() + 24);
+    return deadline;
+  }
+
+  /**
+   * Obtiene el tiempo restante para cancelar el pedido
+   * @returns {Object} - {hours: number, minutes: number, expired: boolean}
+   */
+  getTimeLeftToCancel() {
+    const now = new Date();
+    const deadline = this.getCancellationDeadline();
+    const timeLeft = deadline - now;
+
+    if (timeLeft <= 0) {
+      return {
+        hours: 0,
+        minutes: 0,
+        expired: true
+      };
+    }
+
+    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+    return {
+      hours,
+      minutes,
+      expired: false
+    };
+  }
+
+  /**
+   * Cancela el pedido
+   * @param {string} reason - Motivo de la cancelación
+   * @returns {Object} - {success: boolean, message: string}
+   */
+  cancel(reason = 'Cancelado por el cliente') {
+    const cancellationCheck = this.canBeCancelled();
+    
+    if (!cancellationCheck.canCancel) {
+      return {
+        success: false,
+        message: cancellationCheck.reason
+      };
+    }
+
+    this.status = 'cancelado';
+    this.updatedAt = new Date();
+    this.cancellationReason = reason;
+    this.cancelledAt = new Date();
+
+    return {
+      success: true,
+      message: 'Pedido cancelado exitosamente'
+    };
+  }
+
   getStatusText() {
     const statusMap = {
       pendiente: 'Pendiente de pago',
@@ -94,7 +215,9 @@ class Order {
       total: this.total,
       subtotal: this.subtotal,
       shipping: this.shipping,
-      trackingNumber: this.trackingNumber
+      trackingNumber: this.trackingNumber,
+      cancellationReason: this.cancellationReason || null,
+      cancelledAt: this.cancelledAt || null
     };
   }
 }

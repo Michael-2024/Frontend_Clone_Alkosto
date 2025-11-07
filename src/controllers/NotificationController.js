@@ -216,6 +216,20 @@ class NotificationController {
   }
 
   /**
+   * Notificación de pedido cancelado (RF19)
+   */
+  notifyOrderCancelled(userId, orderId, trackingNumber, reason) {
+    return this.createNotification(
+      userId,
+      'order',
+      `Pedido Cancelado #${trackingNumber}`,
+      `Tu pedido ha sido cancelado exitosamente. Motivo: ${reason}`,
+      'high',
+      { orderId, trackingNumber, status: 'cancelado', reason, action: 'cancelled' }
+    );
+  }
+
+  /**
    * Notificación de oferta/promoción
    */
   notifyOffer(userId, title, message, productId = null) {

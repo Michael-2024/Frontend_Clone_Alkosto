@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import OrderController from '../../controllers/OrderController';
+import CancelOrderModal from '../../components/CancelOrderModal/CancelOrderModal';
 import './Account.css';
 import AccountSidebar from './AccountSidebar';
 
@@ -12,6 +13,9 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [newOrderId, setNewOrderId] = useState(null);
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [cancelMessage, setCancelMessage] = useState(null);
 
   useEffect(() => {
     if (!UserController.isLoggedIn()) {
@@ -21,11 +25,7 @@ const Orders = () => {
     }
 
     // Obtener pedidos del usuario
-    const currentUser = UserController.getCurrentUser();
-    if (currentUser) {
-      const userOrders = OrderController.getUserOrders(currentUser.id);
-      setOrders(userOrders);
-    }
+    loadOrders();
 
     // Verificar si hay un nuevo pedido
     const newOrder = searchParams.get('new');
@@ -37,6 +37,55 @@ const Orders = () => {
       }, 5000);
     }
   }, [navigate, searchParams]);
+
+  const loadOrders = () => {
+    const currentUser = UserController.getCurrentUser();
+    if (currentUser) {
+      const userOrders = OrderController.getUserOrders(currentUser.id);
+      setOrders(userOrders);
+    }
+  };
+
+  const handleCancelClick = (order) => {
+    setSelectedOrder(order);
+    setShowCancelModal(true);
+  };
+
+  const handleCancelConfirm = async (reason) => {
+    if (!selectedOrder || !user) return;
+
+    const result = OrderController.cancelOrder(selectedOrder.id, reason, user.id);
+
+    if (result.success) {
+      setCancelMessage({
+        type: 'success',
+        text: 'Pedido cancelado exitosamente'
+      });
+      loadOrders(); // Recargar pedidos
+      setShowCancelModal(false);
+      setSelectedOrder(null);
+
+      // Limpiar mensaje después de 5 segundos
+      setTimeout(() => {
+        setCancelMessage(null);
+      }, 5000);
+    } else {
+      setCancelMessage({
+        type: 'error',
+        text: result.message || 'Error al cancelar el pedido'
+      });
+
+      // Limpiar mensaje después de 5 segundos
+      setTimeout(() => {
+        setCancelMessage(null);
+      }, 5000);
+    }
+  };
+
+  const handleCancelCancel = () => {
+    setShowCancelModal(false);
+    setSelectedOrder(null);
+  };
 
   const onLogout = () => { UserController.logout(); navigate('/'); };
 
@@ -79,6 +128,17 @@ const Orders = () => {
                 <div>
                   <strong>¡Pedido realizado exitosamente!</strong>
                   <p>Tu número de seguimiento es: <strong>{newOrderId}</strong></p>
+                </div>
+              </div>
+            )}
+
+            {cancelMessage && (
+              <div className={`${cancelMessage.type}-message`} role="alert">
+                <span className={`${cancelMessage.type}-icon`}>
+                  {cancelMessage.type === 'success' ? '✓' : '⚠️'}
+                </span>
+                <div>
+                  <strong>{cancelMessage.text}</strong>
                 </div>
               </div>
             )}
@@ -167,6 +227,15 @@ const Orders = () => {
                       >
                         Rastrear pedido
                       </button>
+                      {order.canBeCancelled().canCancel && (
+                        <button 
+                          className="btn-cancel-order"
+                          onClick={() => handleCancelClick(order)}
+                          title="Cancelar pedido"
+                        >
+                          Cancelar pedido
+                        </button>
+                      )}
                       <button className="btn-link">
                         Ver detalles
                       </button>
@@ -174,6 +243,15 @@ const Orders = () => {
                   </div>
                 ))}
               </div>
+            )}
+
+            {/* Modal de cancelación */}
+            {showCancelModal && selectedOrder && (
+              <CancelOrderModal
+                order={selectedOrder}
+                onConfirm={handleCancelConfirm}
+                onCancel={handleCancelCancel}
+              />
             )}
           </section>
         </div>

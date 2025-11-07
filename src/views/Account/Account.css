@@ -216,6 +216,20 @@
   animation: slideIn 0.3s ease-out;
 }
 
+/* Error Message (for cancellation errors) */
+.error-message {
+  background-color: #ffebee;
+  border-left: 4px solid #d32f2f;
+  color: #c62828;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  animation: slideIn 0.3s ease-out;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -240,13 +254,28 @@
   flex-shrink: 0;
 }
 
-.success-message strong {
+.error-icon {
+  width: 24px;
+  height: 24px;
+  background-color: #d32f2f;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.success-message strong,
+.error-message strong {
   display: block;
   margin-bottom: 5px;
   font-size: 16px;
 }
 
-.success-message p {
+.success-message p,
+.error-message p {
   margin: 0;
   font-size: 14px;
 }
@@ -442,6 +471,26 @@
   color: white;
 }
 
+/* Cancel Order Button (RF19) */
+.btn-cancel-order {
+  padding: 10px 20px;
+  background: white;
+  color: #d32f2f;
+  border: 2px solid #d32f2f;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel-order:hover {
+  background-color: #d32f2f;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+}
+
 @media (max-width: 720px) {
   .line { grid-template-columns: 1fr; align-items: start; }
   
@@ -460,7 +509,8 @@
   }
   
   .btn-secondary,
-  .btn-link {
+  .btn-link,
+  .btn-cancel-order {
     width: 100%;
   }
 }

@@ -4,6 +4,7 @@ import CartController from '../../controllers/CartController';
 import OrderController from '../../controllers/OrderController';
 import UserController from '../../controllers/UserController';
 import CouponController from '../../controllers/CouponController';
+import PaymentMethodController from '../../controllers/PaymentMethodController';
 import './Checkout.css';
 
 const Checkout = () => {
@@ -35,14 +36,22 @@ const Checkout = () => {
 
   // Datos de pago
   const [paymentData, setPaymentData] = useState({
-    type: 'card', // card, pse, cash
+    type: 'card', // card, pse, cash, nequi, daviplata, saved
+    useSavedMethod: false,
+    savedMethodId: '',
     cardNumber: '',
     cardHolder: '',
     expiryDate: '',
     cvv: '',
     bank: '',
-    personType: 'natural' // natural, juridica
+    personType: 'natural', // natural, juridica
+    walletPhone: '',
+    savePaymentMethod: false,
+    paymentMethodNickname: ''
   });
+
+  // Métodos de pago guardados
+  const [savedPaymentMethods, setSavedPaymentMethods] = useState([]);
 
   useEffect(() => {
     // Verificar autenticación
@@ -52,6 +61,10 @@ const Checkout = () => {
       return;
     }
     setCurrentUser(user);
+
+    // Cargar métodos de pago guardados
+    const methods = PaymentMethodController.getUserPaymentMethods(user.id);
+    setSavedPaymentMethods(methods);
 
     // Pre-llenar datos del usuario
     setShippingData(prev => ({
@@ -108,6 +121,16 @@ const Checkout = () => {
   };
 
   const validatePaymentForm = () => {
+    // Si usa método guardado
+    if (paymentData.useSavedMethod) {
+      if (!paymentData.savedMethodId) {
+        setError('Selecciona un método de pago guardado');
+        return false;
+      }
+      return true;
+    }
+
+    // Validación por tipo de pago
     if (paymentData.type === 'card') {
       if (!paymentData.cardNumber || paymentData.cardNumber.replace(/\s/g, '').length < 16) {
         setError('Número de tarjeta inválido');
@@ -130,6 +153,13 @@ const Checkout = () => {
     if (paymentData.type === 'pse') {
       if (!paymentData.bank) {
         setError('Selecciona un banco');
+        return false;
+      }
+    }
+
+    if (paymentData.type === 'nequi' || paymentData.type === 'daviplata') {
+      if (!paymentData.walletPhone || paymentData.walletPhone.length !== 10) {
+        setError('Número de celular inválido (10 dígitos)');
         return false;
       }
     }
@@ -192,6 +222,19 @@ const Checkout = () => {
     setError('');
 
     try {
+      // Guardar método de pago si el usuario lo solicita
+      if (paymentData.savePaymentMethod && !paymentData.useSavedMethod) {
+        const nickname = paymentData.paymentMethodNickname || `${getPaymentTypeLabel(paymentData.type)} - ${new Date().toLocaleDateString()}`;
+        
+        PaymentMethodController.addPaymentMethod(
+          currentUser.id,
+          paymentData.type,
+          nickname,
+          paymentData,
+          false
+        );
+      }
+
       // Aplicar cupón si existe
       if (appliedCoupon) {
         CouponController.applyCoupon(appliedCoupon.code, currentUser.id);
@@ -241,6 +284,17 @@ const Checkout = () => {
     return labels[field] || field;
   };
 
+  const getPaymentTypeLabel = (type) => {
+    const labels = {
+      card: 'Tarjeta',
+      pse: 'PSE',
+      nequi: 'Nequi',
+      daviplata: 'Daviplata',
+      cash: 'Efectivo'
+    };
+    return labels[type] || type;
+  };
+
   const calculateSubtotal = () => {
     return cartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
   };
@@ -270,6 +324,13 @@ const Checkout = () => {
     const cleaned = value.replace(/\s/g, '');
     const chunks = cleaned.match(/.{1,4}/g) || [];
     return chunks.join(' ');
+  };
+
+  const handleWalletPhoneChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 10) {
+      setPaymentData(prev => ({ ...prev, walletPhone: value }));
+    }
   };
 
   return (
@@ -475,14 +536,50 @@ const Checkout = () => {
                 </h2>
 
                 <div className="payment-methods">
+                  {/* Métodos de pago guardados */}
+                  {savedPaymentMethods.length > 0 && (
+                    <>
+                      <div className="saved-methods-section">
+                        <h3 className="subsection-title">Métodos guardados</h3>
+                        {savedPaymentMethods.map(method => (
+                          <label key={method.id} className={`payment-option saved ${paymentData.useSavedMethod && paymentData.savedMethodId === method.id ? 'active' : ''}`}>
+                            <input
+                              type="radio"
+                              name="paymentType"
+                              value="saved"
+                              checked={paymentData.useSavedMethod && paymentData.savedMethodId === method.id}
+                              onChange={() => setPaymentData(prev => ({ 
+                                ...prev, 
+                                useSavedMethod: true, 
+                                savedMethodId: method.id,
+                                type: method.type 
+                              }))}
+                            />
+                            <div className="payment-option-content">
+                              <span className="payment-icon">{method.getIcon()}</span>
+                              <div>
+                                <div className="payment-title">{method.nickname}</div>
+                                <div className="payment-desc">{method.getDisplayText()}</div>
+                              </div>
+                              {method.isDefault && <span className="default-badge-inline">Predeterminado</span>}
+                            </div>
+                          </label>
+                        ))}
+                      </div>
+                      <div className="or-divider">
+                        <span>O usa otro método</span>
+                      </div>
+                    </>
+                  )}
+
                   {/* Tarjeta de Crédito/Débito */}
-                  <label className={`payment-option ${paymentData.type === 'card' ? 'active' : ''}`}>
+                  <label className={`payment-option ${!paymentData.useSavedMethod && paymentData.type === 'card' ? 'active' : ''}`}>
                     <input
                       type="radio"
                       name="paymentType"
                       value="card"
-                      checked={paymentData.type === 'card'}
-                      onChange={(e) => setPaymentData(prev => ({ ...prev, type: e.target.value }))}
+                      checked={!paymentData.useSavedMethod && paymentData.type === 'card'}
+                      onChange={(e) => setPaymentData(prev => ({ ...prev, useSavedMethod: false, type: e.target.value }))}
                     />
                     <div className="payment-option-content">
                       <span className="payment-icon">💳</span>
@@ -493,7 +590,7 @@ const Checkout = () => {
                     </div>
                   </label>
 
-                  {paymentData.type === 'card' && (
+                  {!paymentData.useSavedMethod && paymentData.type === 'card' && (
                     <div className="payment-form">
                       <div className="form-field">
                         <label htmlFor="cardNumber">Número de tarjeta</label>
@@ -563,17 +660,38 @@ const Checkout = () => {
                           />
                         </div>
                       </div>
+
+                      {/* Opción de guardar tarjeta */}
+                      <div className="save-payment-option">
+                        <label className="checkbox-label">
+                          <input
+                            type="checkbox"
+                            checked={paymentData.savePaymentMethod}
+                            onChange={(e) => setPaymentData(prev => ({ ...prev, savePaymentMethod: e.target.checked }))}
+                          />
+                          <span>Guardar este método de pago para futuras compras</span>
+                        </label>
+                        {paymentData.savePaymentMethod && (
+                          <input
+                            type="text"
+                            placeholder="Nombre del método (opcional)"
+                            value={paymentData.paymentMethodNickname}
+                            onChange={(e) => setPaymentData(prev => ({ ...prev, paymentMethodNickname: e.target.value }))}
+                            className="nickname-input"
+                          />
+                        )}
+                      </div>
                     </div>
                   )}
 
                   {/* PSE */}
-                  <label className={`payment-option ${paymentData.type === 'pse' ? 'active' : ''}`}>
+                  <label className={`payment-option ${!paymentData.useSavedMethod && paymentData.type === 'pse' ? 'active' : ''}`}>
                     <input
                       type="radio"
                       name="paymentType"
                       value="pse"
-                      checked={paymentData.type === 'pse'}
-                      onChange={(e) => setPaymentData(prev => ({ ...prev, type: e.target.value }))}
+                      checked={!paymentData.useSavedMethod && paymentData.type === 'pse'}
+                      onChange={(e) => setPaymentData(prev => ({ ...prev, useSavedMethod: false, type: e.target.value }))}
                     />
                     <div className="payment-option-content">
                       <span className="payment-icon">🏦</span>
@@ -584,7 +702,7 @@ const Checkout = () => {
                     </div>
                   </label>
 
-                  {paymentData.type === 'pse' && (
+                  {!paymentData.useSavedMethod && paymentData.type === 'pse' && (
                     <div className="payment-form">
                       <div className="form-field">
                         <label htmlFor="bank">Selecciona tu banco</label>
@@ -595,14 +713,9 @@ const Checkout = () => {
                           onChange={handlePaymentChange}
                         >
                           <option value="">Selecciona...</option>
-                          <option value="bancolombia">Bancolombia</option>
-                          <option value="davivienda">Davivienda</option>
-                          <option value="bbva">BBVA</option>
-                          <option value="bogota">Banco de Bogotá</option>
-                          <option value="occidente">Banco de Occidente</option>
-                          <option value="popular">Banco Popular</option>
-                          <option value="av-villas">AV Villas</option>
-                          <option value="colpatria">Scotiabank Colpatria</option>
+                          {PaymentMethodController.getAvailableBanks().map(bank => (
+                            <option key={bank.value} value={bank.value}>{bank.label}</option>
+                          ))}
                         </select>
                       </div>
 
@@ -618,17 +731,154 @@ const Checkout = () => {
                           <option value="juridica">Persona Jurídica</option>
                         </select>
                       </div>
+
+                      {/* Opción de guardar PSE */}
+                      <div className="save-payment-option">
+                        <label className="checkbox-label">
+                          <input
+                            type="checkbox"
+                            checked={paymentData.savePaymentMethod}
+                            onChange={(e) => setPaymentData(prev => ({ ...prev, savePaymentMethod: e.target.checked }))}
+                          />
+                          <span>Guardar este banco para futuras compras</span>
+                        </label>
+                        {paymentData.savePaymentMethod && (
+                          <input
+                            type="text"
+                            placeholder="Nombre del método (opcional)"
+                            value={paymentData.paymentMethodNickname}
+                            onChange={(e) => setPaymentData(prev => ({ ...prev, paymentMethodNickname: e.target.value }))}
+                            className="nickname-input"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Nequi */}
+                  <label className={`payment-option ${!paymentData.useSavedMethod && paymentData.type === 'nequi' ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="paymentType"
+                      value="nequi"
+                      checked={!paymentData.useSavedMethod && paymentData.type === 'nequi'}
+                      onChange={(e) => setPaymentData(prev => ({ ...prev, useSavedMethod: false, type: e.target.value }))}
+                    />
+                    <div className="payment-option-content">
+                      <span className="payment-icon">📱</span>
+                      <div>
+                        <div className="payment-title">Nequi</div>
+                        <div className="payment-desc">Paga desde tu cuenta Nequi</div>
+                      </div>
+                    </div>
+                  </label>
+
+                  {!paymentData.useSavedMethod && paymentData.type === 'nequi' && (
+                    <div className="payment-form">
+                      <div className="form-field">
+                        <label htmlFor="walletPhone">Número de celular Nequi</label>
+                        <div className="phone-input-wrapper">
+                          <span className="phone-prefix">+57</span>
+                          <input
+                            type="tel"
+                            id="walletPhone"
+                            value={paymentData.walletPhone}
+                            onChange={handleWalletPhoneChange}
+                            placeholder="3001234567"
+                            maxLength="10"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Opción de guardar Nequi */}
+                      <div className="save-payment-option">
+                        <label className="checkbox-label">
+                          <input
+                            type="checkbox"
+                            checked={paymentData.savePaymentMethod}
+                            onChange={(e) => setPaymentData(prev => ({ ...prev, savePaymentMethod: e.target.checked }))}
+                          />
+                          <span>Guardar este número para futuras compras</span>
+                        </label>
+                        {paymentData.savePaymentMethod && (
+                          <input
+                            type="text"
+                            placeholder="Nombre del método (opcional)"
+                            value={paymentData.paymentMethodNickname}
+                            onChange={(e) => setPaymentData(prev => ({ ...prev, paymentMethodNickname: e.target.value }))}
+                            className="nickname-input"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Daviplata */}
+                  <label className={`payment-option ${!paymentData.useSavedMethod && paymentData.type === 'daviplata' ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="paymentType"
+                      value="daviplata"
+                      checked={!paymentData.useSavedMethod && paymentData.type === 'daviplata'}
+                      onChange={(e) => setPaymentData(prev => ({ ...prev, useSavedMethod: false, type: e.target.value }))}
+                    />
+                    <div className="payment-option-content">
+                      <span className="payment-icon">📱</span>
+                      <div>
+                        <div className="payment-title">Daviplata</div>
+                        <div className="payment-desc">Paga desde tu cuenta Daviplata</div>
+                      </div>
+                    </div>
+                  </label>
+
+                  {!paymentData.useSavedMethod && paymentData.type === 'daviplata' && (
+                    <div className="payment-form">
+                      <div className="form-field">
+                        <label htmlFor="walletPhone">Número de celular Daviplata</label>
+                        <div className="phone-input-wrapper">
+                          <span className="phone-prefix">+57</span>
+                          <input
+                            type="tel"
+                            id="walletPhone"
+                            value={paymentData.walletPhone}
+                            onChange={handleWalletPhoneChange}
+                            placeholder="3001234567"
+                            maxLength="10"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Opción de guardar Daviplata */}
+                      <div className="save-payment-option">
+                        <label className="checkbox-label">
+                          <input
+                            type="checkbox"
+                            checked={paymentData.savePaymentMethod}
+                            onChange={(e) => setPaymentData(prev => ({ ...prev, savePaymentMethod: e.target.checked }))}
+                          />
+                          <span>Guardar este número para futuras compras</span>
+                        </label>
+                        {paymentData.savePaymentMethod && (
+                          <input
+                            type="text"
+                            placeholder="Nombre del método (opcional)"
+                            value={paymentData.paymentMethodNickname}
+                            onChange={(e) => setPaymentData(prev => ({ ...prev, paymentMethodNickname: e.target.value }))}
+                            className="nickname-input"
+                          />
+                        )}
+                      </div>
                     </div>
                   )}
 
                   {/* Efectivo */}
-                  <label className={`payment-option ${paymentData.type === 'cash' ? 'active' : ''}`}>
+                  <label className={`payment-option ${!paymentData.useSavedMethod && paymentData.type === 'cash' ? 'active' : ''}`}>
                     <input
                       type="radio"
                       name="paymentType"
                       value="cash"
-                      checked={paymentData.type === 'cash'}
-                      onChange={(e) => setPaymentData(prev => ({ ...prev, type: e.target.value }))}
+                      checked={!paymentData.useSavedMethod && paymentData.type === 'cash'}
+                      onChange={(e) => setPaymentData(prev => ({ ...prev, useSavedMethod: false, type: e.target.value }))}
                     />
                     <div className="payment-option-content">
                       <span className="payment-icon">💵</span>
