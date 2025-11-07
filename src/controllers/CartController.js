@@ -61,9 +61,10 @@ class CartController {
       const savedCart = localStorage.getItem('alkosto_cart');
       if (savedCart) {
         const items = JSON.parse(savedCart);
-        // Reconstruir instancias de Product desde objetos planos
-        this.cart.items = items.map(item => {
-          const product = new Product(
+        // Restaurar las instancias de Product
+        this.cart.items = items.map(item => ({
+          ...item,
+          product: new Product(
             item.product.id,
             item.product.name,
             item.product.price,
@@ -74,12 +75,8 @@ class CartController {
             item.product.rating,
             item.product.stock,
             item.product.description
-          );
-          return {
-            product: product,
-            quantity: item.quantity
-          };
-        });
+          )
+        }));
       }
     } catch (error) {
       console.error('Error loading cart from storage:', error);
