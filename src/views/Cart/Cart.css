@@ -296,6 +296,138 @@
   font-style: italic;
 }
 
+/* Estilos de cupones en carrito */
+.coupon-input-wrapper {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.coupon-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.coupon-input:focus {
+  outline: none;
+  border-color: #004797;
+  box-shadow: 0 0 0 3px rgba(0, 71, 151, 0.1);
+}
+
+.coupon-input.error {
+  border-color: #d32f2f;
+}
+
+.apply-coupon-btn {
+  padding: 10px 20px;
+  background-color: #004797;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.apply-coupon-btn:hover:not(:disabled) {
+  background-color: #003366;
+}
+
+.apply-coupon-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.applied-coupon-cart {
+  margin-bottom: 8px;
+}
+
+.coupon-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background-color: #e8f5e9;
+  border: 1px solid #4caf50;
+  border-radius: 6px;
+}
+
+.coupon-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.coupon-info-cart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.coupon-info-cart strong {
+  font-size: 13px;
+  color: #2e7d32;
+}
+
+.coupon-info-cart span {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+}
+
+.remove-coupon-btn {
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+
+.remove-coupon-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #d32f2f;
+}
+
+.coupon-message-cart {
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.coupon-message-cart.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.coupon-message-cart.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #81c784;
+}
+
+.discount-row {
+  color: #2e7d32;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+.discount-amount {
+  color: #2e7d32;
+}
+
 .summary-total {
   display: flex;
   justify-content: space-between;

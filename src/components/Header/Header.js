@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
+import NotificationBell from '../NotificationBell/NotificationBell';
 import './Header.css';
 
 const Header = ({ cartItemsCount }) => {
@@ -176,6 +177,9 @@ const Header = ({ cartItemsCount }) => {
             </form>
 
             <div className="header-actions">
+              {/* Notificaciones */}
+              <NotificationBell />
+              
               {/* Mi Cuenta con menú desplegable */}
               <div 
                 className="header-action account-menu-container"
