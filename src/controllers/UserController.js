@@ -184,6 +184,10 @@ class UserController {
     const users = this.getAllUsers();
     const userData = users.find(u => u.email === email);
     if (userData) {
+      // Verificar que la contraseña coincida
+      if (userData.password !== password) {
+        return { success: false, error: 'Credenciales incorrectas' };
+      }
       // En un sistema real verificaríamos la contraseña con hash
       this.currentUser = new User(
         userData.id,
