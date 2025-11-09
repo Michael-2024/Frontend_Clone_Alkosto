@@ -117,25 +117,51 @@ const Home = () => {
         {/* 🔸 Categorías finales */}
         <section className="categories-banner">
           <div className="category-item">
-            <div className="category-icon">💻</div>
+            <div className="category-icon">
+              <img 
+                src="https://media.aws.alkomprar.com/ymarketingcolcomercio/Alkosto/2024/setup-gmar/portatiles-gaming-2.webp" 
+                alt="Categoría videojuegos" 
+                className="category-image" 
+              />
+              
+            </div>
             <h3>Tecnología</h3>
             <p>Lo último en gadgets</p>
           </div>
           <div className="category-item">
-            <div className="category-icon">🏠</div>
+            <div className="category-icon">
+              <img 
+                src="https://media.aws.alkomprar.com/ymarketingcolcomercio/Alkosto/2024/agosto-alkosto/home/assets/c-electrohogar.webp" 
+                alt="Categoría videojuegos" 
+                className="category-image" 
+              />
+            </div>
             <h3>Hogar</h3>
             <p>Electrodomésticos</p>
           </div>
           <div className="category-item">
-            <div className="category-icon">📺</div>
+            <div className="category-icon">
+              <img 
+                src="https://media.aws.alkomprar.com/ymarketingcolcomercio/Alkosto/2024/agosto-alkosto/home/assets/c-televisores.webp" 
+                alt="Categoría videojuegos" 
+                className="category-image" 
+              />
+            </div>
             <h3>Entretenimiento</h3>
             <p>TV y Audio</p>
           </div>
           <div className="category-item">
-            <div className="category-icon">🎮</div>
+            <div className="category-icon">
+              <img
+                src="https://media.aws.alkomprar.com/ymarketingcolcomercio/Alkosto/2024/agosto-alkosto/home/assets/c-videojuegos.webp"
+                alt="Categoría videojuegos"
+                className="category-image"
+              />
+            </div>
             <h3>Gaming</h3>
             <p>Consolas y juegos</p>
           </div>
+
         </section>
       </div>
     </div>

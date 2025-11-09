@@ -397,10 +397,12 @@ const Header = ({ cartItemsCount }) => {
                   )}
                 </Link>
               </div>
+              
             </div>
           </div>
         </div>
       </header>
+
       {/* OVERLAY DE BÚSQUEDA EXPANDIDA */}
       {showSearchOverlay && (
         <>
