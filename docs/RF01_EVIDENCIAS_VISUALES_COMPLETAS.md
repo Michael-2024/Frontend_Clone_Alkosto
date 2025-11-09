@@ -1062,3 +1062,6 @@ screen.getByRole('button', { name: /continuar/i })
 **Documento generado:** 23 de Octubre, 2025  
 **Experto en pruebas:** GitHub Copilot  
 **Basado en:** SWEBOK Capítulo 5 - Pruebas de Software
+
+
+SIN CAMBIOS EN NOVIEMBRE
