@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
+// iconos
+import { IoLogoGooglePlaystore } from "react-icons/io5"; // google play
+import { FaAppStoreIos } from "react-icons/fa"; // app store
+import { FaCcVisa } from "react-icons/fa"; // visa
+
 
 const Footer = () => {
   return (
@@ -45,7 +50,7 @@ const Footer = () => {
           <div className="footer-section">
             <h3>Medios de Pago</h3>
             <div className="payment-methods">
-              <div className="payment-item">💳 Visa</div>
+              <div className="payment-item"><FaCcVisa /> Visa</div>
               <div className="payment-item">💳 Mastercard</div>
               <div className="payment-item">💳 American Express</div>
               <div className="payment-item">💰 Tarjetas Débito</div>
@@ -60,14 +65,14 @@ const Footer = () => {
             <h3>Apps Móviles</h3>
             <div className="app-downloads">
               <a href="#ios" className="app-button">
-                <span className="app-icon">🍎</span>
+                <span className="app-icon"><FaAppStoreIos /></span>
                 <div className="app-text">
                   <small>Descarga en</small>
                   <strong>App Store</strong>
                 </div>
               </a>
               <a href="#android" className="app-button">
-                <span className="app-icon">🤖</span>
+                <span className="app-icon"><IoLogoGooglePlaystore /></span>
                 <div className="app-text">
                   <small>Disponible en</small>
                   <strong>Google Play</strong>

@@ -4,6 +4,9 @@ import UserController from '../../controllers/UserController';
 import './Account.css';
 import AccountSidebar from './AccountSidebar';
 
+//iconos
+import { HiOutlineUserCircle } from "react-icons/hi2";// usuario
+
 const AccountProfile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(UserController.getCurrentUser());
@@ -66,8 +69,8 @@ const AccountProfile = () => {
           <AccountSidebar onLogout={onLogout} />
 
           <section className="account-content">
-            <div className="account-hero">
-              <div className="hero-icon" aria-hidden>👤</div>
+            <div className="account-hero"> 
+              <HiOutlineUserCircle size={52} color="#ffffffff" /> 
               <div className="hero-texts">
                 <h1 className="account-title">Mis datos</h1>
               </div>

@@ -215,4 +215,40 @@
   .category-item h3 {
     font-size: 18px;
   }
+
+.category-icon {
+  width: 80px;           /* ajusta el tamaño del contenedor del ícono */
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 10px;   /* centrado y espacio inferior */
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* mantiene proporciones */
+  border-radius: 10px;   /* opcional, suaviza los bordes */
+}
+
+
+
+}
+
+/* 🔹 Imagen centrada correctamente */
+.category-icon {
+  width: 100px; /* puedes ajustar */
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 15px;
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
