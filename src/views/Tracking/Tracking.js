@@ -1,26 +1,64 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
+import OrderController from '../../controllers/OrderController';
 import '../Account/Account.css';
+import './Tracking.css';
 
 const Tracking = () => {
   const navigate = useNavigate();
-  const [code, setCode] = useState('');
-  const [doc, setDoc] = useState('');
-  const [status, setStatus] = useState('');
+  const [trackingNumber, setTrackingNumber] = useState('');
+  const [document, setDocument] = useState('');
+  const [order, setOrder] = useState(null);
+  const [error, setError] = useState('');
+  const [searching, setSearching] = useState(false);
 
   useEffect(() => {
     // No requiere login en la vida real, pero aquí dejamos acceso abierto
   }, []);
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0
+    }).format(price);
+  };
+
+  const formatDate = (date) => {
+    return new Date(date).toLocaleDateString('es-CO', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    // Stub de seguimiento
-    if (!code || !doc) {
-      setStatus('Ingresa el número de pedido y tu documento.');
+    setError('');
+    setOrder(null);
+    
+    if (!trackingNumber.trim() || !document.trim()) {
+      setError('Por favor ingresa el número de pedido y tu documento.');
       return;
     }
-    setStatus(`Buscando el pedido ${code} para el documento ${doc}... (demo)`);
+
+    setSearching(true);
+
+    // Simular delay de búsqueda
+    setTimeout(() => {
+      const foundOrder = OrderController.getOrderByTracking(trackingNumber.trim(), document.trim());
+      
+      if (foundOrder) {
+        setOrder(foundOrder);
+      } else {
+        setError('No se encontró ningún pedido con el número y documento proporcionados. Verifica que los datos sean correctos.');
+      }
+      
+      setSearching(false);
+    }, 500);
   };
 
   return (
@@ -40,18 +78,138 @@ const Tracking = () => {
               <div className="form-row">
                 <div className="form-field">
                   <label>Número de pedido</label>
-                  <input value={code} onChange={(e) => setCode(e.target.value)} />
+                  <input 
+                    type="text"
+                    value={trackingNumber} 
+                    onChange={(e) => setTrackingNumber(e.target.value)}
+                    placeholder="Ej: ALK-20241215-12345"
+                    disabled={searching}
+                  />
                 </div>
                 <div className="form-field">
                   <label>Documento de identidad</label>
-                  <input value={doc} onChange={(e) => setDoc(e.target.value)} />
+                  <input 
+                    type="text"
+                    value={document} 
+                    onChange={(e) => setDocument(e.target.value)}
+                    placeholder="Número sin puntos ni guiones"
+                    disabled={searching}
+                  />
                 </div>
               </div>
               <div className="form-actions">
-                <button type="submit" className="btn-primary">Consultar</button>
+                <button type="submit" className="btn-primary" disabled={searching}>
+                  {searching ? 'Buscando...' : 'Consultar pedido'}
+                </button>
               </div>
-              {status && <div className="form-status" role="status">{status}</div>}
+
+              {error && (
+                <div className="tracking-error">
+                  <span className="error-icon">⚠️</span>
+                  <p>{error}</p>
+                </div>
+              )}
             </form>
+
+            {order && (
+              <div className="tracking-result">
+                <div className="tracking-header">
+                  <h2>📦 Pedido encontrado</h2>
+                  <span 
+                    className="status-badge" 
+                    style={{backgroundColor: order.getStatusColor()}}
+                  >
+                    {order.getStatusText()}
+                  </span>
+                </div>
+
+                <div className="tracking-info">
+                  <div className="info-row">
+                    <span className="label">Número de pedido:</span>
+                    <span className="value">#{order.trackingNumber}</span>
+                  </div>
+                  <div className="info-row">
+                    <span className="label">Fecha de pedido:</span>
+                    <span className="value">{formatDate(order.createdAt)}</span>
+                  </div>
+                  <div className="info-row">
+                    <span className="label">Total:</span>
+                    <span className="value total-price">{formatPrice(order.total)}</span>
+                  </div>
+                </div>
+
+                <div className="tracking-timeline">
+                  <h3>Estado del pedido</h3>
+                  <div className="timeline">
+                    <div className={`timeline-item ${order.status === 'pendiente' || order.status === 'procesando' || order.status === 'enviado' || order.status === 'entregado' ? 'active' : ''}`}>
+                      <div className="timeline-marker"></div>
+                      <div className="timeline-content">
+                        <h4>Pedido recibido</h4>
+                        <p>Tu pedido ha sido recibido y está en proceso</p>
+                      </div>
+                    </div>
+                    <div className={`timeline-item ${order.status === 'procesando' || order.status === 'enviado' || order.status === 'entregado' ? 'active' : ''}`}>
+                      <div className="timeline-marker"></div>
+                      <div className="timeline-content">
+                        <h4>En preparación</h4>
+                        <p>Estamos preparando tu pedido</p>
+                      </div>
+                    </div>
+                    <div className={`timeline-item ${order.status === 'enviado' || order.status === 'entregado' ? 'active' : ''}`}>
+                      <div className="timeline-marker"></div>
+                      <div className="timeline-content">
+                        <h4>En camino</h4>
+                        <p>Tu pedido está en camino a la dirección de entrega</p>
+                      </div>
+                    </div>
+                    <div className={`timeline-item ${order.status === 'entregado' ? 'active' : ''}`}>
+                      <div className="timeline-marker"></div>
+                      <div className="timeline-content">
+                        <h4>Entregado</h4>
+                        <p>Tu pedido ha sido entregado exitosamente</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="tracking-products">
+                  <h3>Productos del pedido</h3>
+                  <div className="products-list">
+                    {order.items.map((item, index) => (
+                      <div key={index} className="product-item">
+                        <img 
+                          src={item.product.image} 
+                          alt={item.product.name}
+                          className="product-image"
+                        />
+                        <div className="product-info">
+                          <h4>{item.product.name}</h4>
+                          <p>Cantidad: {item.quantity}</p>
+                          <p className="product-price">{formatPrice(item.product.price)}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="tracking-actions">
+                  <Link to="/account/orders" className="btn-secondary">
+                    Ver mis pedidos
+                  </Link>
+                  <button 
+                    className="btn-link" 
+                    onClick={() => {
+                      setOrder(null);
+                      setTrackingNumber('');
+                      setDocument('');
+                      setError('');
+                    }}
+                  >
+                    Consultar otro pedido
+                  </button>
+                </div>
+              </div>
+            )}
           </section>
         </div>
       </div>

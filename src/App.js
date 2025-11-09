@@ -9,6 +9,7 @@ import Register from './views/Register/Register';
 import RegisterPassword from './views/Register/RegisterPassword';
 import ProductDetail from './views/ProductDetail/ProductDetail';
 import Cart from './views/Cart/Cart';
+import Checkout from './views/Checkout/Checkout';
 import CartController from './controllers/CartController';
 import LoginOptions from './views/Login/LoginOptions';
 import LoginPassword from './views/Login/LoginPassword';
@@ -27,6 +28,8 @@ import PaymentMethods from './views/Account/PaymentMethods';
 import Tracking from './views/Tracking/Tracking';
 import AccountFavorites from './views/Account/Favorites';
 import Invoice from './views/Account/Invoice';
+import Notifications from './views/Account/Notifications';
+import Coupons from './views/Account/Coupons';
 import './App.css';
 
 function App() {
@@ -67,12 +70,15 @@ function App() {
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/producto/:id" element={<ProductDetail />} />
                 <Route path="/carrito" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route path="/perfil/mi-cuenta" element={<Account />} />
                 <Route path="/perfil/datos" element={<AccountProfile />} />
                 <Route path="/perfil/direcciones" element={<Addresses />} />
                 <Route path="/perfil/pedidos" element={<Orders />} />
                 <Route path="/perfil/pagos" element={<PaymentMethods />} />
                 <Route path="/perfil/favoritos" element={<AccountFavorites />} />
+                <Route path="/perfil/notificaciones" element={<Notifications />} />
+                <Route path="/perfil/cupones" element={<Coupons />} />
                 <Route path="/perfil/factura" element={<Invoice />} />
                 <Route path="/seguimiento" element={<Tracking />} />
                 <Route path="/perfil" element={<Profile />} />

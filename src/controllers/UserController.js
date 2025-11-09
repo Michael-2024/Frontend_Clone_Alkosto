@@ -1,5 +1,11 @@
 import User from '../models/User';
+import NotificationController from './NotificationController';
+import CouponController from './CouponController';
 
+/**
+ * UserController
+ * Manages user authentication, registration, and profile operations
+ */
 class UserController {
   constructor() {
     if (UserController.instance) {
@@ -54,7 +60,9 @@ class UserController {
         this.addFavorite(productId);
         localStorage.removeItem('pendingFavoriteProductId');
       }
-    } catch (_) { /* noop */ }
+    } catch (error) {
+      // Ignore errors when syncing pending favorites
+    }
   }
 
   // Añadir método para notificar a los componentes sobre cambios de autenticación
@@ -161,6 +169,13 @@ class UserController {
     // Aplicar intento de favorito si existe
     this.syncPendingFavorite();
     this.notifyAuthChange();
+    
+    // Crear notificaciones de bienvenida
+    NotificationController.createWelcomeNotifications(id);
+    
+    // Crear cupón de bienvenida
+    CouponController.createWelcomeCoupon(id);
+    
     return { success: true, user: this.currentUser };
   }
 

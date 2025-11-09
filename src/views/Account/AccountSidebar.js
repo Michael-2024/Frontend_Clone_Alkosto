@@ -11,6 +11,8 @@ const links = [
   { to: '/perfil/pedidos', icon: '📦', label: 'Mis Pedidos' },
   { to: '/perfil/pagos', icon: '💳', label: 'Métodos de Pago' },
   { to: '/perfil/favoritos', icon: '❤️', label: 'Mi lista de Favoritos' },
+  { to: '/perfil/notificaciones', icon: '🔔', label: 'Notificaciones' },
+  { to: '/perfil/cupones', icon: '🎟️', label: 'Mis Cupones' },
   { to: '/seguimiento', icon: '🔍', label: 'Sigue tu pedido' },
   { to: '/perfil/factura', icon: '📄', label: 'Descarga tu factura' },
 ];
