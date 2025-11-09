@@ -70,45 +70,77 @@ const Cart = () => {
                   className="cart-item-image"
                 />
                 
-                <div className="cart-item-info">
-                  <Link to={`/producto/${item.product.id}`} className="cart-item-name">
-                    {item.product.name}
-                  </Link>
+                <div className="cart-item-details">
+                  <div className="cart-item-info">
+                    <p className="cart-item-code">Código: {item.product.id}</p>
+                    <Link to={`/producto/${item.product.id}`} className="cart-item-name">
+                      {item.product.name}
+                    </Link>
+                    {item.product.specs && (
+                      <p className="cart-item-specs">{item.product.specs}</p>
+                    )}
+                  </div>
+
+                  <div className="cart-item-shipping">
+                    <p className="shipping-method-title">Método de envío</p>
+                    <div className="shipping-option selected">
+                      <input type="radio" checked readOnly />
+                      <span className="shipping-icon">📦</span>
+                      <span className="shipping-text">
+                        Envío <strong>gratis</strong>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="cart-item-actions">
                   <p className="cart-item-price">
                     {item.product.getFormattedPrice()}
+                    {item.product.oldPrice && (
+                      <span className="old-price">
+                        {new Intl.NumberFormat('es-CO', {
+                          style: 'currency',
+                          currency: 'COP',
+                          minimumFractionDigits: 0
+                        }).format(item.product.oldPrice)}
+                      </span>
+                    )}
                   </p>
-                </div>
 
-                <div className="cart-item-quantity">
+                  <div className="cart-item-quantity">
+                    <label htmlFor={`quantity-${item.product.id}`} className="quantity-label">
+                      Cantidad
+                    </label>
+                    <select 
+                      id={`quantity-${item.product.id}`}
+                      value={item.quantity}
+                      onChange={(e) => {
+                        const newQty = parseInt(e.target.value);
+                        if (newQty === 0) {
+                          handleRemoveItem(item.product.id);
+                        } else {
+                          handleUpdateQuantity(item.product.id, newQty);
+                        }
+                      }}
+                      className="quantity-select"
+                    >
+                      <option value="0">0 - eliminar</option>
+                      {[...Array(Math.min(10, item.product.stock || 10))].map((_, i) => (
+                        <option key={i + 1} value={i + 1}>{i + 1}</option>
+                      ))}
+                      {item.quantity > 10 && <option value={item.quantity}>{item.quantity}</option>}
+                    </select>
+                  </div>
+
                   <button 
-                    onClick={() => handleUpdateQuantity(item.product.id, item.quantity - 1)}
-                    disabled={item.quantity <= 1}
+                    className="cart-item-remove"
+                    onClick={() => handleRemoveItem(item.product.id)}
+                    title="Eliminar producto"
                   >
-                    -
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button 
-                    onClick={() => handleUpdateQuantity(item.product.id, item.quantity + 1)}
-                    disabled={item.quantity >= item.product.stock}
-                  >
-                    +
+                    <span className="remove-icon">🗑️</span>
+                    <span className="remove-text">Eliminar</span>
                   </button>
                 </div>
-
-                <div className="cart-item-subtotal">
-                  {new Intl.NumberFormat('es-CO', {
-                    style: 'currency',
-                    currency: 'COP',
-                    minimumFractionDigits: 0
-                  }).format(item.product.price * item.quantity)}
-                </div>
-
-                <button 
-                  className="cart-item-remove"
-                  onClick={() => handleRemoveItem(item.product.id)}
-                >
-                  🗑️
-                </button>
               </div>
             ))}
 
@@ -118,7 +150,7 @@ const Cart = () => {
           </div>
 
           <div className="cart-summary">
-            <h2>Resumen de Compra</h2>
+            <h2>Mi carrito</h2>
             
             <div className="summary-row">
               <span>Subtotal ({totalItems} productos)</span>
@@ -130,42 +162,50 @@ const Cart = () => {
             </div>
 
             <div className="summary-row">
-              <span>Envío</span>
-              <span className="free-shipping">
-                {total >= 200000 ? 'GRATIS' : new Intl.NumberFormat('es-CO', {
-                  style: 'currency',
-                  currency: 'COP',
-                  minimumFractionDigits: 0
-                }).format(15000)}
-              </span>
+              <span>Entrega</span>
+              <span className="free-shipping">Gratis</span>
             </div>
 
-            {total < 200000 && (
-              <div className="shipping-notice">
-                💡 Agrega {new Intl.NumberFormat('es-CO', {
-                  style: 'currency',
-                  currency: 'COP',
-                  minimumFractionDigits: 0
-                }).format(200000 - total)} para envío gratis
+            <details className="discounts-section">
+              <summary className="discounts-toggle">
+                <span>▼ Descuentos</span>
+              </summary>
+              <div className="discounts-content">
+                <p className="no-discounts">No hay descuentos aplicados</p>
               </div>
-            )}
+            </details>
 
             <div className="summary-total">
-              <span>Total</span>
+              <span>Total a pagar</span>
               <span>{new Intl.NumberFormat('es-CO', {
                 style: 'currency',
                 currency: 'COP',
                 minimumFractionDigits: 0
-              }).format(total + (total >= 200000 ? 0 : 15000))}</span>
+              }).format(total)}</span>
             </div>
 
             <button className="checkout-btn">
-              Proceder al Pago
+              Ir a pagar
             </button>
 
-            <Link to="/" className="continue-link">
-              ← Continuar Comprando
-            </Link>
+            <div className="security-badges">
+              <p className="security-text">
+                <span className="security-icon">🔒</span>
+                Tu compra siempre segura
+              </p>
+              <div className="payment-methods">
+                <img src="/images/norton.png" alt="Norton" className="badge-img" />
+                <img src="/images/ssl.png" alt="SSL" className="badge-img" />
+                <img src="/images/secure.png" alt="Secure" className="badge-img" />
+              </div>
+              <p className="payment-info">
+                Recibimos todos los medios de pago y también efectivo
+              </p>
+              <div className="payment-logos">
+                <span className="payment-logo">💳</span>
+                <span className="payment-logo">💵</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
