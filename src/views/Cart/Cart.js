@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import CartController from '../../controllers/CartController';
 import './Cart.css';
 
+// iconos 
+import { LiaShoppingCartSolid } from "react-icons/lia";
+
 const Cart = () => {
   // Usamos un "tick" para forzar re-render sin perder métodos de la clase Cart
   const [tick, setTick] = useState(0);
@@ -37,7 +40,9 @@ const Cart = () => {
       <div className="cart-empty">
         <div className="container">
           <div className="empty-content">
-            <div className="empty-icon">🛒</div>
+            <div className="empty-icon">  
+              <LiaShoppingCartSolid size={308} color="#ff7300ff" />
+            </div>
             <h2>Tu carrito está vacío</h2>
             <p>Agrega productos para comenzar tu compra</p>
             <Link to="/" className="continue-shopping-btn">
@@ -46,6 +51,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+
     );
   }
 

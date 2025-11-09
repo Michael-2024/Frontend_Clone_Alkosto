@@ -4,7 +4,12 @@ import UserController from '../../controllers/UserController';
 import './Header.css';
 // Iconos
 import { HiOutlineUser, HiOutlineXMark } from "react-icons/hi2";
-import { FiShoppingCart } from "react-icons/fi";
+
+import { HiOutlineUserCircle } from "react-icons/hi2";// usuario redondo
+import { CiUser } from "react-icons/ci";  // carrito
+import { RxMagnifyingGlass } from "react-icons/rx"; // lupa
+import { LiaShoppingCartSolid } from "react-icons/lia";
+import { PiShoppingCartSimpleThin } from "react-icons/pi";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoTimeOutline } from "react-icons/io5";
 
@@ -35,7 +40,7 @@ const Header = ({ cartItemsCount }) => {
     {
       id: 1,
       name: 'iPhone 15 Pro Max 256GB',
-      image: '/Frontend_Clone_Alkosto/public/images/productos/iphone 15.jpg',
+      image: '/images/productos/iphone 15.jpg',
       rating: 4.8,
       reviews: 124,
       oldPrice: '$6,199,000',
@@ -44,7 +49,7 @@ const Header = ({ cartItemsCount }) => {
     {
       id: 6,
       name: 'Nevera Samsung Side by Side',
-      image: '/Frontend_Clone_Alkosto/public/images/productos/nevera.jpg',
+      image: '/images/productos/nevera.jpg',
       rating: 4.5,
       reviews: 48,
       oldPrice: '$3,899,000',
@@ -208,7 +213,7 @@ const Header = ({ cartItemsCount }) => {
                   onFocus={() => setShowSearchOverlay(true)}
                 />
                 <button type="submit" className="search-button">
-                  <span className="search-icon">🔍</span>
+                  <RxMagnifyingGlass className="search-icon" />
                   <span className="search-text">Buscar</span>
                 </button>
               </form>
@@ -223,12 +228,14 @@ const Header = ({ cartItemsCount }) => {
                   }}
                 >
                   <div className="account-trigger">
-                    <span className="icon alk-icon-user">👤</span>
+                    <span className="icon alk-icon-user">
+                      <HiOutlineUserCircle size={32} color="#ffffffff" />
+                    </span>
                     <span className="account-name">
                       {isLoggedIn ? userName : 'Mi cuenta'}
                     </span>
                   </div>
-                  
+                    
                   {showAccountMenu && (
                     <div className="account-dropdown">
                       <div className="account-dropdown-arrow"></div>
@@ -256,11 +263,20 @@ const Header = ({ cartItemsCount }) => {
                                 </div>
                               </Link>
 
-                              <Link to="/perfil/datos" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
-                                <i className="item-icon">👤</i>
+                              <Link
+                              // User  Mi Cuenta 
+                                to="/perfil/datos"
+                                className="account-menu-item"
+                                onClick={() => setShowAccountMenu(false)}
+                              >
+                                <div className="item-icon" aria-hidden>
+                                  <CiUser size={22} color="#004797" />
+                                </div>
                                 <div className="item-text">
                                   <div className="item-title">Mi Perfil</div>
-                                  <div className="item-description">Revisa y edita tus datos personales</div>
+                                  <div className="item-description">
+                                    Revisa y edita tus datos personales
+                                  </div>
                                 </div>
                               </Link>
 
@@ -372,7 +388,9 @@ const Header = ({ cartItemsCount }) => {
 
                 {/* Mi Carrito */}
                 <Link to="/carrito" className="header-action cart-link">
-                  <span className="icon alk-icon-cart">🛒</span>
+                  <span className="icon alk-icon-cart">
+                    <LiaShoppingCartSolid size={36} />
+                  </span>
                   <span className="cart-text">Mi carrito</span>
                   {cartItemsCount > 0 && (
                     <span className="cart-counter">{cartItemsCount}</span>
