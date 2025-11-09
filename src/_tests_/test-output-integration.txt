@@ -113,3 +113,7 @@ Tests:       2 failed, 34 passed, 36 total
 Snapshots:   0 total
 Time:        1.186 s
 Ran all test suites matching /RF01_Integration.test.js/i.
+
+SIN CAMBIOS EN NOVIEMBRE
+
+SE MUEVE A LA CARPETA DE PRUEBAS

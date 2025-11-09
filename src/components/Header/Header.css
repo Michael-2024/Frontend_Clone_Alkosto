@@ -4,6 +4,8 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  overflow: visible !important; /* deja salir el menú */
+
 }
 
 .icon,
@@ -251,6 +253,8 @@
 /* User menu */
 .account-menu-container {
   position: relative;
+  z-index: 100000; /* asegurar que esté por encima de la barra */
+  overflow: visible
 }
 
 .account-trigger {
@@ -277,7 +281,7 @@
   margin-top: 15px;
   min-width: 380px;
   max-width: 400px;
-  z-index: 3000;
+  z-index: 9999999;
   overflow: hidden;
 }
 
@@ -377,7 +381,7 @@
 .btn-continue {
   width: 100%;
   padding: 12px;
-  background-color: #004797;
+  background-color: #ff8800;
   color: white;
   border: none;
   border-radius: 4px;
@@ -574,9 +578,11 @@
    ======================================== */
 
 .header {
-  position: sticky;
+  position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 2000;
+  overflow: visible !important; /* deja salir el menú */
+
 }
 
 /* Fondo borroso detrás */
@@ -874,9 +880,9 @@ html {
    ======================================== */
 
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  position: relative;
+  z-index: 2000 !important; /* más alto que el .megamenu-nav */
+  overflow: visible !important;
 }
 
 /* Fondo borroso detrás */
@@ -1168,3 +1174,6 @@ html {
     gap: 25px;
   }
 }
+
+
+/* //////////////////////////////////////// */

@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CartController from '../../controllers/CartController';
+import UserController from '../../controllers/UserController';
+import CouponController from '../../controllers/CouponController';
 import './Cart.css';
 
+// iconos 
+import { LiaShoppingCartSolid } from "react-icons/lia";
+
 const Cart = () => {
+  const navigate = useNavigate();
   // Usamos un "tick" para forzar re-render sin perder métodos de la clase Cart
   const [tick, setTick] = useState(0);
   const cart = CartController.getCart();
+
+  // Estados de cupón
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [couponError, setCouponError] = useState('');
+  const [couponSuccess, setCouponSuccess] = useState('');
 
   const updateCart = () => {
     setTick((t) => t + 1);
@@ -32,12 +44,85 @@ const Cart = () => {
   const total = cart.getTotal();
   const totalItems = cart.getTotalItems();
 
+  // Funciones de cupón
+  const handleApplyCoupon = () => {
+    if (!couponCode.trim()) {
+      setCouponError('Ingresa un código de cupón');
+      return;
+    }
+
+    setCouponError('');
+    setCouponSuccess('');
+
+    const user = UserController.getCurrentUser();
+    if (!user) {
+      setCouponError('Debes iniciar sesión para usar cupones');
+      return;
+    }
+
+    const categories = [...new Set(cart.items.map(item => item.product.category))];
+
+    const validation = CouponController.validateCoupon(
+      couponCode,
+      user.id,
+      total,
+      categories
+    );
+
+    if (validation.valid) {
+      setAppliedCoupon(validation.coupon);
+      setCouponSuccess(`¡Cupón aplicado! Descuento de ${formatPrice(validation.discount)}`);
+      setCouponCode('');
+    } else {
+      setCouponError(validation.reason);
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponSuccess('');
+    setCouponError('');
+    setCouponCode('');
+  };
+
+  const calculateDiscount = () => {
+    if (!appliedCoupon) return 0;
+    return appliedCoupon.calculateDiscount(total);
+  };
+
+  const calculateFinalTotal = () => {
+    return total - calculateDiscount();
+  };
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0
+    }).format(price);
+  };
+
+  const handleCheckout = () => {
+    // Verificar si el usuario está logueado
+    if (!UserController.isLoggedIn()) {
+      // Redirigir a login y guardar intención de checkout
+      localStorage.setItem('intendedCheckout', 'true');
+      navigate('/login/options');
+      return;
+    }
+
+    // Si está logueado, ir directamente a checkout
+    navigate('/checkout');
+  };
+
   if (cart.items.length === 0) {
     return (
       <div className="cart-empty">
         <div className="container">
           <div className="empty-content">
-            <div className="empty-icon">🛒</div>
+            <div className="empty-icon">  
+              <LiaShoppingCartSolid size={308} color="#ff7300ff" />
+            </div>
             <h2>Tu carrito está vacío</h2>
             <p>Agrega productos para comenzar tu compra</p>
             <Link to="/" className="continue-shopping-btn">
@@ -46,6 +131,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+
     );
   }
 
@@ -160,25 +246,74 @@ const Cart = () => {
               <span className="free-shipping">Gratis</span>
             </div>
 
-            <details className="discounts-section">
+            {/* Sección de cupones */}
+            <details className="discounts-section" open={appliedCoupon || couponError || couponSuccess}>
               <summary className="discounts-toggle">
-                <span>▼ Descuentos</span>
+                <span>▼ Descuentos y cupones</span>
               </summary>
               <div className="discounts-content">
-                <p className="no-discounts">No hay descuentos aplicados</p>
+                {!appliedCoupon ? (
+                  <div className="coupon-input-wrapper">
+                    <input
+                      type="text"
+                      placeholder="Código del cupón"
+                      value={couponCode}
+                      onChange={(e) => {
+                        setCouponCode(e.target.value.toUpperCase());
+                        setCouponError('');
+                        setCouponSuccess('');
+                      }}
+                      className={`coupon-input ${couponError ? 'error' : ''}`}
+                    />
+                    <button
+                      onClick={handleApplyCoupon}
+                      className="apply-coupon-btn"
+                      disabled={!couponCode.trim()}
+                    >
+                      Aplicar
+                    </button>
+                  </div>
+                ) : (
+                  <div className="applied-coupon-cart">
+                    <div className="coupon-badge">
+                      <span className="coupon-icon">{appliedCoupon.getIcon()}</span>
+                      <div className="coupon-info-cart">
+                        <strong>{appliedCoupon.code}</strong>
+                        <span>-{formatPrice(calculateDiscount())}</span>
+                      </div>
+                      <button
+                        onClick={handleRemoveCoupon}
+                        className="remove-coupon-btn"
+                        aria-label="Eliminar cupón"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {couponError && (
+                  <div className="coupon-message-cart error">{couponError}</div>
+                )}
+                {couponSuccess && (
+                  <div className="coupon-message-cart success">{couponSuccess}</div>
+                )}
               </div>
             </details>
 
+            {appliedCoupon && (
+              <div className="summary-row discount-row">
+                <span>Descuento {appliedCoupon.code}</span>
+                <span className="discount-amount">-{formatPrice(calculateDiscount())}</span>
+              </div>
+            )}
+
             <div className="summary-total">
               <span>Total a pagar</span>
-              <span>{new Intl.NumberFormat('es-CO', {
-                style: 'currency',
-                currency: 'COP',
-                minimumFractionDigits: 0
-              }).format(total)}</span>
+              <span>{formatPrice(calculateFinalTotal())}</span>
             </div>
 
-            <button className="checkout-btn">
+            <button className="checkout-btn" onClick={handleCheckout}>
               Ir a pagar
             </button>
 

@@ -6,6 +6,10 @@ import CartController from '../../controllers/CartController';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './Profile.css';
 
+// iconos
+import { CiUser } from "react-icons/ci"; // usuario
+
+
 const Profile = () => {
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
@@ -61,7 +65,8 @@ const Profile = () => {
       <div className="container">
         <div className="profile-header">
           <div className="profile-info">
-            <div className="profile-avatar" aria-hidden>👤</div>
+            {/* icono usuario */}
+            <CiUser size={52} color="#ff7300ff" /> 
             <div>
               <h2 className="profile-name">{user.getFullName()}</h2>
               <div className="profile-email">{user.email}</div>

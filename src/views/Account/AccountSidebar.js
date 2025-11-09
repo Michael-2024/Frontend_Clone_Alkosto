@@ -1,13 +1,18 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+//iconos
+import { HiOutlineUserCircle } from "react-icons/hi2";// usuario redondo
+import { CiUser } from "react-icons/ci"; // usuario
 
 const links = [
-  { to: '/perfil/mi-cuenta', icon: '🏠', label: 'Mi cuenta' },
-  { to: '/perfil/datos', icon: '👤', label: 'Mi Perfil' },
+  { to: '/perfil/mi-cuenta',  icon: <HiOutlineUserCircle size={30} color="#004797" />  , label: '  Mi cuenta' },
+  { to: '/perfil/datos', icon: <CiUser size={30} color="#004797" />, label: ' Mi Perfil' },
   { to: '/perfil/direcciones', icon: '📍', label: 'Direcciones de envío' },
   { to: '/perfil/pedidos', icon: '📦', label: 'Mis Pedidos' },
   { to: '/perfil/pagos', icon: '💳', label: 'Métodos de Pago' },
   { to: '/perfil/favoritos', icon: '❤️', label: 'Mi lista de Favoritos' },
+  { to: '/perfil/notificaciones', icon: '🔔', label: 'Notificaciones' },
+  { to: '/perfil/cupones', icon: '🎟️', label: 'Mis Cupones' },
   { to: '/seguimiento', icon: '🔍', label: 'Sigue tu pedido' },
   { to: '/perfil/factura', icon: '📄', label: 'Descarga tu factura' },
 ];

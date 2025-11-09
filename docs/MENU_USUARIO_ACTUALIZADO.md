@@ -358,3 +358,5 @@ El menú desplegable de usuario logueado ahora **replica fielmente** el diseño 
 **Fecha:** 22 de Octubre, 2025  
 **Componente:** Header - Menú de Usuario  
 **Versión:** 2.1.0
+
+SIN CAMBIOS EN NOVIEMBRE
