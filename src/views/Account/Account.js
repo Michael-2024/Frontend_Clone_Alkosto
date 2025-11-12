@@ -6,7 +6,8 @@ import AccountSidebar from './AccountSidebar';
 //iconos
 import { RxMagnifyingGlass } from "react-icons/rx"; // lupa
 import { CiUser } from "react-icons/ci"; // usuario
-import { HiOutlineUserCircle } from "react-icons/hi2";// usuario redondo
+import { HiMiniUserCircle, HiOutlineUserCircle, HiUserCircle } from "react-icons/hi2";// usuario redondo
+import { AiOutlineHome } from "react-icons/ai"; // icono home Mi cuenta
 
 
 const Account = () => {
@@ -43,7 +44,7 @@ const Account = () => {
             <div className="account-hero">
               <div className="hero-icon" aria-hidden>
 
-                <HiOutlineUserCircle size={70} color="#ffffffff" /> 
+                <AiOutlineHome size={70} color="#ffffffff" /> 
 
               </div>
               <div className="hero-texts">
@@ -58,7 +59,7 @@ const Account = () => {
                 {/*  perfil caja  */}
               <Link to="/perfil/datos" className="account-card">
                 <div className="card-icon" aria-hidden>
-                  <CiUser size={42} color="#003572ff" />
+                  <HiOutlineUserCircle size={42} color="#003572ff" />
                 </div>
                 <div className="card-title">Mi Perfil</div>
                 <div className="card-desc">Revisa y edita tus datos personales.</div>

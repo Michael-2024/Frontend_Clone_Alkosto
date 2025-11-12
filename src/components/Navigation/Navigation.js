@@ -21,8 +21,6 @@ const Navigation = () => {
         { name: 'Impresoras' },
         { name: 'Monitores' },
         { name: 'Proyectores' },
-        { name: 'Smartwatch' },
-        { name: 'Tablets' }
       ],
       content: {
         title: 'Celulares',
