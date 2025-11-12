@@ -45,7 +45,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  background: #FF4444;
+  background: #eb5b25;
   color: white;
   padding: 10px 20px;
   border-radius: 25px;
@@ -91,7 +91,7 @@
 
 .product-prices-detail .savings {
   font-size: 16px;
-  color: #FF4444;
+  color: #eb5b25;
   font-weight: 600;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .out-of-stock {
-  color: #FF4444;
+  color: #eb5b25;
   font-weight: 600;
 }
 

@@ -119,7 +119,7 @@ Manejan la lógica de negocio y la comunicación entre modelos y vistas:
 
 - Verde principal: `#00A859`
 - Verde oscuro: `#008a47`
-- Rojo ofertas: `#FF4444`
+- Rojo ofertas: `#eb5b25`
 - Gris texto: `#333`
 - Fondo: `#f8f8f8`
 

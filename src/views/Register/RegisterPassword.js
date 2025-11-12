@@ -56,7 +56,7 @@ const RegisterPassword = () => {
     }
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
@@ -84,26 +84,22 @@ const RegisterPassword = () => {
       return;
     }
     
-    // Registrar usuario
+    // Registrar usuario (backend)
     try {
-      const result = UserController.registerUser({
+      const result = await UserController.registerUser({
         email,
         firstName,
         lastName,
         phone,
         password: form.password
       });
-      
       if (result.success) {
-        // Redirigir a verificación en lugar de login automático
         navigate('/verify', { 
-          state: { 
-            email, 
-            phone, 
-            fromRegister: true 
-          } 
+          state: { email, phone, fromRegister: true } 
         });
+        return;
       }
+      setErrors({ general: result.error || 'Ocurrió un error durante el registro.' });
     } catch (error) {
       console.error('Error al registrar:', error);
       setErrors({ general: 'Ocurrió un error durante el registro. Intenta nuevamente.' });

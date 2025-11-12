@@ -36,11 +36,16 @@ function App() {
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
   useEffect(() => {
-    setCartItemsCount(CartController.getCartItemsCount());
+    const updateCartCount = async () => {
+      const count = CartController.getCartItemsCount();
+      setCartItemsCount(count);
+    };
+
+    updateCartCount();
 
     const interval = setInterval(() => {
-      setCartItemsCount(CartController.getCartItemsCount());
-    }, 500);
+      updateCartCount();
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);

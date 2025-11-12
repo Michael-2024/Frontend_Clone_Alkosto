@@ -15,40 +15,36 @@ class SearchService {
   /**
    * Busca coincidencias de productos según palabra clave
    * @param {string} palabraClave - Término de búsqueda
-   * @returns {Array} Lista de productos que coinciden
+   * @returns {Promise<Array>} Lista de productos que coinciden
    */
-  buscarCoincidencias(palabraClave) {
+  async buscarCoincidencias(palabraClave) {
     if (!palabraClave || palabraClave.trim() === '') {
       return [];
     }
 
     const searchTerm = palabraClave.toLowerCase().trim();
-    const productos = this.productController.getAllProducts();
     
-    // Buscar en nombre, descripción y categoría
-    const resultados = productos.filter(producto => {
-      const nombre = producto.name.toLowerCase();
-      const categoria = producto.category.toLowerCase();
-      const descripcion = producto.description ? producto.description.toLowerCase() : '';
+    try {
+      // Usar el método de búsqueda del backend si está disponible
+      const productos = await this.productController.buscar(searchTerm);
       
-      return nombre.includes(searchTerm) || 
-             categoria.includes(searchTerm) ||
-             descripcion.includes(searchTerm);
-    });
+      // Ordenar por relevancia (primero coincidencias en nombre, luego en categoría)
+      productos.sort((a, b) => {
+        const aNameMatch = a.name.toLowerCase().includes(searchTerm);
+        const bNameMatch = b.name.toLowerCase().includes(searchTerm);
+        
+        if (aNameMatch && !bNameMatch) return -1;
+        if (!aNameMatch && bNameMatch) return 1;
+        
+        // Si ambos coinciden en nombre o ambos no, ordenar por rating
+        return b.rating - a.rating;
+      });
 
-    // Ordenar por relevancia (primero coincidencias en nombre, luego en categoría)
-    resultados.sort((a, b) => {
-      const aNameMatch = a.name.toLowerCase().includes(searchTerm);
-      const bNameMatch = b.name.toLowerCase().includes(searchTerm);
-      
-      if (aNameMatch && !bNameMatch) return -1;
-      if (!aNameMatch && bNameMatch) return 1;
-      
-      // Si ambos coinciden en nombre o ambos no, ordenar por rating
-      return b.rating - a.rating;
-    });
-
-    return resultados;
+      return productos;
+    } catch (error) {
+      console.error('Error en búsqueda:', error);
+      return [];
+    }
   }
 
   /**
@@ -81,14 +77,14 @@ class SearchService {
   /**
    * Obtiene sugerencias de búsqueda (autocompletado)
    * @param {string} query - Término parcial de búsqueda
-   * @returns {Array} Sugerencias de productos
+   * @returns {Promise<Array>} Sugerencias de productos
    */
-  obtenerSugerencias(query) {
+  async obtenerSugerencias(query) {
     if (!query || query.trim().length < 2) {
       return [];
     }
 
-    const resultados = this.buscarCoincidencias(query);
+    const resultados = await this.buscarCoincidencias(query);
     return resultados.slice(0, 5); // Máximo 5 sugerencias
   }
 
@@ -96,10 +92,10 @@ class SearchService {
    * Búsqueda avanzada con filtros
    * @param {string} palabraClave - Término de búsqueda
    * @param {Object} filtros - Filtros adicionales (categoría, precio, rating)
-   * @returns {Array} Productos filtrados
+   * @returns {Promise<Array>} Productos filtrados
    */
-  buscarConFiltros(palabraClave, filtros = {}) {
-    let resultados = this.buscarCoincidencias(palabraClave);
+  async buscarConFiltros(palabraClave, filtros = {}) {
+    let resultados = await this.buscarCoincidencias(palabraClave);
 
     // Filtrar por categoría
     if (filtros.categoria) {

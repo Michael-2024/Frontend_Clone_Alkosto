@@ -7,14 +7,22 @@ const CartDrawer = ({ isOpen, onClose, addedProduct, cartItems, cartTotal }) => 
   const [recommendedProducts, setRecommendedProducts] = useState([]);
 
   useEffect(() => {
-    if (isOpen && addedProduct) {
-      // Obtener productos relacionados o recomendados
-      const allProducts = ProductController.getAllProducts();
-      const related = allProducts
-        .filter(p => p.category === addedProduct.category && p.id !== addedProduct.id)
-        .slice(0, 3);
-      setRecommendedProducts(related);
-    }
+    const loadRecommended = async () => {
+      if (isOpen && addedProduct) {
+        try {
+          // Obtener productos relacionados o recomendados por categoría
+          const allProducts = await ProductController.porCategoria(addedProduct.category);
+          const related = allProducts
+            .filter(p => p.id !== addedProduct.id)
+            .slice(0, 3);
+          setRecommendedProducts(related);
+        } catch (error) {
+          console.error('Error cargando productos recomendados:', error);
+          setRecommendedProducts([]);
+        }
+      }
+    };
+    loadRecommended();
   }, [isOpen, addedProduct]);
 
   useEffect(() => {

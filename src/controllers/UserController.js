@@ -1,6 +1,7 @@
 import User from '../models/User';
 import NotificationController from './NotificationController';
 import CouponController from './CouponController';
+import apiService from '../services/ApiService';
 
 /**
  * UserController
@@ -155,79 +156,85 @@ class UserController {
   }
 
   // Registrar un nuevo usuario
-  registerUser({ email, firstName, lastName, phone = '', password }) {
-    const id = 'user_' + Date.now();
-    const newUser = new User(id, email, firstName, lastName, password);
-    newUser.phone = phone;
-    // Guardar en la lista de usuarios
-    const users = this.getAllUsers();
-    users.push(newUser.toJSON());
-    this.saveAllUsers(users);
-    // Guardar como usuario actual
-    this.currentUser = newUser;
-    this.saveUser();
-    // Aplicar intento de favorito si existe
-    this.syncPendingFavorite();
-    this.notifyAuthChange();
-    
-    // Crear notificaciones de bienvenida
-    NotificationController.createWelcomeNotifications(id);
-    
-    // Crear cupón de bienvenida
-    CouponController.createWelcomeCoupon(id);
-    
-    return { success: true, user: this.currentUser };
+  async registerUser({ email, firstName, lastName, phone = '', password }) {
+    try {
+      // Consumir backend: /api/auth/registro/
+      const payload = {
+        nombre: firstName,
+        apellido: lastName,
+        email,
+        telefono: phone,
+        password,
+        password_confirm: password
+      };
+      console.log('Enviando registro al backend:', payload);
+      const resp = await apiService.register(payload);
+      console.log('Respuesta del backend:', resp);
+      
+      // resp: { token, user }
+      // Adaptar a nuestro modelo User para UI existente
+      const idStr = String(resp.user.id_usuario);
+      const newUser = new User(idStr, resp.user.email, resp.user.nombre, resp.user.apellido, '');
+      newUser.phone = resp.user.telefono || '';
+      this.currentUser = newUser;
+      this.saveUser();
+      this.syncPendingFavorite();
+      this.notifyAuthChange();
+      
+      // Migrar carrito del localStorage al backend
+      const CartController = require('./CartController').default;
+      await CartController.migrateToBackend();
+      
+      // Notificaciones/Cupón (solo local, opcional)
+      NotificationController.createWelcomeNotifications(idStr);
+      CouponController.createWelcomeCoupon(idStr);
+      return { success: true, user: this.currentUser };
+    } catch (error) {
+      console.error('Error en registerUser:', error);
+      return { success: false, error: error.message || 'Error al registrar usuario' };
+    }
   }
 
   // Verificar si el correo ya está registrado
-  isEmailRegistered(email) {
-    const users = this.getAllUsers();
-    return users.some(user => user.email === email);
+  async isEmailRegistered(email) {
+    // Ahora que usamos backend, siempre permitimos que el usuario intente hacer login
+    // El backend verificará si el email existe cuando intente hacer login
+    // Esto evita hacer una petición extra solo para verificar el email
+    // Si el email no existe, el login fallará y se le pedirá registrarse
+    return true; // Siempre va a login options, y el backend valida las credenciales
   }
 
   // Iniciar sesión
-  login(email, password) {
-    // En producción, esto consultaría al backend
-    if (email === 'admin@alkosto.com' && password === 'admin123') {
-      this.currentUser = new User('admin', email, 'Admin', 'Alkosto');
+  async login(email, password) {
+    try {
+      const resp = await apiService.login(email, password);
+      // Obtener perfil para datos consistentes
+      const profile = await apiService.getProfile();
+      const idStr = String(profile.id_usuario);
+      const user = new User(idStr, profile.email, profile.nombre, profile.apellido, '');
+      user.phone = profile.telefono || '';
+      this.currentUser = user;
       this.saveUser();
       this.syncPendingFavorite();
       this.notifyAuthChange();
+      
+      // Migrar carrito del localStorage al backend
+      const CartController = require('./CartController').default;
+      await CartController.migrateToBackend();
+      
       return { success: true, user: this.currentUser };
+    } catch (e) {
+      return { success: false, error: 'Credenciales incorrectas' };
     }
-    // Buscar usuario en la lista de usuarios
-    const users = this.getAllUsers();
-    const userData = users.find(u => u.email === email);
-    if (userData) {
-      // Verificar que la contraseña coincida
-      if (userData.password !== password) {
-        return { success: false, error: 'Credenciales incorrectas' };
-      }
-      // En un sistema real verificaríamos la contraseña con hash
-      this.currentUser = new User(
-        userData.id,
-        userData.email,
-        userData.firstName,
-        userData.lastName,
-        userData.password
-      );
-      this.currentUser.phone = userData.phone || '';
-      this.currentUser.emailVerified = userData.emailVerified || false;
-      this.currentUser.phoneVerified = userData.phoneVerified || false;
-      this.currentUser.estadoCuenta = userData.estadoCuenta || 'pendiente';
-      this.currentUser.addresses = userData.addresses || [];
-      this.currentUser.orders = userData.orders || [];
-      this.currentUser.createdAt = new Date(userData.createdAt);
-      this.saveUser();
-      this.syncPendingFavorite();
-      this.notifyAuthChange();
-      return { success: true, user: this.currentUser };
-    }
-    return { success: false, error: 'Credenciales incorrectas' };
   }
 
   // Cerrar sesión
-  logout() {
+  async logout() {
+    try {
+      await apiService.logout();
+    } catch (e) {
+      // ignorar errores de red en logout
+    }
     this.currentUser = null;
     this.saveUser();
     this.notifyAuthChange();
