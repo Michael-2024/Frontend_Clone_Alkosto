@@ -25,23 +25,29 @@ const Profile = () => {
 
   // Cargar favoritos del usuario
   useEffect(() => {
-    if (!user) return;
-    try {
-      const raw = localStorage.getItem(`alkosto_favorites_${user.id}`) || '[]';
-      const ids = JSON.parse(raw);
-      const products = ids
-        .map((id) => ProductController.getProductById(id))
-        .filter(Boolean);
-      setFavorites(products);
-    } catch (e) {
-      console.warn('No se pudieron cargar favoritos', e);
-    }
+    const loadFavorites = async () => {
+      if (!user) return;
+      try {
+        const raw = localStorage.getItem(`alkosto_favorites_${user.id}`) || '[]';
+        const ids = JSON.parse(raw);
+        const productsPromises = ids.map((id) => ProductController.getProductById(id));
+        const products = await Promise.all(productsPromises);
+        setFavorites(products.filter(Boolean));
+      } catch (e) {
+        console.warn('No se pudieron cargar favoritos', e);
+      }
+    };
+    loadFavorites();
   }, [user]);
 
   // Añadir al carrito desde la grilla
-  const handleAddToCart = (product) => {
-    CartController.addToCart(product, 1);
-    alert(`${product.name} agregado al carrito`);
+  const handleAddToCart = async (product) => {
+    try {
+      await CartController.addToCart(product, 1);
+      alert(`${product.name} agregado al carrito`);
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
+    }
   };
 
   // Quitar de favoritos

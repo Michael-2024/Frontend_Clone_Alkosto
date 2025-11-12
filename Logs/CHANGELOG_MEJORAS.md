@@ -1,5 +1,76 @@
 # 📋 Changelog de Mejoras - Alkosto Clone
 
+---
+
+## 🛍️ Versión 2.3.0 - Implementación RF07 y RF08 (Diciembre 2024)
+
+### 🎯 **MEJORA-004: Sistema Completo de Checkout y Gestión de Pedidos**
+
+#### Resumen
+Implementación completa de los Requisitos Funcionales RF07 (Proceso de Checkout) y RF08 (Gestión de Pedidos), llevándolos de 0% y 40% respectivamente a 100% de funcionalidad operativa.
+
+#### 📦 Nuevos Componentes
+
+**Modelos:**
+- ✅ `Order.js` - Modelo completo de pedido con cálculos, tracking y estados
+
+**Controladores:**
+- ✅ `OrderController.js` - Singleton con CRUD completo, validaciones y persistencia
+
+**Vistas:**
+- ✅ `Checkout.js` - Proceso de checkout en 3 pasos
+- ✅ `Checkout.css` - Estilos profesionales para checkout
+- ✅ `Tracking.css` - Estilos para seguimiento de pedidos
+
+#### 🔄 Componentes Actualizados
+
+**Vistas:**
+- ✅ `Cart.js` - Navegación a checkout con verificación de autenticación
+- ✅ `Orders.js` - Visualización completa de pedidos con tarjetas detalladas
+- ✅ `Tracking.js` - Búsqueda real de pedidos con timeline visual
+- ✅ `Account.css` - Estilos para tarjetas de pedido
+
+**Routing:**
+- ✅ `App.js` - Ruta `/checkout` agregada
+
+#### ✨ Funcionalidades Implementadas
+
+**RF07 - Proceso de Checkout (0% → 100%):**
+- ✅ Paso 1: Información de envío con departamentos de Colombia
+- ✅ Paso 2: Métodos de pago (tarjeta, PSE, efectivo)
+- ✅ Paso 3: Confirmación con resumen completo
+- ✅ Validación de formularios en tiempo real
+- ✅ Verificación de autenticación
+- ✅ Cálculo automático de envío (gratis ≥$150,000)
+- ✅ Creación de pedido y limpieza de carrito
+
+**RF08 - Gestión de Pedidos (40% → 100%):**
+- ✅ Modelo Order con estructura completa
+- ✅ OrderController con persistencia en localStorage
+- ✅ Generación de tracking numbers (formato ALK-YYYYMMDD-XXXXX)
+- ✅ 5 estados de pedidos con colores
+- ✅ Historial de pedidos con tarjetas detalladas
+- ✅ Seguimiento público por tracking y documento
+- ✅ Timeline visual de estados
+- ✅ Formato colombiano (COP, es-CO)
+
+#### 📊 Métricas
+- **Líneas de código**: ~2,377
+- **Archivos creados**: 5
+- **Archivos modificados**: 5
+- **Funcionalidades**: 100% RF07 + RF08
+
+#### 🎨 Diseño
+- Diseño basado en Alkosto.com original
+- Responsive (breakpoints: 480px, 768px, 1024px)
+- Paleta de colores oficial de Alkosto
+- Badges de estado con colores dinámicos
+- Timeline visual de seguimiento
+
+Ver documentación completa: `Logs/MEJORA_004_RF07_RF08_CHECKOUT_PEDIDOS.md`
+
+---
+
 ## 🎨 Mejoras Visuales y de Diseño (22 de Octubre, 2025)
 
 ### ✨ Página de Inicio Completamente Renovada
@@ -135,7 +206,7 @@
 - **Azul Oscuro:** #002875 (hover states)
 - **Naranja:** #FF6B00 (promociones, secundario)
 - **Verde:** #00A859 (envío gratis, éxito)
-- **Rojo:** #FF4444 (descuentos, badges)
+- **Rojo:** #eb5b25 (descuentos, badges)
 
 #### Colores de Soporte:
 - **Morado Gaming:** #8B5CF6
@@ -267,3 +338,7 @@
 **Fecha de Actualización:** 22 de Octubre, 2025  
 **Autor:** Equipo de Desarrollo  
 **Versión:** 2.0.0
+
+SIN CAMBIOS EN NOVIEMBRE
+
+FUSIONAR CON ARCHIVO DE MEJORAS

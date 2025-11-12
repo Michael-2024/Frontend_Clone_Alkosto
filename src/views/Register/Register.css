@@ -154,7 +154,9 @@
 }
 
 .form-group input[type="text"],
-.form-group input[type="tel"] {
+.form-group input[type="tel"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #ccc;
@@ -166,6 +168,41 @@
   outline: none;
   border-color: #0055a5;
   box-shadow: 0 0 0 2px rgba(0, 85, 165, 0.1);
+}
+
+/* Wrapper para input de contraseña con botón de mostrar/ocultar */
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-wrapper input {
+  padding-right: 45px; /* Espacio para el botón */
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 1.2rem;
+  color: #666;
+  transition: color 0.2s ease;
+  outline: none;
+}
+
+.toggle-password-btn:hover {
+  color: #333;
+}
+
+.toggle-password-btn:focus {
+  outline: 2px solid #0055a5;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .phone-group {

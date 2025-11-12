@@ -1,6 +1,6 @@
 /**
  * RF01 - REGISTRAR USUARIO
- * Pruebas End-to-End con Cypress - SWEBOK Capítulo 5
+ * Pruebas End-to-End con Cypress - SWEBOK Capítulo 5: Pruebas
  * 
  * Estas pruebas verifican el flujo completo desde la perspectiva del usuario:
  * - Interacciones reales con la UI

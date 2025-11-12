@@ -24,11 +24,10 @@ const SearchResults = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
-  const realizarBusqueda = () => {
+  const realizarBusqueda = async () => {
     setLoading(true);
     
-    // Simular delay de búsqueda
-    setTimeout(() => {
+    try {
       const filtrosActivos = {
         categoria: filtros.categoria || undefined,
         ordenar: filtros.ordenar || undefined,
@@ -36,10 +35,14 @@ const SearchResults = () => {
         precioMax: filtros.precioMax ? parseFloat(filtros.precioMax) : undefined,
       };
 
-      const resultados = SearchService.buscarConFiltros(query, filtrosActivos);
+      const resultados = await SearchService.buscarConFiltros(query, filtrosActivos);
       setProductos(resultados);
       setLoading(false);
-    }, 300);
+    } catch (error) {
+      console.error('Error en búsqueda:', error);
+      setProductos([]);
+      setLoading(false);
+    }
   };
 
   const handleFiltroChange = (campo, valor) => {
@@ -53,25 +56,32 @@ const SearchResults = () => {
     realizarBusqueda();
   };
 
-  const limpiarFiltros = () => {
+  const limpiarFiltros = async () => {
     setFiltros({
       categoria: '',
       ordenar: '',
       precioMin: '',
       precioMax: '',
     });
-    setTimeout(() => {
-      const resultados = SearchService.buscarCoincidencias(query);
+    try {
+      const resultados = await SearchService.buscarCoincidencias(query);
       setProductos(resultados);
-    }, 100);
+    } catch (error) {
+      console.error('Error al limpiar filtros:', error);
+      setProductos([]);
+    }
   };
 
   // Obtener categorías únicas de los resultados
   const categorias = [...new Set(productos.map(p => p.category))];
 
-  const handleAddToCart = (product) => {
-    CartController.addToCart(product, 1);
-    alert(`${product.name} agregado al carrito`);
+  const handleAddToCart = async (product) => {
+    try {
+      await CartController.addToCart(product, 1);
+      alert(`${product.name} agregado al carrito`);
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
+    }
   };
 
   return (
