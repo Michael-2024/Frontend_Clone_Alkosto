@@ -405,19 +405,22 @@
 
 .continue-shopping-btn {
   display: inline-block;
-  padding: 15px 40px;
-  background: #0033A0;
-  color: white;
+  padding: 12px 30px;
+  border: 1.5px solid #ff7300;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #ff7300;
+  font-size: 15px;
+  font-weight: 600;
   text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  transition: all 0.3s;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-top: 20px;
 }
 
 .continue-shopping-btn:hover {
-  background: #002875;
-  transform: translateY(-2px);
+  background-color: #ff7300;
+  color: white;
 }
 
 @media (max-width: 1024px) {

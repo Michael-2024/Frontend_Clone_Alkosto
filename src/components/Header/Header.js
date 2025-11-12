@@ -2,18 +2,25 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import './Header.css';
+
 // Iconos
 import { HiOutlineUser, HiOutlineXMark } from "react-icons/hi2";
+import { TbLogout } from "react-icons/tb"; // icono logout cerrar sesión
 
 import { HiOutlineUserCircle } from "react-icons/hi2";// usuario redondo
+
 import { CiUser } from "react-icons/ci";  // carrito
 import { RxMagnifyingGlass } from "react-icons/rx"; // lupa
 import { LiaShoppingCartSolid } from "react-icons/lia";
-import { PiShoppingCartSimpleThin } from "react-icons/pi";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoTimeOutline } from "react-icons/io5";
+import { SlSocialDropbox } from "react-icons/sl"; //  segui tu pedido
+import { IoReceiptOutline } from "react-icons/io5"; // icono Descargar factura
 
-
+import { AiOutlineHome } from "react-icons/ai"; // icono home Mi cuenta
+import { MdOutlinePayments } from "react-icons/md"; // metodos de pagos
+import { GrMapLocation } from "react-icons/gr"; // Dirrecion de envio - ubicacion
+import { FaRegHeart } from "react-icons/fa"; //  corazon favoritos
 const Header = ({ cartItemsCount }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showLocationMenu, setShowLocationMenu] = useState(false);
@@ -246,9 +253,10 @@ const Header = ({ cartItemsCount }) => {
                           <div className="account-welcome">
                             <div className="welcome-header">
                               <div className="welcome-text">
-                                Bienvenido/a <span className="user-name">{userName}</span>
+                                Bienvenido    <span className="user-name">{userName}</span>
                               </div>
                               <button onClick={handleLogout} className="close-session-link">
+                                <TbLogout size={40} style={{marginRight: '6px'}} color='#ff9a27ff' />
                                 Cerrar sesión
                               </button>
                             </div>
@@ -256,7 +264,8 @@ const Header = ({ cartItemsCount }) => {
                             {/* Opciones del menú de usuario */}
                             <div className="account-menu-list">
                               <Link to="/perfil/mi-cuenta" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
-                                <i className="item-icon">🏠</i>
+                                <i className="item-icon">
+                                  <AiOutlineHome size={30} color='#ff9a27ff' /></i>
                                 <div className="item-text">
                                   <div className="item-title">Mi cuenta</div>
                                   <div className="item-description">Aquí podrás consultar todos tus movimientos</div>
@@ -270,7 +279,7 @@ const Header = ({ cartItemsCount }) => {
                                 onClick={() => setShowAccountMenu(false)}
                               >
                                 <div className="item-icon" aria-hidden>
-                                  <CiUser size={22} color="#004797" />
+                                  < HiOutlineUserCircle size={32} color="#ff9a27ff" />
                                 </div>
                                 <div className="item-text">
                                   <div className="item-title">Mi Perfil</div>
@@ -281,7 +290,8 @@ const Header = ({ cartItemsCount }) => {
                               </Link>
 
                               <Link to="/perfil/pedidos" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
-                                <i className="item-icon">📦</i>
+                                <i className="item-icon">
+                                  < SlSocialDropbox size={30} color="#ff9a27ff" /></i>
                                 <div className="item-text">
                                   <div className="item-title">Mis Pedidos</div>
                                   <div className="item-description">Gestiona tus pedidos, devoluciones y fechas de entrega</div>
@@ -289,7 +299,8 @@ const Header = ({ cartItemsCount }) => {
                               </Link>
 
                               <Link to="/perfil/pagos" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
-                                <i className="item-icon">💳</i>
+                                <i className="item-icon">
+                                  < MdOutlinePayments size={30} color="#ff9a27ff" /> </i>
                                 <div className="item-text">
                                   <div className="item-title">Métodos de Pago</div>
                                   <div className="item-description">Agrega y valida tus métodos de pago</div>
@@ -297,7 +308,9 @@ const Header = ({ cartItemsCount }) => {
                               </Link>
 
                               <Link to="/perfil/direcciones" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
-                                <i className="item-icon">📍</i>
+                                <i className="item-icon">
+                                  <GrMapLocation size={28} color="#ff9a27ff" />
+                                </i>
                                 <div className="item-text">
                                   <div className="item-title">Direcciones de envío</div>
                                   <div className="item-description">Agrega, edita y/o elimina una dirección</div>
@@ -305,7 +318,9 @@ const Header = ({ cartItemsCount }) => {
                               </Link>
 
                                 <Link to="/perfil/favoritos" className="account-menu-item" onClick={() => setShowAccountMenu(false)}>
-                                <i className="item-icon">❤️</i>
+                                <i className="item-icon">
+                                  <FaRegHeart size={30} color="#ff9a27ff" />
+                                </i>
                                 <div className="item-text">
                                   <div className="item-title">Mi lista de Favoritos</div>
                                   <div className="item-description">Guarda y revisa tus productos</div>
@@ -357,7 +372,9 @@ const Header = ({ cartItemsCount }) => {
                         {/* Sección adicional con fondo gris */}
                         <div className="account-menu-section gray-section">
                           <Link to="/seguimiento" className="account-menu-item">
-                            <i className="item-icon">🔍</i>
+                            <i className="item-icon">
+                              < SlSocialDropbox  size={32} color="#ffa600ff" />
+                            </i>
                             <div className="item-text">
                               <div className="item-title">Sigue tu pedido</div>
                               <div className="item-description">
@@ -372,7 +389,9 @@ const Header = ({ cartItemsCount }) => {
                             rel="noopener noreferrer"
                             className="account-menu-item"
                           >
-                            <i className="item-icon">📄</i>
+                            <i className="item-icon">
+                              <IoReceiptOutline   size={32} color="#ffa600ff" />
+                            </i>
                             <div className="item-text">
                               <div className="item-title">Descarga tu factura</div>
                               <div className="item-description">

@@ -7,6 +7,7 @@ import AccountSidebar from './AccountSidebar';
 //iconos
 import { HiOutlineUserCircle } from "react-icons/hi2";// usuario
 
+
 const AccountProfile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(UserController.getCurrentUser());

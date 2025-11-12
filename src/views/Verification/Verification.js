@@ -58,7 +58,7 @@ const Verification = () => {
 
     setIsLoading(true);
     setError('');
-    setSentCode('');
+    setSentCode('123456');
 
     try {
       const codigo = VerificationService.generateVerificationCode();

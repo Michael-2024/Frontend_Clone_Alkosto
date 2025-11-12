@@ -274,13 +274,13 @@
 .account-dropdown {
   position: absolute;
   top: 100%;
-  right: 0;
+  right: 60;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   margin-top: 15px;
-  min-width: 380px;
-  max-width: 400px;
+  min-width: 320px;
+  max-width: 420px;
   z-index: 9999999;
   overflow: hidden;
 }
@@ -299,6 +299,49 @@
 .account-dropdown-content {
   padding: 0;
 }
+.welcome-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 25px;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.welcome-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.user-name {
+  font-weight: bold;
+  color: #004797;
+}
+
+.close-session-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #ff7300;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.close-session-link:hover {
+  color: #e55b00;
+  transform: translateX(2px);
+}
+
+.logout-icon {
+  font-size: 18px;
+}
+
 
 .account-welcome {
   padding: 20px;
@@ -392,7 +435,7 @@
 }
 
 .btn-continue:hover {
-  background-color: #002875;
+  background-color: #8e5700;
 }
 
 .account-menu-section {

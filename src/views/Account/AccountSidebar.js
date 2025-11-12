@@ -1,18 +1,25 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 //iconos
-import { HiOutlineUserCircle } from "react-icons/hi2";// usuario redondo
-import { CiUser } from "react-icons/ci"; // usuario
+import { HiOutlineUserCircle, HiQuestionMarkCircle } from "react-icons/hi2";// usuario redondo
+import { AiOutlineHome } from "react-icons/ai"; // icono home Mi cuenta
+import { SlSocialDropbox } from "react-icons/sl"; //  segui tu pedido
+import { GrMapLocation } from "react-icons/gr"; // Dirrecion de envio - ubicacion
+import { MdOutlinePayments } from "react-icons/md"; // metodos de pagos
+import { FaRegHeart } from "react-icons/fa"; //  corazon favoritos
+import { IoReceiptOutline } from "react-icons/io5"; // Descargar factura
+import { TbLogout } from "react-icons/tb"; // icono logout cerrar sesión
+
 
 const links = [
-  { to: '/perfil/mi-cuenta',  icon: <HiOutlineUserCircle size={30} color="#004797" />  , label: '  Mi cuenta' },
-  { to: '/perfil/datos', icon: <CiUser size={30} color="#004797" />, label: ' Mi Perfil' },
-  { to: '/perfil/direcciones', icon: '📍', label: 'Direcciones de envío' },
-  { to: '/perfil/pedidos', icon: '📦', label: 'Mis Pedidos' },
-  { to: '/perfil/pagos', icon: '💳', label: 'Métodos de Pago' },
-  { to: '/perfil/favoritos', icon: '❤️', label: 'Mi lista de Favoritos' },
-  { to: '/seguimiento', icon: '🔍', label: 'Sigue tu pedido' },
-  { to: '/perfil/factura', icon: '📄', label: 'Descarga tu factura' },
+  { to: '/perfil/mi-cuenta',  icon: <AiOutlineHome size={30} color="#004797" />  , label: '  Mi cuenta' },
+  { to: '/perfil/datos', icon: <HiOutlineUserCircle size={30} color="#004797" />, label: ' Mi Perfil' },
+  { to: '/perfil/direcciones', icon: <GrMapLocation size={30} color="#004797" />, label: 'Direcciones de envío' },
+  { to: '/perfil/pedidos', icon:<SlSocialDropbox size={30} color="#004797" />, label: 'Mis Pedidos' },
+  { to: '/perfil/pagos', icon:<MdOutlinePayments size={30} color="#004797" />, label: 'Métodos de Pago' },
+  { to: '/perfil/favoritos', icon: <FaRegHeart size={30} color="#004797" />, label: 'Mi lista de Favoritos' },
+  { to: '/seguimiento', icon: <SlSocialDropbox size={30} color="#004797" />, label: 'Sigue tu pedido' },
+  { to: '/perfil/factura', icon: <IoReceiptOutline size={30} color="#004797" />, label: 'Descarga tu factura' },
 ];
 
 const AccountSidebar = ({ onLogout }) => {
@@ -32,7 +39,7 @@ const AccountSidebar = ({ onLogout }) => {
           ))}
           <li className="account-menu-item">
             <button className="linklike" onClick={onLogout}>
-              <span className="icon" aria-hidden>🚪</span>
+              <span className="icon" aria-hidden><TbLogout size={30} color="#004797" /></span>
               <span>Cerrar Sesión</span>
             </button>
           </li>

@@ -5,6 +5,7 @@ import './Cart.css';
 
 // iconos 
 import { LiaShoppingCartSolid } from "react-icons/lia";
+import { BsCartX } from "react-icons/bs"; // carrito con X
 
 const Cart = () => {
   // Usamos un "tick" para forzar re-render sin perder métodos de la clase Cart
@@ -41,12 +42,12 @@ const Cart = () => {
         <div className="container">
           <div className="empty-content">
             <div className="empty-icon">  
-              <LiaShoppingCartSolid size={308} color="#ff7300ff" />
+              <BsCartX  size={308} color="#ff7300ff" />
             </div>
             <h2>Tu carrito está vacío</h2>
             <p>Agrega productos para comenzar tu compra</p>
             <Link to="/" className="continue-shopping-btn">
-              Continuar Comprando
+              Volver al inicio
             </Link>
           </div>
         </div>
