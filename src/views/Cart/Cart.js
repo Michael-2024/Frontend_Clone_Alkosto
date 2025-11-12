@@ -12,7 +12,7 @@ const Cart = () => {
   const navigate = useNavigate();
   // Usamos un "tick" para forzar re-render sin perder métodos de la clase Cart
   const [tick, setTick] = useState(0);
-  const cart = CartController.getCart();
+  const [cart, setCart] = useState(null);
 
   // Estados de cupón
   const [couponCode, setCouponCode] = useState('');
@@ -20,26 +20,48 @@ const Cart = () => {
   const [couponError, setCouponError] = useState('');
   const [couponSuccess, setCouponSuccess] = useState('');
 
-  const updateCart = () => {
+  // Cargar carrito al iniciar
+  React.useEffect(() => {
+    const loadCart = async () => {
+      const loadedCart = await CartController.getCart();
+      setCart(loadedCart);
+    };
+    loadCart();
+  }, []);
+
+  const updateCart = async () => {
+    const updatedCart = await CartController.getCart();
+    setCart(updatedCart);
     setTick((t) => t + 1);
   };
 
-  const handleRemoveItem = (productId) => {
-    CartController.removeFromCart(productId);
+  const handleRemoveItem = async (productId) => {
+    await CartController.removeFromCart(productId);
     updateCart();
   };
 
-  const handleUpdateQuantity = (productId, newQuantity) => {
-    CartController.updateQuantity(productId, newQuantity);
+  const handleUpdateQuantity = async (productId, newQuantity) => {
+    await CartController.updateQuantity(productId, newQuantity);
     updateCart();
   };
 
-  const handleClearCart = () => {
+  const handleClearCart = async () => {
     if (window.confirm('¿Estás seguro de que deseas vaciar el carrito?')) {
-      CartController.clearCart();
+      await CartController.clearCart();
       updateCart();
     }
   };
+
+  // Mostrar loading mientras carga el carrito
+  if (!cart) {
+    return (
+      <div className="container">
+        <div style={{ textAlign: 'center', padding: '50px' }}>
+          <p>Cargando carrito...</p>
+        </div>
+      </div>
+    );
+  }
 
   const total = cart.getTotal();
   const totalItems = cart.getTotalItems();
@@ -323,9 +345,9 @@ const Cart = () => {
                 Tu compra siempre segura
               </p>
               <div className="payment-methods">
-                <img src="/images/norton.png" alt="Norton" className="badge-img" />
-                <img src="/images/ssl.png" alt="SSL" className="badge-img" />
-                <img src="/images/secure.png" alt="Secure" className="badge-img" />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJzUFYr18R30af9a_noSOxQ9QRqq6fNt5r4A&s" alt="Norton" className="badge-img" />
+                <img src="https://www.shutterstock.com/image-vector/secure-ssl-encryption-logo-connection-260nw-2318420931.jpg" alt="SSL" className="badge-img" />
+                <img src="https://img.freepik.com/vector-gratis/ilustracion-logotipo-diseno-logotipo-degradado-escudo_343694-3222.jpg?semt=ais_hybrid&w=740&q=80" alt="Secure" className="badge-img" />
               </div>
               <p className="payment-info">
                 Recibimos todos los medios de pago y también efectivo

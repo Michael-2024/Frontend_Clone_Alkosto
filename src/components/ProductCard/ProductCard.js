@@ -4,11 +4,11 @@ import CartController from '../../controllers/CartController';
 import './ProductCard.css';
 
 const ProductCard = ({ product, onAddToCart }) => {
-  const handleAddToCart = (e) => {
+  const handleAddToCart = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (onAddToCart) {
-      CartController.addToCart(product, 1);
+      await CartController.addToCart(product, 1);
       onAddToCart(product);
     }
   };

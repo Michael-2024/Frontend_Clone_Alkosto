@@ -21,7 +21,7 @@ const LoginPassword = () => {
     }
   }, [email, navigate]);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     if (!password) {
@@ -29,11 +29,15 @@ const LoginPassword = () => {
       setIsSubmitting(false);
       return;
     }
-    const result = UserController.login(email, password);
+    console.log('Intentando login con:', email);
+    const result = await UserController.login(email, password);
+    console.log('Resultado del login:', result);
     if (result.success) {
       navigate('/');
     } else {
-      setError('Contraseña incorrecta. Inténtalo nuevamente');
+      // Mensaje más específico si el email podría no estar registrado
+      const errorMessage = result.error || 'Credenciales incorrectas. Inténtalo nuevamente';
+      setError(errorMessage);
     }
     setIsSubmitting(false);
   };

@@ -206,7 +206,7 @@ Ver documentación completa: `Logs/MEJORA_004_RF07_RF08_CHECKOUT_PEDIDOS.md`
 - **Azul Oscuro:** #002875 (hover states)
 - **Naranja:** #FF6B00 (promociones, secundario)
 - **Verde:** #00A859 (envío gratis, éxito)
-- **Rojo:** #FF4444 (descuentos, badges)
+- **Rojo:** #eb5b25 (descuentos, badges)
 
 #### Colores de Soporte:
 - **Morado Gaming:** #8B5CF6

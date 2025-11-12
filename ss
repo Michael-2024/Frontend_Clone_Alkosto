@@ -152,7 +152,7 @@
 [31m-- **Azul Oscuro:** #002875 (hover states)[m
 [31m-- **Naranja:** #FF6B00 (promociones, secundario)[m
 [31m-- **Verde:** #00A859 (envío gratis, éxito)[m
-[31m-- **Rojo:** #FF4444 (descuentos, badges)[m
+[31m-- **Rojo:** #eb5b25 (descuentos, badges)[m
 [31m-[m
 [31m-#### Colores de Soporte:[m
 [31m-- **Morado Gaming:** #8B5CF6[m

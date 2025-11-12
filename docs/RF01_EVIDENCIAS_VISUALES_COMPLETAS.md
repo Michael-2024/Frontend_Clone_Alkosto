@@ -114,12 +114,12 @@
 }
 
 .form-group input.error {
-  border-color: #ff4444;
+  border-color: #eb5b25;
   background-color: #fff5f5;
 }
 
 .error-message {
-  color: #ff4444;
+  color: #eb5b25;
   font-size: 12px;
   margin-top: 4px;
   font-weight: 500;
@@ -149,7 +149,7 @@ if (!form.firstName.trim()) {
 ```
 
 **Estado del Campo:**
-- Borde rojo: `#ff4444`
+- Borde rojo: `#eb5b25`
 - Fondo rosado: `#fff5f5`
 - Clase CSS: `error`
 
@@ -996,7 +996,7 @@ getAllUsers() {
 
 3. **Contraste de colores:**
    - Texto Negro sobre Blanco: ✅ WCAG AAA
-   - Errores Rojo (#ff4444) sobre Blanco: ✅ WCAG AA
+   - Errores Rojo (#eb5b25) sobre Blanco: ✅ WCAG AA
    - Botón Azul (#004797) sobre Blanco: ✅ WCAG AAA
 
 ### 10.3 Puntuación Lighthouse

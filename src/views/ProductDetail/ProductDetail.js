@@ -20,28 +20,40 @@ const ProductDetail = () => {
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
-    const foundProduct = ProductController.getProductById(id);
-    setProduct(foundProduct);
-    // Sincroniza estado de favoritos por usuario si existe
-    try {
-      let favs = [];
-      if (UserController.isLoggedIn()) {
-        const user = UserController.getCurrentUser();
-        favs = JSON.parse(localStorage.getItem(`alkosto_favorites_${user.id}`) || '[]');
-      } else {
-        favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const loadProduct = async () => {
+      try {
+        const foundProduct = await ProductController.getProductById(id);
+        setProduct(foundProduct);
+        // Sincroniza estado de favoritos por usuario si existe
+        try {
+          let favs = [];
+          if (UserController.isLoggedIn()) {
+            const user = UserController.getCurrentUser();
+            favs = JSON.parse(localStorage.getItem(`alkosto_favorites_${user.id}`) || '[]');
+          } else {
+            favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+          }
+          setIsFavorite(favs.includes(foundProduct?.id));
+        } catch (_) { /* noop */ }
+      } catch (error) {
+        console.error('Error al cargar el producto:', error);
+        setProduct(null);
       }
-      setIsFavorite(favs.includes(foundProduct?.id));
-    } catch (_) { /* noop */ }
+    };
+    loadProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (product) {
-      CartController.addToCart(product, quantity);
-      const cart = CartController.getCart();
-      setCartItems(cart.items);
-      setCartTotal(cart.getTotal());
-      setShowCartDrawer(true);
+      try {
+        await CartController.addToCart(product, quantity);
+        const cart = await CartController.getCart();
+        setCartItems(cart.items);
+        setCartTotal(cart.getTotal());
+        setShowCartDrawer(true);
+      } catch (error) {
+        console.error('Error al agregar al carrito:', error);
+      }
     }
   };
 
@@ -110,7 +122,7 @@ const ProductDetail = () => {
     return re.test(String(value).toLowerCase());
   };
 
-  const proceedFavLogin = (e) => {
+  const proceedFavLogin = async (e) => {
     e?.preventDefault?.();
     if (!validateEmail(favEmail)) {
       setFavEmailError('Correo electrónico inválido');
@@ -120,7 +132,8 @@ const ProductDetail = () => {
     localStorage.setItem('pendingEmail', favEmail);
     setShowFavModal(false);
     // Si el correo ya está registrado -> ir a opciones de login
-    if (UserController.isEmailRegistered(favEmail)) {
+    const isRegistered = await UserController.isEmailRegistered(favEmail);
+    if (isRegistered) {
       navigate(`/login/options?email=${encodeURIComponent(favEmail)}`);
     } else {
       // Si no existe -> ir a registro con el correo prellenado

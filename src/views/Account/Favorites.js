@@ -20,23 +20,31 @@ const Favorites = () => {
   }, [navigate]);
 
   useEffect(() => {
-    const u = UserController.getCurrentUser();
-    setUser(u);
-    if (!u) return;
-    try {
-      const ids = JSON.parse(localStorage.getItem(`alkosto_favorites_${u.id}`) || '[]');
-      const products = ids.map((id) => ProductController.getProductById(id)).filter(Boolean);
-      setFavorites(products);
-    } catch (_) {
-      setFavorites([]);
-    }
+    const loadFavorites = async () => {
+      const u = UserController.getCurrentUser();
+      setUser(u);
+      if (!u) return;
+      try {
+        const ids = JSON.parse(localStorage.getItem(`alkosto_favorites_${u.id}`) || '[]');
+        const productsPromises = ids.map((id) => ProductController.getProductById(id));
+        const products = await Promise.all(productsPromises);
+        setFavorites(products.filter(Boolean));
+      } catch (_) {
+        setFavorites([]);
+      }
+    };
+    loadFavorites();
   }, []);
 
   if (!user) return null;
 
-  const handleAddToCart = (product) => {
-    CartController.addToCart(product, 1);
-    alert(`${product.name} agregado al carrito`);
+  const handleAddToCart = async (product) => {
+    try {
+      await CartController.addToCart(product, 1);
+      alert(`${product.name} agregado al carrito`);
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
+    }
   };
 
   const removeFromFavorites = (productId) => {

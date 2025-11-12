@@ -75,12 +75,16 @@ const Checkout = () => {
     }));
 
     // Obtener items del carrito
-    const items = CartController.getCart().items;
-    if (items.length === 0) {
-      navigate('/carrito');
-      return;
-    }
-    setCartItems(items);
+    const loadCart = async () => {
+      const cart = await CartController.getCart();
+      const items = cart.items;
+      if (items.length === 0) {
+        navigate('/carrito');
+        return;
+      }
+      setCartItems(items);
+    };
+    loadCart();
   }, [navigate]);
 
   const handleShippingChange = (e) => {
@@ -254,7 +258,7 @@ const Checkout = () => {
 
       if (result.success) {
         // Limpiar carrito
-        CartController.clearCart();
+        await CartController.clearCart();
 
         // Simular delay de procesamiento
         await new Promise(resolve => setTimeout(resolve, 1500));
