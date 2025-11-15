@@ -245,6 +245,10 @@ class ApiService {
   async changePassword(passwordData) {
     return await this.post('/auth/cambiar-password/', passwordData, true);
   }
+
+  async checkEmailExists(email) {
+    return await this.get(`/auth/verificar_email/?email=${encodeURIComponent(email)}`);
+  }
 }
 
 // Exportar instancia única

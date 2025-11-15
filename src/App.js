@@ -30,6 +30,7 @@ import AccountFavorites from './views/Account/Favorites';
 import Invoice from './views/Account/Invoice';
 import Notifications from './views/Account/Notifications';
 import Coupons from './views/Account/Coupons';
+import Test from './Test';
 import './App.css';
 
 function App() {
@@ -63,6 +64,8 @@ function App() {
         <Route path="/forgot-password/verify" element={<ForgotPasswordVerify />} />
         <Route path="/forgot-password/reset" element={<ForgotPasswordReset />} />
         <Route path="/verify" element={<Verification />} />
+        {/* Ruta de prueba */}
+        <Route path="/test" element={<Test />} />
         {/* Resto de rutas con layout normal */}
         <Route path="*" element={
           <div className="app">

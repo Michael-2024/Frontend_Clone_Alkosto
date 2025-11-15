@@ -197,11 +197,14 @@ class UserController {
 
   // Verificar si el correo ya está registrado
   async isEmailRegistered(email) {
-    // Ahora que usamos backend, siempre permitimos que el usuario intente hacer login
-    // El backend verificará si el email existe cuando intente hacer login
-    // Esto evita hacer una petición extra solo para verificar el email
-    // Si el email no existe, el login fallará y se le pedirá registrarse
-    return true; // Siempre va a login options, y el backend valida las credenciales
+    try {
+      const response = await apiService.checkEmailExists(email);
+      return response.existe; // Retorna true si existe, false si no
+    } catch (error) {
+      console.error('Error verificando email:', error);
+      // En caso de error, permitir continuar con el registro
+      return false;
+    }
   }
 
   // Iniciar sesión

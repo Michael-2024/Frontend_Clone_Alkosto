@@ -69,7 +69,7 @@
 .product-info {
   padding: 50px;
   flex: 1;
-  display: box;
+  display: flex;
   flex-direction: column;
   gap: 10px;
   position: relative;
