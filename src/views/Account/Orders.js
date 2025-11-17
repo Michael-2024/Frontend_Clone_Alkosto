@@ -16,6 +16,7 @@ const Orders = () => {
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [cancelMessage, setCancelMessage] = useState(null);
+  const [showDetailModal, setShowDetailModal] = useState(false);
 
   useEffect(() => {
     if (!UserController.isLoggedIn()) {
@@ -32,6 +33,10 @@ const Orders = () => {
     if (newOrder) {
       setShowSuccessMessage(true);
       setNewOrderId(newOrder);
+      // Reload orders to ensure latest status
+      setTimeout(() => {
+        loadOrders();
+      }, 500);
       setTimeout(() => {
         setShowSuccessMessage(false);
       }, 5000);
@@ -232,11 +237,17 @@ const Orders = () => {
                           className="btn-cancel-order"
                           onClick={() => handleCancelClick(order)}
                           title="Cancelar pedido"
-                        >
+                        >  
                           Cancelar pedido
                         </button>
                       )}
-                      <button className="btn-link">
+                      <button 
+                        className="btn-link"
+                        onClick={() => {
+                          setSelectedOrder(order);
+                          setShowDetailModal(true);
+                        }}
+                      >
                         Ver detalles
                       </button>
                     </div>
@@ -252,6 +263,112 @@ const Orders = () => {
                 onConfirm={handleCancelConfirm}
                 onCancel={handleCancelCancel}
               />
+            )}
+
+            {/* Modal de detalles del pedido */}
+            {showDetailModal && selectedOrder && (
+              <div className="modal-overlay" onClick={() => setShowDetailModal(false)}>
+                <div className="modal-content order-detail-modal" onClick={e => e.stopPropagation()}>
+                  <div className="modal-header">
+                    <h3>Detalles del Pedido</h3>
+                    <button 
+                      className="modal-close"
+                      onClick={() => setShowDetailModal(false)}
+                      aria-label="Cerrar"
+                    >
+                      ×
+                    </button>
+                  </div>
+                  <div className="modal-body">
+                    <div className="order-detail-section">
+                      <h4>Información del Pedido</h4>
+                      <p><strong>Número de seguimiento:</strong> {selectedOrder.trackingNumber}</p>
+                      <p><strong>Fecha:</strong> {formatDate(selectedOrder.createdAt)}</p>
+                      <p><strong>Estado:</strong> <span className={`status-badge status-${selectedOrder.status.toLowerCase()}`}>{selectedOrder.status}</span></p>
+                    </div>
+
+                    <div className="order-detail-section">
+                      <h4>Información de Envío</h4>
+                      <p><strong>Nombre:</strong> {selectedOrder.shippingAddress.fullName}</p>
+                      <p><strong>Teléfono:</strong> {selectedOrder.shippingAddress.phone}</p>
+                      <p><strong>Email:</strong> {selectedOrder.shippingAddress.email}</p>
+                      <p><strong>Dirección:</strong> {selectedOrder.shippingAddress.address}</p>
+                      <p><strong>Ciudad:</strong> {selectedOrder.shippingAddress.city}, {selectedOrder.shippingAddress.department}</p>
+                      <p><strong>Código Postal:</strong> {selectedOrder.shippingAddress.postalCode}</p>
+                      {selectedOrder.shippingAddress.additionalInfo && (
+                        <p><strong>Info adicional:</strong> {selectedOrder.shippingAddress.additionalInfo}</p>
+                      )}
+                    </div>
+
+                    <div className="order-detail-section">
+                      <h4>Productos ({selectedOrder.items.length})</h4>
+                      <div className="order-items-detail">
+                        {selectedOrder.items.map((item, idx) => (
+                          <div key={idx} className="order-item-detail">
+                            <div className="item-image">
+                              {item.product.image ? (
+                                <img src={item.product.image} alt={item.product.name} />
+                              ) : (
+                                <div className="placeholder-image">Sin imagen</div>
+                              )}
+                            </div>
+                            <div className="item-info">
+                              <p className="item-name">{item.product.name}</p>
+                              <p className="item-quantity">Cantidad: {item.quantity}</p>
+                              <p className="item-price">{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(item.product.price)}</p>
+                            </div>
+                            <div className="item-subtotal">
+                              {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(item.product.price * item.quantity)}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="order-detail-section">
+                      <h4>Resumen de Pago</h4>
+                      <div className="order-summary-detail">
+                        <div className="summary-row">
+                          <span>Subtotal:</span>
+                          <span>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(selectedOrder.subtotal)}</span>
+                        </div>
+                        <div className="summary-row">
+                          <span>Envío:</span>
+                          <span>{(selectedOrder.shipping || selectedOrder.shippingCost || 0) === 0 ? 'GRATIS' : new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(selectedOrder.shipping || selectedOrder.shippingCost || 0)}</span>
+                        </div>
+                        {selectedOrder.discount > 0 && (
+                          <div className="summary-row discount">
+                            <span>Descuento:</span>
+                            <span>-{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(selectedOrder.discount)}</span>
+                          </div>
+                        )}
+                        <div className="summary-row total">
+                          <span><strong>Total:</strong></span>
+                          <span><strong>{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(selectedOrder.total)}</strong></span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="order-detail-section">
+                      <h4>Método de Pago</h4>
+                      <p>{selectedOrder.paymentMethod?.type === 'card' ? 'Tarjeta de Crédito/Débito' : 
+                         selectedOrder.paymentMethod?.type === 'pse' ? 'PSE' :
+                         selectedOrder.paymentMethod?.type === 'nequi' ? 'Nequi' :
+                         selectedOrder.paymentMethod?.type === 'daviplata' ? 'Daviplata' :
+                         selectedOrder.paymentMethod?.type === 'cash' ? 'Efectivo contra entrega' : 
+                         'No especificado'}</p>
+                    </div>
+                  </div>
+                  <div className="modal-footer">
+                    <button 
+                      className="btn-secondary"
+                      onClick={() => setShowDetailModal(false)}
+                    >
+                      Cerrar
+                    </button>
+                  </div>
+                </div>
+              </div>
             )}
           </section>
         </div>

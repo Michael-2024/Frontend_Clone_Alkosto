@@ -101,6 +101,7 @@
   background: #f8f8f8;
   border-radius: 6px;
   border: 1px solid #e0e0e0;
+  margin-block-end: 8px;
 }
 
 .shipping-option.selected {
@@ -115,6 +116,8 @@
 .shipping-icon {
   font-size: 16px;
 }
+
+.shipping-label { display: flex; align-items: center; gap: 8px; cursor: default; }
 
 .shipping-text {
   font-size: 13px;
@@ -478,18 +481,21 @@
   font-size: 18px;
 }
 
-.payment-methods {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
+/* Nueva disposición de compra segura */
+.secure-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  padding: 0;
+  margin: 0 0 12px 0;
+  list-style: none;
 }
-
-.badge-img {
-  height: 30px;
-  object-fit: contain;
+.secure-item { 
+  display: flex; align-items: center; gap: 8px; 
+  font-size: 13px; color: #333; 
+  justify-content: center; 
 }
+.secure-icon { font-size: 16px; }
 
 .payment-info {
   font-size: 13px;
@@ -498,11 +504,10 @@
   line-height: 1.4;
 }
 
-.payment-logos {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  font-size: 28px;
+.payment-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.pill { 
+  padding: 6px 10px; font-size: 12px; 
+  background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 6px; 
 }
 
 .cart-empty {

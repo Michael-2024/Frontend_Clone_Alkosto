@@ -19,7 +19,9 @@ const LoginOptions = () => {
   
   // Función para modificar el email
   const handleModifyEmail = () => {
-    navigate('/');
+    setEditingEmail(true);
+    setNewEmail(email);
+    setEmailError('');
   };
   
   // Funciones para manejar las opciones de inicio de sesión
@@ -72,115 +74,144 @@ const LoginOptions = () => {
     if (emailFromStorage) {
       localStorage.removeItem('pendingEmail');
     }
-    if (!email) {
-      navigate('/');
-    }
-  }, [email, emailFromStorage, navigate]);
+  }, [emailFromStorage]);
+
+  // Pantalla inicial: si no hay email, pedirlo (flujo desde carrito)
+  const showEmailEntry = !email && !editingEmail;
   
+  const intendedCheckout = localStorage.getItem('intendedCheckout');
+  const backPath = intendedCheckout ? '/carrito' : '/';
+
   return (
     <RegisterLayout>
       <div className="login-page">
         <div className="login-container">
-          <Link to="/" className="back-button">
+          <Link to={backPath} className="back-button">
             <span className="back-arrow">←</span> Volver
           </Link>
           <div className="login-content">
-            <div className="login-heading">
-              <h2 className="login-title">Elige un método para ingresar</h2>
-              <div className="email-display">
-                <p className="email-label-login">Estás ingresando con:</p>
-                <div className="email-value-container">
-                  {!editingEmail ? (
-                    <>
-                      <span className="email-value-left">{email}</span>
-                      <button 
-                        className="modify-button"
-                        type="button"
-                        onClick={handleEditEmail}
-                      >
-                        Modificar
-                      </button>
-                    </>
-                  ) : (
-                    <form className="email-edit-form" onSubmit={e => { e.preventDefault(); handleSaveEmail(); }}>
-                      <label className="email-edit-label">Correo electrónico:</label>
-                      <input
-                        type="email"
-                        value={newEmail}
-                        onChange={e => { setNewEmail(e.target.value); setEmailError(''); }}
-                        className="email-edit-input"
-                        autoFocus
-                      />
-                      {emailError && <div className="error-message">{emailError}</div>}
-                      <div className="email-edit-buttons">
-                        <button type="submit" className="email-save-button" disabled={!validateEmail(newEmail)}>
-                          Guardar
-                        </button>
-                        <button type="button" className="email-cancel-button" onClick={handleCancelEditEmail}>
-                          Cancelar
-                        </button>
-                      </div>
-                    </form>
-                  )}
+            {showEmailEntry ? (
+              <div className="login-heading">
+                <h2 className="login-title">Ingresa tu correo electrónico</h2>
+                <p className="login-subtitle">Al ingresar utilizaremos tus datos para mejorar la experiencia en nuestro sitio.</p>
+                <form className="email-edit-form" onSubmit={e => { e.preventDefault(); handleSaveEmail(); }}>
+                  <label className="email-edit-label">Correo electrónico</label>
+                  <input
+                    type="email"
+                    value={newEmail}
+                    onChange={e => { setNewEmail(e.target.value); setEmailError(''); }}
+                    className="email-edit-input"
+                    autoFocus
+                    placeholder="correo@ejemplo.com"
+                  />
+                  {emailError && <div className="error-message">{emailError}</div>}
+                  <div className="email-edit-buttons">
+                    <button type="submit" className="email-save-button" disabled={!validateEmail(newEmail)}>
+                      Continuar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            ) : (
+              <>
+                <div className="login-heading">
+                  <h2 className="login-title">Elige un método para ingresar</h2>
+                  <div className="email-display">
+                    <p className="email-label-login">Estás ingresando con:</p>
+                    <div className="email-value-container">
+                      {!editingEmail ? (
+                        <>
+                          <span className="email-value-left">{email}</span>
+                          <button 
+                            className="modify-button"
+                            type="button"
+                            onClick={handleEditEmail}
+                          >
+                            Modificar
+                          </button>
+                        </>
+                      ) : (
+                        <form className="email-edit-form" onSubmit={e => { e.preventDefault(); handleSaveEmail(); }}>
+                          <label className="email-edit-label">Correo electrónico:</label>
+                          <input
+                            type="email"
+                            value={newEmail}
+                            onChange={e => { setNewEmail(e.target.value); setEmailError(''); }}
+                            className="email-edit-input"
+                            autoFocus
+                          />
+                          {emailError && <div className="error-message">{emailError}</div>}
+                          <div className="email-edit-buttons">
+                            <button type="submit" className="email-save-button" disabled={!validateEmail(newEmail)}>
+                              Guardar
+                            </button>
+                            <button type="button" className="email-cancel-button" onClick={handleCancelEditEmail}>
+                              Cancelar
+                            </button>
+                          </div>
+                        </form>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="login-options-container">
-              <div className="login-options-list">
-                <button 
-                  className="login-option-item"
-                  onClick={handleWhatsappLogin}
-                >
-                  <div className="login-option-icon whatsapp-icon">📱</div>
-                  <div className="login-option-text">
-                    <div className="login-option-title">Whatsapp</div>
-                    <div className="login-option-description">
-                      Recibirás un código al número terminado en {phoneNumber || '----'}
-                    </div>
+                <div className="login-options-container">
+                  <div className="login-options-list">
+                    <button 
+                      className="login-option-item"
+                      onClick={handleWhatsappLogin}
+                    >
+                      <div className="login-option-icon whatsapp-icon">📱</div>
+                      <div className="login-option-text">
+                        <div className="login-option-title">Whatsapp</div>
+                        <div className="login-option-description">
+                          Recibirás un código al número terminado en {phoneNumber || '----'}
+                        </div>
+                      </div>
+                      <div className="login-option-arrow">&gt;</div>
+                    </button>
+                    <button 
+                      className="login-option-item"
+                      onClick={handleSMSLogin}
+                    >
+                      <div className="login-option-icon sms-icon">💬</div>
+                      <div className="login-option-text">
+                        <div className="login-option-title">SMS</div>
+                        <div className="login-option-description">
+                          Recibirás un código al número terminado en {phoneNumber || '----'}
+                        </div>
+                      </div>
+                      <div className="login-option-arrow">&gt;</div>
+                    </button>
+                    <button 
+                      className="login-option-item"
+                      onClick={handleEmailLogin}
+                    >
+                      <div className="login-option-icon email-icon">✉️</div>
+                      <div className="login-option-text">
+                        <div className="login-option-title">Correo</div>
+                        <div className="login-option-description">
+                          Recibirás un código a {email}
+                        </div>
+                      </div>
+                      <div className="login-option-arrow">&gt;</div>
+                    </button>
+                    <button 
+                      className="login-option-item"
+                      onClick={handlePasswordLogin}
+                    >
+                      <div className="login-option-icon password-icon">🔒</div>
+                      <div className="login-option-text">
+                        <div className="login-option-title">Contraseña</div>
+                        <div className="login-option-description">
+                          Ingresa con la contraseña que asignaste al crear tu cuenta
+                        </div>
+                      </div>
+                      <div className="login-option-arrow">&gt;</div>
+                    </button>
                   </div>
-                  <div className="login-option-arrow">&gt;</div>
-                </button>
-                <button 
-                  className="login-option-item"
-                  onClick={handleSMSLogin}
-                >
-                  <div className="login-option-icon sms-icon">💬</div>
-                  <div className="login-option-text">
-                    <div className="login-option-title">SMS</div>
-                    <div className="login-option-description">
-                      Recibirás un código al número terminado en {phoneNumber || '----'}
-                    </div>
-                  </div>
-                  <div className="login-option-arrow">&gt;</div>
-                </button>
-                <button 
-                  className="login-option-item"
-                  onClick={handleEmailLogin}
-                >
-                  <div className="login-option-icon email-icon">✉️</div>
-                  <div className="login-option-text">
-                    <div className="login-option-title">Correo</div>
-                    <div className="login-option-description">
-                      Recibirás un código a {email}
-                    </div>
-                  </div>
-                  <div className="login-option-arrow">&gt;</div>
-                </button>
-                <button 
-                  className="login-option-item"
-                  onClick={handlePasswordLogin}
-                >
-                  <div className="login-option-icon password-icon">🔒</div>
-                  <div className="login-option-text">
-                    <div className="login-option-title">Contraseña</div>
-                    <div className="login-option-description">
-                      Ingresa con la contraseña que asignaste al crear tu cuenta
-                    </div>
-                  </div>
-                  <div className="login-option-arrow">&gt;</div>
-                </button>
-              </div>
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

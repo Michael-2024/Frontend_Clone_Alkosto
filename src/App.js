@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SkipLink from './components/SkipLink/SkipLink';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import LiveChat from './components/LiveChat/LiveChat';
 import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
 import Footer from './components/Footer/Footer';
@@ -37,22 +39,23 @@ function App() {
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
   useEffect(() => {
-    const updateCartCount = async () => {
-      const count = CartController.getCartItemsCount();
-      setCartItemsCount(count);
-    };
-
+    // Inicial cargar conteo y suscribirse a cambios para evitar polling cada 1s
+    const updateCartCount = () => setCartItemsCount(CartController.getCartItemsCount());
     updateCartCount();
 
-    const interval = setInterval(() => {
+    const unsubscribe = CartController.addChangeListener(() => {
       updateCartCount();
-    }, 1000);
+    });
 
-    return () => clearInterval(interval);
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   }, []);
 
   return (
     <Router>
+      <ScrollToTop />
+      <LiveChat />
       <Routes>
         {/* Rutas de registro y login con layout especial */}
         <Route path="/register" element={<Register />} />

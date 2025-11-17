@@ -1,0 +1,189 @@
+/* ChatButton Component Styles - RF23 */
+
+/* Link variant (para Footer) */
+.chat-button-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-size: 14px;
+}
+
+.chat-button-link:hover {
+  color: #004797;
+  text-decoration: underline;
+}
+
+.chat-icon-small {
+  font-size: 16px;
+}
+
+.status-indicator {
+  font-size: 11px;
+  margin-left: 4px;
+  font-weight: 600;
+}
+
+.status-indicator.online {
+  color: #00a859;
+}
+
+.status-indicator.offline {
+  color: #999;
+}
+
+/* Button variant (para header o secciones destacadas) */
+.chat-button-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #004797 0%, #0066cc 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 71, 151, 0.2);
+  position: relative;
+}
+
+.chat-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 71, 151, 0.3);
+}
+
+.chat-button-primary:active {
+  transform: translateY(0);
+}
+
+.chat-icon {
+  font-size: 18px;
+}
+
+.chat-text {
+  line-height: 1;
+}
+
+.chat-status-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.chat-status-dot.online {
+  background: #00ff88;
+  animation: pulse-dot 2s infinite;
+}
+
+.chat-status-dot.offline {
+  background: #999;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Floating variant (botón flotante alternativo) */
+.chat-button-floating {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00a859 0%, #00d66b 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 168, 89, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 9996;
+}
+
+.chat-button-floating:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 168, 89, 0.5);
+}
+
+.chat-button-floating:active {
+  transform: scale(0.95);
+}
+
+.chat-icon-large {
+  font-size: 28px;
+}
+
+.chat-badge-online {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #00ff88;
+  font-size: 12px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chat-button-floating {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .chat-icon-large {
+    font-size: 24px;
+  }
+
+  .chat-button-primary {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Accesibilidad */
+.chat-button-link:focus,
+.chat-button-primary:focus,
+.chat-button-floating:focus {
+  outline: 2px solid #004797;
+  outline-offset: 2px;
+}
+
+/* Dark mode support (opcional) */
+@media (prefers-color-scheme: dark) {
+  .chat-button-link {
+    color: #e0e0e0;
+  }
+
+  .chat-button-link:hover {
+    color: #66b3ff;
+  }
+}

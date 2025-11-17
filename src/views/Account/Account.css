@@ -687,3 +687,208 @@
     inline-size: 100%;
   }
 }
+
+/* Order Detail Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--radius-lg);
+  max-inline-size: 800px;
+  max-block-size: 90vh;
+  inline-size: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.order-detail-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  border-block-end: 1px solid #e0e0e0;
+}
+
+.order-detail-modal .modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--color-text-primary);
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #999;
+  padding: 0;
+  inline-size: 32px;
+  block-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--color-text-primary);
+}
+
+.modal-body {
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.order-detail-section {
+  margin-block-end: var(--spacing-xl);
+}
+
+.order-detail-section h4 {
+  margin: 0 0 var(--spacing-md);
+  font-size: 16px;
+  color: var(--color-text-primary);
+  border-block-end: 2px solid var(--color-primary);
+  padding-block-end: var(--spacing-xs);
+}
+
+.order-detail-section p {
+  margin: var(--spacing-xs) 0;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.order-items-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.order-item-detail {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.order-item-detail .item-image img,
+.order-item-detail .placeholder-image {
+  inline-size: 100%;
+  block-size: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.order-item-detail .placeholder-image {
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #999;
+}
+
+.order-item-detail .item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.order-item-detail .item-name {
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.order-item-detail .item-quantity,
+.order-item-detail .item-price {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.order-item-detail .item-subtotal {
+  font-weight: 600;
+  color: var(--color-primary);
+  align-self: center;
+  font-size: 16px;
+}
+
+.order-summary-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.summary-row.discount {
+  color: var(--color-success);
+}
+
+.summary-row.total {
+  padding-block-start: var(--spacing-sm);
+  border-block-start: 1px solid #ddd;
+  color: var(--color-text-primary);
+  font-size: 16px;
+}
+
+.modal-footer {
+  padding: var(--spacing-lg);
+  border-block-start: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.btn-secondary {
+  padding: 10px 24px;
+  background: var(--color-bg-secondary);
+  border: 1px solid #ddd;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    max-inline-size: 100%;
+    max-block-size: 100%;
+    border-radius: 0;
+  }
+
+  .order-item-detail {
+    grid-template-columns: 60px 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .order-item-detail .item-subtotal {
+    grid-column: 2;
+    justify-self: end;
+  }
+}

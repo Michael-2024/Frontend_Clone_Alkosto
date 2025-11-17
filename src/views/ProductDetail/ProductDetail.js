@@ -4,6 +4,7 @@ import ProductController from '../../controllers/ProductController';
 import CartController from '../../controllers/CartController';
 import UserController from '../../controllers/UserController';
 import CartDrawer from '../../components/CartDrawer/CartDrawer';
+import ProductReviews from '../../components/ProductReviews/ProductReviews';
 import './ProductDetail.css';
 
 const ProductDetail = () => {
@@ -24,6 +25,7 @@ const ProductDetail = () => {
       try {
         const foundProduct = await ProductController.getProductById(id);
         setProduct(foundProduct);
+        try { window.scrollTo({ top: 0, behavior: 'auto' }); } catch (_) { /* noop */ }
         // Sincroniza estado de favoritos por usuario si existe
         try {
           let favs = [];
@@ -31,7 +33,8 @@ const ProductDetail = () => {
             const user = UserController.getCurrentUser();
             favs = JSON.parse(localStorage.getItem(`alkosto_favorites_${user.id}`) || '[]');
           } else {
-            favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+            // Usar clave de invitado para permitir migración después del login
+            favs = JSON.parse(localStorage.getItem('alkosto_guest_favorites') || '[]');
           }
           setIsFavorite(favs.includes(foundProduct?.id));
         } catch (_) { /* noop */ }
@@ -71,13 +74,30 @@ const ProductDetail = () => {
 
   const toggleFavorite = () => {
     if (!product) return;
-    // Si no está logueado, mostrar modal como en el sitio original
+    // Si no está logueado, guardar en favoritos de invitado
     if (!UserController.isLoggedIn()) {
-      // Recordar intento de favorito para aplicarlo después del login/registro
       try {
+        // Guardar en favoritos de invitado para migración posterior
+        const guestKey = 'alkosto_guest_favorites';
+        const guestFavs = JSON.parse(localStorage.getItem(guestKey) || '[]');
+        let next;
+        if (guestFavs.includes(product.id)) {
+          next = guestFavs.filter((pid) => pid !== product.id);
+          setIsFavorite(false);
+        } else {
+          next = [...guestFavs, product.id];
+          setIsFavorite(true);
+        }
+        localStorage.setItem(guestKey, JSON.stringify(next));
+        
+        // También guardar el último producto como pendiente
         localStorage.setItem('pendingFavoriteProductId', String(product.id));
-      } catch (_) { /* noop */ }
-      setShowFavModal(true);
+        
+        // Mostrar modal para invitar a registrarse
+        setShowFavModal(true);
+      } catch (e) {
+        console.error('No se pudo actualizar favoritos de invitado', e);
+      }
       return;
     }
     try {
@@ -294,6 +314,11 @@ const ProductDetail = () => {
         cartItems={cartItems}
         cartTotal={cartTotal}
       />
+
+      {/* Reseñas y calificaciones */}
+      <div className="container">
+        <ProductReviews productId={product?.id} />
+      </div>
     </div>
   );
 };

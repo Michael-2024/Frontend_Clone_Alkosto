@@ -33,7 +33,13 @@ const LoginPassword = () => {
     const result = await UserController.login(email, password);
     console.log('Resultado del login:', result);
     if (result.success) {
-      navigate('/');
+      const intended = localStorage.getItem('intendedCheckout');
+      if (intended) {
+        localStorage.removeItem('intendedCheckout');
+        navigate('/checkout');
+      } else {
+        navigate('/');
+      }
     } else {
       // Mensaje más específico si el email podría no estar registrado
       const errorMessage = result.error || 'Credenciales incorrectas. Inténtalo nuevamente';

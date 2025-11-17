@@ -187,11 +187,18 @@ const Cart = () => {
                   <div className="cart-item-shipping">
                     <p className="shipping-method-title">Método de envío</p>
                     <div className="shipping-option selected">
-                      <input type="radio" checked readOnly />
-                      <span className="shipping-icon">📦</span>
-                      <span className="shipping-text">
-                        Envío <strong>gratis</strong>
-                      </span>
+                      <input type="radio" checked readOnly id={`ship-home-${item.product.id}`} name={`ship-${item.product.id}`} />
+                      <label htmlFor={`ship-home-${item.product.id}`} className="shipping-label">
+                        <span className="shipping-icon">🚚</span>
+                        <span className="shipping-text">Envío <strong>gratis</strong></span>
+                      </label>
+                    </div>
+                    <div className="shipping-option" aria-label="Recoger en tienda gratis">
+                      <input type="radio" readOnly id={`ship-store-${item.product.id}`} name={`ship-${item.product.id}`} />
+                      <label htmlFor={`ship-store-${item.product.id}`} className="shipping-label">
+                        <span className="shipping-icon">🏬</span>
+                        <span className="shipping-text">Recoger en tienda <strong>gratis</strong></span>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -345,17 +352,19 @@ const Cart = () => {
                 <span className="security-icon">🔒</span>
                 Tu compra siempre segura
               </p>
-              <div className="payment-methods">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJzUFYr18R30af9a_noSOxQ9QRqq6fNt5r4A&s" alt="Norton" className="badge-img" />
-                <img src="https://www.shutterstock.com/image-vector/secure-ssl-encryption-logo-connection-260nw-2318420931.jpg" alt="SSL" className="badge-img" />
-                <img src="https://img.freepik.com/vector-gratis/ilustracion-logotipo-diseno-logotipo-degradado-escudo_343694-3222.jpg?semt=ais_hybrid&w=740&q=80" alt="Secure" className="badge-img" />
-              </div>
-              <p className="payment-info">
-                Recibimos todos los medios de pago y también efectivo
-              </p>
-              <div className="payment-logos">
-                <span className="payment-logo">💳</span>
-                <span className="payment-logo">💵</span>
+              <ul className="secure-list" aria-label="Compra segura">
+                <li className="secure-item"><span className="secure-icon">🔒</span> SSL Seguro</li>
+                <li className="secure-item"><span className="secure-icon">✅</span> Compra Protegida</li>
+                <li className="secure-item"><span className="secure-icon">🚚</span> Envío Confiable</li>
+                <li className="secure-item"><span className="secure-icon">⭐</span> Garantía Oficial</li>
+              </ul>
+              <p className="payment-info">Recibimos todos los medios de pago y también efectivo</p>
+              <div className="payment-pills">
+                <span className="pill">Tarjetas Débito</span>
+                <span className="pill">PSE</span>
+                <span className="pill">Daviplata</span>
+                <span className="pill">Nequi</span>
+                <span className="pill">Efectivo</span>
               </div>
             </div>
           </div>

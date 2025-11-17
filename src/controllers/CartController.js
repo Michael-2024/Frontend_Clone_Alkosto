@@ -28,6 +28,11 @@ class CartController {
   constructor() {
     this.cart = new Cart();
     this.isBackendMode = false; // true si usuario logueado
+    // Suscriptores para cambios del carrito (mejor que hacer pooling cada 1s)
+    this.listeners = [];
+    // Si en modo backend falla una operación y caemos a local, evitamos sincronizar
+    // automáticamente con backend para no "revivir" items antiguos.
+    this.localOverride = false;
     this.loadCartFromStorage();
   }
 
@@ -47,12 +52,14 @@ class CartController {
         console.log('Resultado de addToCart backend:', result);
         // Recargar carrito desde backend
         await this.syncWithBackend();
+        this.localOverride = false;
       } catch (error) {
         console.error('Error al agregar al carrito backend:', error);
         // Fallback a localStorage
         console.log('Usando fallback a localStorage');
         this.cart.addItem(product, quantity);
         this.saveCartToStorage();
+        this.localOverride = true;
       }
     } else {
       // Usuario no logueado -> localStorage
@@ -60,6 +67,7 @@ class CartController {
       this.cart.addItem(product, quantity);
       this.saveCartToStorage();
     }
+    this.notifyChange();
     return this.cart;
   }
 
@@ -69,15 +77,18 @@ class CartController {
       try {
         await apiService.removeFromCart(productId);
         await this.syncWithBackend();
+        this.localOverride = false;
       } catch (error) {
         console.error('Error al eliminar del carrito backend:', error);
         this.cart.removeItem(productId);
         this.saveCartToStorage();
+        this.localOverride = true;
       }
     } else {
       this.cart.removeItem(productId);
       this.saveCartToStorage();
     }
+    this.notifyChange();
     return this.cart;
   }
 
@@ -91,21 +102,24 @@ class CartController {
       try {
         await apiService.updateCartItem(productId, quantity);
         await this.syncWithBackend();
+        this.localOverride = false;
       } catch (error) {
         console.error('Error al actualizar cantidad en backend:', error);
         this.cart.updateQuantity(productId, quantity);
         this.saveCartToStorage();
+        this.localOverride = true;
       }
     } else {
       this.cart.updateQuantity(productId, quantity);
       this.saveCartToStorage();
     }
+    this.notifyChange();
     return this.cart;
   }
 
   // Obtener carrito actual
   async getCart() {
-    if (this._shouldUseBackend()) {
+    if (this._shouldUseBackend() && !this.localOverride) {
       await this.syncWithBackend();
     }
     return this.cart;
@@ -117,15 +131,18 @@ class CartController {
       try {
         await apiService.clearCart();
         this.cart.clear();
+        this.localOverride = false;
       } catch (error) {
         console.error('Error al limpiar carrito backend:', error);
         this.cart.clear();
         this.saveCartToStorage();
+        this.localOverride = true;
       }
     } else {
       this.cart.clear();
       this.saveCartToStorage();
     }
+    this.notifyChange();
     return this.cart;
   }
 
@@ -152,6 +169,9 @@ class CartController {
         this.cart.items = [];
       }
       this.isBackendMode = true;
+      this.localOverride = false;
+      this.saveCartToStorage(); // mantener copia local para offline
+      this.notifyChange();
     } catch (error) {
       console.error('Error sincronizando carrito con backend:', error);
       // Mantener carrito local actual
@@ -210,6 +230,7 @@ class CartController {
             item.product.description
           )
         }));
+        this.notifyChange();
       }
     } catch (error) {
       console.error('Error cargando carrito desde storage:', error);
@@ -223,6 +244,22 @@ class CartController {
       await this.syncWithBackend();
     } else {
       this.loadCartFromStorage();
+    }
+  }
+
+  // Observadores (UI se actualiza sin interval)
+  addChangeListener(callback) {
+    this.listeners.push(callback);
+    return () => {
+      this.listeners = this.listeners.filter(cb => cb !== callback);
+    };
+  }
+
+  notifyChange() {
+    try {
+      this.listeners.forEach(cb => cb(this.cart));
+    } catch (e) {
+      // evitar romper por errores en listeners
     }
   }
 }
