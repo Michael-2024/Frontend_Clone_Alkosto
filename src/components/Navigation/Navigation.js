@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(null);
+
+  const slugify = (text) =>
+    (text || '')
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
 
   const categories = [
     {
@@ -350,9 +362,13 @@ const Navigation = () => {
                       {category.subcategories.map((sub, index) => (
                         <a
                           key={index}
-                          href="#!"
+                          href={`#/categoria/${slugify(sub.name || sub)}`}
                           className={`megamenu-sidebar-item ${sub.highlight ? 'highlight' : ''}`}
-                          onClick={(e) => e.preventDefault()}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            navigate(`/categoria/${slugify(sub.name || sub)}`);
+                            setActiveTab(null);
+                          }}
                         >
                           <span>{sub.name || sub}</span>
                           <span className="megamenu-arrow">›</span>
@@ -366,7 +382,15 @@ const Navigation = () => {
                         <>
                           <div className="megamenu-header">
                             <h3 className="megamenu-title">{category.content.title}</h3>
-                            <a href="#!" className="megamenu-view-all" onClick={(e) => e.preventDefault()}>
+                            <a
+                              href={`#/categoria/${category.id}`}
+                              className="megamenu-view-all"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                navigate(`/categoria/${slugify(category.id)}`);
+                                setActiveTab(null);
+                              }}
+                            >
                               Ver todo →
                             </a>
                           </div>
@@ -380,9 +404,13 @@ const Navigation = () => {
                               {category.content.brands.map((brand, index) => (
                                 <a
                                   key={index}
-                                  href="#!"
+                                  href={`#/categoria/${slugify(brand.name)}`}
                                   className="megamenu-brand-card"
-                                  onClick={(e) => e.preventDefault()}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    navigate(`/categoria/${slugify(brand.name)}`);
+                                    setActiveTab(null);
+                                  }}
                                 >
                                   <div className="megamenu-brand-icon">{brand.icon}</div>
                                   <span className="megamenu-brand-name">{brand.name}</span>
@@ -396,7 +424,14 @@ const Navigation = () => {
                             <div className="megamenu-related-links">
                               {category.content.related.map((item, index) => (
                                 <React.Fragment key={index}>
-                                  <a href="#!" onClick={(e) => e.preventDefault()}>
+                                  <a
+                                    href={`#/categoria/${slugify(item)}`}
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      navigate(`/categoria/${slugify(item)}`);
+                                      setActiveTab(null);
+                                    }}
+                                  >
                                     {item}
                                   </a>
                                   {index < category.content.related.length - 1 && (

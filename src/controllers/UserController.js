@@ -243,6 +243,14 @@ class UserController {
       // Notificaciones/Cupón (solo local, opcional)
       NotificationController.createWelcomeNotifications(idStr);
       CouponController.createWelcomeCoupon(idStr);
+      
+      // Verificar si hay redirección pendiente a favoritos
+      const shouldRedirect = localStorage.getItem('pendingFavoriteRedirect');
+      if (shouldRedirect === 'true') {
+        localStorage.removeItem('pendingFavoriteRedirect');
+        return { success: true, user: this.currentUser, redirectToFavorites: true };
+      }
+      
       return { success: true, user: this.currentUser };
     } catch (error) {
       console.error('Error en registerUser:', error);
@@ -282,6 +290,13 @@ class UserController {
       
       // Migrar favoritos de localStorage (guest) al backend
       await this.migrateFavoritesToBackend();
+      
+      // Verificar si hay redirección pendiente a favoritos
+      const shouldRedirect = localStorage.getItem('pendingFavoriteRedirect');
+      if (shouldRedirect === 'true') {
+        localStorage.removeItem('pendingFavoriteRedirect');
+        return { success: true, user: this.currentUser, redirectToFavorites: true };
+      }
       
       return { success: true, user: this.currentUser };
     } catch (e) {

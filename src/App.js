@@ -32,6 +32,14 @@ import AccountFavorites from './views/Account/Favorites';
 import Invoice from './views/Account/Invoice';
 import Notifications from './views/Account/Notifications';
 import Coupons from './views/Account/Coupons';
+import Category from './views/Category/Category';
+import PQRSForm from './views/PQRS/PQRSForm';
+import PQRSList from './views/PQRS/PQRSList';
+import PQRSDetail from './views/PQRS/PQRSDetail';
+import PQRSTracking from './views/PQRS/PQRSTracking';
+import ReturnRequest from './views/Returns/ReturnRequest';
+import ReturnsList from './views/Returns/ReturnsList';
+import ReturnDetail from './views/Returns/ReturnDetail';
 import Test from './Test';
 import './App.css';
 
@@ -86,14 +94,21 @@ function App() {
                 <Route path="/perfil/datos" element={<AccountProfile />} />
                 <Route path="/perfil/direcciones" element={<Addresses />} />
                 <Route path="/perfil/pedidos" element={<Orders />} />
+                <Route path="/perfil/devoluciones" element={<ReturnsList />} />
+                <Route path="/perfil/devoluciones/nueva" element={<ReturnRequest />} />
+                <Route path="/perfil/devoluciones/:returnId" element={<ReturnDetail />} />
                 <Route path="/perfil/pagos" element={<PaymentMethods />} />
                 <Route path="/perfil/favoritos" element={<AccountFavorites />} />
                 <Route path="/perfil/notificaciones" element={<Notifications />} />
                 <Route path="/perfil/cupones" element={<Coupons />} />
                 <Route path="/perfil/factura" element={<Invoice />} />
+                <Route path="/perfil/pqrs" element={<PQRSList />} />
+                <Route path="/perfil/pqrs/nuevo" element={<PQRSForm />} />
+                <Route path="/perfil/pqrs/:ticketNumber" element={<PQRSDetail />} />
+                <Route path="/pqrs/seguimiento" element={<PQRSTracking />} />
                 <Route path="/seguimiento" element={<Tracking />} />
                 <Route path="/perfil" element={<Profile />} />
-                <Route path="/categoria/:categoria" element={<Home />} />
+                <Route path="/categoria/:categoria" element={<Category />} />
                 <Route path="/ofertas" element={<Home />} />
               </Routes>
             </main>

@@ -123,13 +123,15 @@ const Coupons = () => {
               <div className="coupons-grid">
                 {couponsToShow.map((coupon) => {
                   const isUsed = usedCoupons.some(c => c.id === coupon.id);
-                  const isExpired = !coupon.isValid().valid;
+                  const validity = coupon.isValid();
+                  const isInvalid = !validity.valid;
+                  const isExpired = isInvalid && validity.reason === 'Cupón expirado';
                   const daysRemaining = coupon.getDaysRemaining();
 
                   return (
                     <div
                       key={coupon.id}
-                      className={`coupon-card ${isUsed ? 'used' : ''} ${isExpired ? 'expired' : ''}`}
+                      className={`coupon-card ${isUsed ? 'used' : ''} ${isInvalid ? 'expired' : ''}`}
                       style={{ borderLeftColor: coupon.getPriorityColor() }}
                     >
                       <div className="coupon-card-header">
@@ -147,7 +149,7 @@ const Coupons = () => {
                         
                         <div className="coupon-code-display">
                           <code>{coupon.code}</code>
-                          {!isUsed && !isExpired && (
+                          {!isUsed && !isInvalid && (
                             <button
                               onClick={() => copyCouponCode(coupon.code)}
                               className="btn-copy-code"
@@ -183,8 +185,8 @@ const Coupons = () => {
                       <div className="coupon-card-footer">
                         {isUsed ? (
                           <span className="coupon-status used-status">✓ Cupón usado</span>
-                        ) : isExpired ? (
-                          <span className="coupon-status expired-status">✕ Expirado</span>
+                        ) : isInvalid ? (
+                          <span className="coupon-status expired-status">✕ {validity.reason}</span>
                         ) : daysRemaining !== null ? (
                           <span className={`coupon-expiry ${daysRemaining <= 3 ? 'urgent' : ''}`}>
                             ⏰ {coupon.getTimeRemainingText()}

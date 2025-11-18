@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import ProductController from '../../controllers/ProductController';
 import CartController from '../../controllers/CartController';
+import CartDrawer from '../../components/CartDrawer/CartDrawer';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './Account.css';
 import AccountSidebar from './AccountSidebar';
@@ -11,6 +12,10 @@ const Favorites = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(UserController.getCurrentUser());
   const [favorites, setFavorites] = useState([]);
+  const [showCartDrawer, setShowCartDrawer] = useState(false);
+  const [addedProduct, setAddedProduct] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     if (!UserController.isLoggedIn()) {
@@ -41,7 +46,11 @@ const Favorites = () => {
   const handleAddToCart = async (product) => {
     try {
       await CartController.addToCart(product, 1);
-      alert(`${product.name} agregado al carrito`);
+      const cart = await CartController.getCart();
+      setAddedProduct(product);
+      setCartItems(cart.items);
+      setCartTotal(cart.getTotal());
+      setShowCartDrawer(true);
     } catch (error) {
       console.error('Error al agregar al carrito:', error);
     }
@@ -57,9 +66,12 @@ const Favorites = () => {
 
   const clearAll = () => {
     if (!user) return;
+    const confirmed = window.confirm('¿Estás seguro de que deseas eliminar TODOS tus favoritos? Esta acción no se puede deshacer.');
+    if (!confirmed) return;
     const key = `alkosto_favorites_${user.id}`;
     localStorage.setItem(key, '[]');
     setFavorites([]);
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (_) {}
   };
 
   const onLogout = () => { UserController.logout(); navigate('/'); };
@@ -119,6 +131,13 @@ const Favorites = () => {
           </section>
         </div>
       </div>
+      <CartDrawer
+        isOpen={showCartDrawer}
+        onClose={() => setShowCartDrawer(false)}
+        addedProduct={addedProduct}
+        cartItems={cartItems}
+        cartTotal={cartTotal}
+      />
     </div>
   );
 };

@@ -18,11 +18,20 @@ const SearchResults = () => {
     precioMin: '',
     precioMax: '',
   });
+  const [tempPrecioMin, setTempPrecioMin] = useState('');
+  const [tempPrecioMax, setTempPrecioMax] = useState('');
 
   useEffect(() => {
     realizarBusqueda();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
+
+  // Aplicar búsqueda automáticamente para cambios en filtros no asociados a los inputs temporales
+  useEffect(() => {
+    // Ejecuta búsqueda cuando los filtros activos cambian (categoría, orden o precios aplicados)
+    realizarBusqueda();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtros.categoria, filtros.ordenar, filtros.precioMin, filtros.precioMax]);
 
   const realizarBusqueda = async () => {
     setLoading(true);
@@ -56,6 +65,15 @@ const SearchResults = () => {
     realizarBusqueda();
   };
 
+  const aplicarFiltroPrecio = () => {
+    setFiltros(prev => ({
+      ...prev,
+      precioMin: tempPrecioMin,
+      precioMax: tempPrecioMax
+    }));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const limpiarFiltros = async () => {
     setFiltros({
       categoria: '',
@@ -63,6 +81,9 @@ const SearchResults = () => {
       precioMin: '',
       precioMax: '',
     });
+    setTempPrecioMin('');
+    setTempPrecioMax('');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     try {
       const resultados = await SearchService.buscarCoincidencias(query);
       setProductos(resultados);
@@ -70,6 +91,24 @@ const SearchResults = () => {
       console.error('Error al limpiar filtros:', error);
       setProductos([]);
     }
+  };
+
+  const removeFilter = (campo) => {
+    const nuevosFiltros = { ...filtros, [campo]: '' };
+    setFiltros(nuevosFiltros);
+    if (campo === 'precioMin') setTempPrecioMin('');
+    if (campo === 'precioMax') setTempPrecioMax('');
+    // Re-buscar sin ese filtro
+    setTimeout(() => realizarBusqueda(), 100);
+  };
+
+  const getActiveFiltersCount = () => {
+    let count = 0;
+    if (filtros.categoria) count++;
+    if (filtros.ordenar) count++;
+    if (filtros.precioMin) count++;
+    if (filtros.precioMax) count++;
+    return count;
   };
 
   // Obtener categorías únicas de los resultados
@@ -106,6 +145,56 @@ const SearchResults = () => {
             </p>
           )}
         </div>
+
+        {/* Chips de filtros aplicados */}
+        {getActiveFiltersCount() > 0 && (
+          <div className="applied-filters">
+            <span className="filters-label">Filtros aplicados ({getActiveFiltersCount()}):</span>
+            <div className="filter-chips">
+              {filtros.categoria && (
+                <div className="filter-chip">
+                  <span>Categoría: {filtros.categoria}</span>
+                  <button onClick={() => removeFilter('categoria')} aria-label="Quitar filtro">×</button>
+                </div>
+              )}
+              {filtros.ordenar && (
+                <div className="filter-chip">
+                  <span>Orden: {
+                    filtros.ordenar === 'precio-asc' ? 'Precio menor' :
+                    filtros.ordenar === 'precio-desc' ? 'Precio mayor' :
+                    filtros.ordenar === 'rating' ? 'Mejor valorados' :
+                    filtros.ordenar === 'descuento' ? 'Mayor descuento' : filtros.ordenar
+                  }</span>
+                  <button onClick={() => removeFilter('ordenar')} aria-label="Quitar filtro">×</button>
+                </div>
+              )}
+              {filtros.precioMin && filtros.precioMax ? (
+                <div className="filter-chip">
+                  <span>Precio: ${Number(filtros.precioMin).toLocaleString('es-CO')} - ${Number(filtros.precioMax).toLocaleString('es-CO')}</span>
+                  <button onClick={() => { removeFilter('precioMin'); removeFilter('precioMax'); }} aria-label="Quitar filtro">×</button>
+                </div>
+              ) : (
+                <>
+                  {filtros.precioMin && (
+                    <div className="filter-chip">
+                      <span>Precio mín: ${Number(filtros.precioMin).toLocaleString('es-CO')}</span>
+                      <button onClick={() => removeFilter('precioMin')} aria-label="Quitar filtro">×</button>
+                    </div>
+                  )}
+                  {filtros.precioMax && (
+                    <div className="filter-chip">
+                      <span>Precio máx: ${Number(filtros.precioMax).toLocaleString('es-CO')}</span>
+                      <button onClick={() => removeFilter('precioMax')} aria-label="Quitar filtro">×</button>
+                    </div>
+                  )}
+                </>
+              )}
+              <button className="clear-all-filters" onClick={limpiarFiltros}>
+                Limpiar todos
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="search-content">
           {/* Sidebar de filtros */}
@@ -150,28 +239,23 @@ const SearchResults = () => {
                 <input 
                   type="number" 
                   placeholder="Mínimo"
-                  value={filtros.precioMin}
-                  onChange={(e) => handleFiltroChange('precioMin', e.target.value)}
+                  value={tempPrecioMin}
+                  onChange={(e) => setTempPrecioMin(e.target.value)}
                 />
                 <span>-</span>
                 <input 
                   type="number" 
                   placeholder="Máximo"
-                  value={filtros.precioMax}
-                  onChange={(e) => handleFiltroChange('precioMax', e.target.value)}
+                  value={tempPrecioMax}
+                  onChange={(e) => setTempPrecioMax(e.target.value)}
                 />
+                <button className="btn-apply-price" onClick={aplicarFiltroPrecio} aria-label="Aplicar filtro de precio">
+                  →
+                </button>
               </div>
             </div>
 
-            {/* Botones de filtros */}
-            <div className="filter-actions">
-              <button className="btn-apply-filters" onClick={aplicarFiltros}>
-                Aplicar Filtros
-              </button>
-              <button className="btn-clear-filters" onClick={limpiarFiltros}>
-                Limpiar
-              </button>
-            </div>
+
           </aside>
 
           {/* Resultados */}

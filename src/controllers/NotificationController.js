@@ -244,6 +244,82 @@ class NotificationController {
   }
 
   /**
+   * Notificación de devolución creada (RF25)
+   */
+  notifyReturnCreated(userId, ticketNumber, productName, refundAmount) {
+    return this.createNotification(
+      userId,
+      'return',
+      'Solicitud de Devolución Creada',
+      `Tu solicitud de devolución #${ticketNumber} para "${productName}" ha sido creada. Monto: $${refundAmount.toLocaleString('es-CO')}`,
+      'high',
+      { ticketNumber, productName, refundAmount, action: 'return_created' }
+    );
+  }
+
+  /**
+   * Notificación de devolución aprobada (RF25)
+   */
+  notifyReturnApproved(userId, ticketNumber, refundAmount) {
+    return this.createNotification(
+      userId,
+      'return',
+      '¡Devolución Aprobada!',
+      `Tu solicitud de devolución #${ticketNumber} ha sido aprobada. Reembolso: $${refundAmount.toLocaleString('es-CO')}. Recibirás la guía de envío por email.`,
+      'high',
+      { ticketNumber, refundAmount, action: 'return_approved' }
+    );
+  }
+
+  /**
+   * Notificación de devolución rechazada (RF25)
+   */
+  notifyReturnRejected(userId, ticketNumber, reason) {
+    return this.createNotification(
+      userId,
+      'return',
+      'Devolución Rechazada',
+      `Tu solicitud de devolución #${ticketNumber} ha sido rechazada. Motivo: ${reason}`,
+      'high',
+      { ticketNumber, reason, action: 'return_rejected' }
+    );
+  }
+
+  /**
+   * Notificación de devolución en tránsito (RF25)
+   */
+  notifyReturnInTransit(userId, ticketNumber) {
+    return this.createNotification(
+      userId,
+      'return',
+      'Devolución en Camino',
+      `Tu devolución #${ticketNumber} está en tránsito hacia nuestro almacén`,
+      'normal',
+      { ticketNumber, action: 'return_in_transit' }
+    );
+  }
+
+  /**
+   * Notificación de devolución completada (RF25)
+   */
+  notifyReturnCompleted(userId, ticketNumber, refundAmount, refundMethod) {
+    const methodText = {
+      original_payment: 'método de pago original',
+      store_credit: 'crédito en tienda',
+      exchange: 'cambio por otro producto'
+    }[refundMethod] || 'tu cuenta';
+
+    return this.createNotification(
+      userId,
+      'return',
+      '¡Devolución Completada!',
+      `Tu devolución #${ticketNumber} ha sido procesada. El reembolso de $${refundAmount.toLocaleString('es-CO')} se ha enviado a ${methodText}`,
+      'high',
+      { ticketNumber, refundAmount, refundMethod, action: 'return_completed' }
+    );
+  }
+
+  /**
    * Notificación de cuenta (cambio de contraseña, etc.)
    */
   notifyAccount(userId, title, message) {

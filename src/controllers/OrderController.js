@@ -300,19 +300,26 @@ class OrderController {
           }));
 
           // Reconstruir orden
+          const restoredCoupon = orderData.coupon ? { code: orderData.coupon.code, discount: orderData.coupon.discount } : null;
           const order = new Order(
             orderData.id,
             orderData.userId,
             items,
             orderData.shippingAddress,
             orderData.paymentMethod,
-            orderData.status
+            orderData.status,
+            restoredCoupon
           );
 
           // Restaurar fechas y tracking
           order.createdAt = new Date(orderData.createdAt);
           order.updatedAt = new Date(orderData.updatedAt);
           order.trackingNumber = orderData.trackingNumber;
+          // Alinear descuento si estaba persistido
+          if (orderData.discount) {
+            order.discount = orderData.discount;
+            order.total = order.calculateTotal();
+          }
           
           // Restaurar datos de cancelación si existen
           if (orderData.cancellationReason) {

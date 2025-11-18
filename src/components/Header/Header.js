@@ -521,7 +521,11 @@ const Header = ({ cartItemsCount }) => {
                       <div
                         key={p.id}
                         className="viewed-product-card"
-                        onClick={() => navigate(`/producto/${p.id}`)}
+                        onClick={() => {
+                          // Cerrar overlay de búsqueda antes de navegar
+                          setShowSearchOverlay(false);
+                          navigate(`/producto/${p.id}`);
+                        }}
                       >
                         <img src={p.image} alt={p.name} className="viewed-product-image" />
                         <div className="viewed-product-info">

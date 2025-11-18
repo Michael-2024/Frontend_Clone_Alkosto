@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CategorySection.css';
 
 const CategorySection = () => {
+  const navigate = useNavigate();
   const categories = [
     {
       name: 'Celulares',
@@ -158,7 +160,10 @@ const CategorySection = () => {
             key={index}
             href={category.link}
             className={`category-card ${category.highlight ? 'highlight' : ''}`}
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(category.link);
+            }}
           >
             <div
               className="category-icon-container"

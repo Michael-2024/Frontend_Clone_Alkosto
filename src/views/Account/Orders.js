@@ -69,6 +69,7 @@ const Orders = () => {
       loadOrders(); // Recargar pedidos
       setShowCancelModal(false);
       setSelectedOrder(null);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       // Limpiar mensaje después de 5 segundos
       setTimeout(() => {
@@ -232,6 +233,15 @@ const Orders = () => {
                       >
                         Rastrear pedido
                       </button>
+                      {order.status === 'entregado' && (
+                        <button 
+                          className="btn-primary"
+                          onClick={() => navigate(`/perfil/devoluciones/nueva?orderId=${order.id}`)}
+                          title="Solicitar devolución"
+                        >
+                          Solicitar devolución
+                        </button>
+                      )}
                       {order.canBeCancelled().canCancel && (
                         <button 
                           className="btn-cancel-order"

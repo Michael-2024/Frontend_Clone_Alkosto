@@ -217,7 +217,10 @@ class Order {
       shipping: this.shipping,
       trackingNumber: this.trackingNumber,
       cancellationReason: this.cancellationReason || null,
-      cancelledAt: this.cancelledAt || null
+      cancelledAt: this.cancelledAt || null,
+      // Persistencia de descuento y cupón aplicado (RF20)
+      discount: this.discount || 0,
+      coupon: this.coupon ? { code: this.coupon.code, discount: this.discount } : null
     };
   }
 }

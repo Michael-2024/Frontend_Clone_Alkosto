@@ -1,15 +1,41 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import CartController from '../../controllers/CartController';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import UserController from '../../controllers/UserController';
 import './ProductCard.css';
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product, onAddToCart, showFavorite = false }) => {
+  const navigate = useNavigate();
+  const [isFavorite, setIsFavorite] = useState(false);
+
   const handleAddToCart = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (onAddToCart) {
-      await CartController.addToCart(product, 1);
       onAddToCart(product);
+    }
+  };
+
+  const handleToggleFavorite = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!UserController.isLoggedIn()) {
+      // Guardar producto pendiente y redirigir a login
+      localStorage.setItem('pendingFavoriteProductId', String(product.id));
+      localStorage.setItem('pendingFavoriteRedirect', 'true');
+      const email = localStorage.getItem('pendingEmail') || '';
+      navigate(`/login/options${email ? `?email=${encodeURIComponent(email)}` : ''}`);
+      return;
+    }
+
+    // Usuario logueado: toggle favorito
+    const favs = UserController.getFavorites(UserController.getCurrentUser().id);
+    if (favs.includes(product.id)) {
+      UserController.removeFavorite(product.id);
+      setIsFavorite(false);
+    } else {
+      UserController.addFavorite(product.id);
+      setIsFavorite(true);
     }
   };
 
@@ -50,13 +76,25 @@ const ProductCard = ({ product, onAddToCart }) => {
         </div>
       </Link>
       
-      <button 
-        className="add-to-cart-btn"
-        onClick={handleAddToCart}
-        disabled={!product.isInStock()}
-      >
-        {product.isInStock() ? '🛒 Agregar al carrito' : 'Agotado'}
-      </button>
+      <div className="product-card-actions">
+        <button 
+          className="add-to-cart-btn"
+          onClick={handleAddToCart}
+          disabled={!product.isInStock()}
+        >
+          {product.isInStock() ? '🛒 Agregar al carrito' : 'Agotado'}
+        </button>
+        {showFavorite && (
+          <button 
+            className="favorite-btn"
+            onClick={handleToggleFavorite}
+            title={isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+            aria-label={isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+          >
+            {isFavorite ? '❤️' : '🤍'}
+          </button>
+        )}
+      </div>
     </div>
   );
 };
