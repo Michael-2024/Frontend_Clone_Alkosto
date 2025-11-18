@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
+import ChatButton from '../ChatButton/ChatButton';
 // iconos
 import { IoLogoGooglePlaystore } from "react-icons/io5"; // google play
 import { FaAppStoreIos } from "react-icons/fa"; // app store
@@ -21,6 +22,7 @@ const Footer = () => {
               <li><Link to="/envios">Información de Envíos</Link></li>
               <li><Link to="/seguimiento">Rastrear Pedido</Link></li>
               <li><Link to="/pqrs">PQRS</Link></li>
+              <li><ChatButton variant="link" text="Chat en Vivo" showStatus={true} /></li>
             </ul>
           </div>
 

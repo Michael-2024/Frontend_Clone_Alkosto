@@ -66,6 +66,58 @@ class UserController {
     }
   }
 
+  /**
+   * Migrar favoritos de localStorage (guest) al backend después del login
+   * Busca favoritos temporales guardados sin autenticación y los sincroniza
+   */
+  async migrateFavoritesToBackend() {
+    if (!this.currentUser) return;
+    
+    try {
+      // Buscar favoritos de invitado almacenados con una clave genérica
+      const guestFavoritesKey = 'alkosto_guest_favorites';
+      const guestFavorites = localStorage.getItem(guestFavoritesKey);
+      
+      if (guestFavorites) {
+        const favoriteIds = JSON.parse(guestFavorites);
+        
+        // Migrar cada favorito al backend usando la API
+        for (const productId of favoriteIds) {
+          try {
+            await apiService.toggleFavorite(productId);
+            console.log(`Favorito migrado: ${productId}`);
+          } catch (error) {
+            console.error(`Error migrando favorito ${productId}:`, error);
+            // Continuar con los demás aunque falle uno
+          }
+        }
+        
+        // Limpiar favoritos de invitado después de migrar
+        localStorage.removeItem(guestFavoritesKey);
+        console.log('Favoritos de invitado migrados exitosamente');
+      }
+      
+      // También intentar migrar favoritos del sistema anterior (por si acaso)
+      const oldFavoritesKey = this.getFavoritesKey(this.currentUser.id);
+      const oldFavorites = localStorage.getItem(oldFavoritesKey);
+      
+      if (oldFavorites) {
+        const favoriteIds = JSON.parse(oldFavorites);
+        for (const productId of favoriteIds) {
+          try {
+            await apiService.toggleFavorite(productId);
+          } catch (error) {
+            console.error(`Error migrando favorito antiguo ${productId}:`, error);
+          }
+        }
+        // No eliminar la key antigua por compatibilidad
+      }
+    } catch (error) {
+      console.error('Error en migrateFavoritesToBackend:', error);
+      // No lanzar error para no interrumpir el flujo de login
+    }
+  }
+
   // Añadir método para notificar a los componentes sobre cambios de autenticación
   addAuthListener(callback) {
     this.listeners.push(callback);
@@ -185,6 +237,9 @@ class UserController {
       const CartController = require('./CartController').default;
       await CartController.migrateToBackend();
       
+      // Migrar favoritos de localStorage (guest) al backend
+      await this.migrateFavoritesToBackend();
+      
       // Notificaciones/Cupón (solo local, opcional)
       NotificationController.createWelcomeNotifications(idStr);
       CouponController.createWelcomeCoupon(idStr);
@@ -225,10 +280,30 @@ class UserController {
       const CartController = require('./CartController').default;
       await CartController.migrateToBackend();
       
+      // Migrar favoritos de localStorage (guest) al backend
+      await this.migrateFavoritesToBackend();
+      
       return { success: true, user: this.currentUser };
     } catch (e) {
       return { success: false, error: 'Credenciales incorrectas' };
     }
+  }
+
+  // Login simulado por código (flujo UX)
+  loginWithCode(email) {
+    // Uso educativo: valida que exista en la lista local y crea sesión local
+    const users = this.getAllUsers();
+    const found = users.find(u => String(u.email).toLowerCase() === String(email).toLowerCase());
+    if (!found) {
+      return { success: false, error: 'Usuario no registrado' };
+    }
+    const user = new User(found.id, found.email, found.firstName, found.lastName, '');
+    user.phone = found.phone || '';
+    this.currentUser = user;
+    this.saveUser();
+    this.syncPendingFavorite();
+    this.notifyAuthChange();
+    return { success: true, user: this.currentUser };
   }
 
   // Cerrar sesión

@@ -249,6 +249,15 @@ class ApiService {
   async checkEmailExists(email) {
     return await this.get(`/auth/verificar_email/?email=${encodeURIComponent(email)}`);
   }
+
+  // === ENDPOINTS DE RESEÑAS ===
+  async getProductReviews(productId) {
+    return await this.get(`/resenas/producto/${productId}/`);
+  }
+
+  async createReview(data) {
+    return await this.post('/resenas/crear/', data, true);
+  }
 }
 
 // Exportar instancia única

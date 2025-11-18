@@ -263,6 +263,9 @@ const Checkout = () => {
         // Simular delay de procesamiento
         await new Promise(resolve => setTimeout(resolve, 1500));
 
+        // Resetear loading antes de navegar para evitar modal persistente
+        setLoading(false);
+
         // Navegar a confirmación
         navigate(`/perfil/pedidos?new=${result.order.id}`);
       } else {

@@ -193,7 +193,7 @@ const Tracking = () => {
                 </div>
 
                 <div className="tracking-actions">
-                  <Link to="/account/orders" className="btn-secondary">
+                  <Link to="/perfil/pedidos" className="btn-secondary">
                     Ver mis pedidos
                   </Link>
                   <button 

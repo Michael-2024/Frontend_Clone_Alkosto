@@ -155,12 +155,18 @@ const Header = ({ cartItemsCount }) => {
     window.location.href = `/register?email=${encodeURIComponent(email)}`;
   };
 
-  const handleLogout = (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
-    UserController.logout();
-    setIsLoggedIn(false);
-    setUserName('');
-    setShowAccountMenu(false);
+    try {
+      await UserController.logout();
+    } finally {
+      setIsLoggedIn(false);
+      setUserName('');
+      setShowAccountMenu(false);
+      setShowSearchOverlay(false);
+      setShowLocationMenu(false);
+      navigate('/');
+    }
   };
 
   // Cerrar menús al hacer clic fuera de ellos

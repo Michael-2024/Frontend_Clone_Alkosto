@@ -96,7 +96,13 @@ const LoginCode = () => {
     }
     if (fullCode === '1234') {
       UserController.loginWithCode(email);
-      navigate('/');
+      const intended = localStorage.getItem('intendedCheckout');
+      if (intended) {
+        localStorage.removeItem('intendedCheckout');
+        navigate('/checkout');
+      } else {
+        navigate('/');
+      }
     } else {
       setError('Código incorrecto. Inténtalo nuevamente');
     }

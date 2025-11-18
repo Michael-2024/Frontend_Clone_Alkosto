@@ -1,0 +1,23 @@
+.reviews-section { margin-top: 32px; border-top: 1px solid #eee; padding-top: 24px; }
+.reviews-header { display:flex; align-items:center; justify-content:space-between; margin-bottom: 16px; }
+.reviews-title { font-size: 1.25rem; font-weight: 600; }
+.rating-summary { display:flex; align-items:center; gap:8px; color:#555; }
+.stars { color: #FFB400; font-size: 18px; letter-spacing: 2px; }
+.reviews-list { display:flex; flex-direction:column; gap:16px; }
+.review-card { border:1px solid #eee; border-radius:8px; padding:12px 14px; }
+.review-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+.review-user { font-weight:600; color:#333; }
+.review-date { color:#888; font-size:12px; }
+.review-comment { color:#444; line-height:1.4; white-space:pre-wrap; }
+.review-form { margin-top: 16px; border:1px dashed #ddd; border-radius:8px; padding:12px; }
+.form-row { display:flex; gap:12px; align-items:center; margin-bottom:10px; }
+.form-row textarea { width:100%; min-height:80px; resize:vertical; padding:8px; border:1px solid #ccc; border-radius:6px; }
+.form-row select { padding:8px; border:1px solid #ccc; border-radius:6px; }
+.form-actions { display:flex; gap:12px; justify-content:flex-end; }
+.btn-primary { background:#00A859; color:#fff; border:none; padding:10px 14px; border-radius:6px; cursor:pointer; }
+.btn-primary:disabled { background:#9bd7be; cursor:not-allowed; }
+.btn-secondary { background:#f3f3f3; color:#333; border:1px solid #ddd; padding:10px 14px; border-radius:6px; cursor:pointer; }
+.helper-text { color:#666; font-size:12px; margin-top:-6px; margin-bottom:8px; }
+.empty-state { color:#666; font-style:italic; }
+.error-text { color:#c23328; font-size:12px; margin-top:6px; }
+.success-text { color:#008a47; font-size:12px; margin-top:6px; }
