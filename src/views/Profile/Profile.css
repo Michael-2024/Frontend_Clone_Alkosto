@@ -51,6 +51,22 @@
 .section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
 .section-header h3 { margin: 0; }
 .pill { background: #f5f5f5; border-radius: 999px; padding: 2px 8px; font-size: 12px; color: #333; }
+.btn-remove-all {
+  margin-left: auto;
+  padding: 6px 14px;
+  background: #fff;
+  border: 1px solid #eb5b25;
+  color: #eb5b25;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-remove-all:hover {
+  background: #eb5b25;
+  color: #fff;
+}
 
 .empty-state { text-align: center; padding: 28px 8px; }
 .empty-emoji { font-size: 28px; }

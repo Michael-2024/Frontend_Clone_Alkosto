@@ -44,6 +44,8 @@ class CouponController {
         const data = JSON.parse(userCouponsStored);
         this.userCoupons = new Map(Object.entries(data));
       }
+      // Limpieza automática de cupones expirados antiguos (RF20 mantenimiento)
+      this.cleanupExpiredCoupons();
     } catch (error) {
       console.error('Error loading coupons:', error);
       this.coupons = [];

@@ -174,14 +174,14 @@ const Checkout = () => {
   const handleContinueToPayment = () => {
     if (validateShippingForm()) {
       setStep(2);
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const handleContinueToConfirmation = () => {
     if (validatePaymentForm()) {
       setStep(3);
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -901,7 +901,7 @@ const Checkout = () => {
                   <button
                     type="button"
                     className="btn-secondary"
-                    onClick={() => setStep(1)}
+                    onClick={() => { setStep(1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   >
                     Volver
                   </button>
@@ -933,7 +933,7 @@ const Checkout = () => {
                     <p>{shippingData.city}, {shippingData.department}</p>
                     <p>{shippingData.phone}</p>
                     <p>{shippingData.email}</p>
-                    <button className="link-button" onClick={() => setStep(1)}>
+                    <button className="link-button" onClick={() => { setStep(1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                       Editar
                     </button>
                   </div>
@@ -959,7 +959,7 @@ const Checkout = () => {
                         <p>Efectivo</p>
                       </>
                     )}
-                    <button className="link-button" onClick={() => setStep(2)}>
+                    <button className="link-button" onClick={() => { setStep(2); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                       Editar
                     </button>
                   </div>
@@ -985,7 +985,7 @@ const Checkout = () => {
                   <button
                     type="button"
                     className="btn-secondary"
-                    onClick={() => setStep(2)}
+                    onClick={() => { setStep(2); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                     disabled={loading}
                   >
                     Volver

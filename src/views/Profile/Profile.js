@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import ProductController from '../../controllers/ProductController';
 import CartController from '../../controllers/CartController';
+import CartDrawer from '../../components/CartDrawer/CartDrawer';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './Profile.css';
 
@@ -14,6 +15,10 @@ const Profile = () => {
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
   const [user, setUser] = useState(UserController.getCurrentUser());
+  const [showCartDrawer, setShowCartDrawer] = useState(false);
+  const [addedProduct, setAddedProduct] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   // Si no hay sesión, redirigir a login de opciones como Alkosto
   useEffect(() => {
@@ -44,7 +49,11 @@ const Profile = () => {
   const handleAddToCart = async (product) => {
     try {
       await CartController.addToCart(product, 1);
-      alert(`${product.name} agregado al carrito`);
+      const cart = await CartController.getCart();
+      setAddedProduct(product);
+      setCartItems(cart.items);
+      setCartTotal(cart.getTotal());
+      setShowCartDrawer(true);
     } catch (error) {
       console.error('Error al agregar al carrito:', error);
     }
@@ -58,6 +67,17 @@ const Profile = () => {
     const next = ids.filter((id) => id !== productId);
     localStorage.setItem(key, JSON.stringify(next));
     setFavorites((prev) => prev.filter((p) => p.id !== productId));
+  };
+
+  // Eliminar todos los favoritos con confirmación
+  const removeAllFavorites = () => {
+    if (!user) return;
+    if (window.confirm('¿Estás seguro de que deseas eliminar todos tus favoritos?')) {
+      const key = `alkosto_favorites_${user.id}`;
+      localStorage.setItem(key, JSON.stringify([]));
+      setFavorites([]);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const favoriteCount = favorites.length;
@@ -87,6 +107,11 @@ const Profile = () => {
           <div className="section-header">
             <h3>Mis favoritos</h3>
             <span className="pill">{favoriteCount}</span>
+            {favoriteCount > 0 && (
+              <button className="btn-remove-all" onClick={removeAllFavorites}>
+                Eliminar todos
+              </button>
+            )}
           </div>
 
           {favoriteCount === 0 ? (

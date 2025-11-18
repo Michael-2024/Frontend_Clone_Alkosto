@@ -94,6 +94,11 @@ const RegisterPassword = () => {
         password: form.password
       });
       if (result.success) {
+        // Verificar si debe redirigir a favoritos
+        if (result.redirectToFavorites) {
+          navigate('/perfil/favoritos');
+          return;
+        }
         navigate('/verify', { 
           state: { email, phone, fromRegister: true } 
         });

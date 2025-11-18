@@ -33,6 +33,11 @@ const LoginPassword = () => {
     const result = await UserController.login(email, password);
     console.log('Resultado del login:', result);
     if (result.success) {
+      // Verificar si debe redirigir a favoritos
+      if (result.redirectToFavorites) {
+        navigate('/perfil/favoritos');
+        return;
+      }
       const intended = localStorage.getItem('intendedCheckout');
       if (intended) {
         localStorage.removeItem('intendedCheckout');

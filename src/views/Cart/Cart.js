@@ -21,6 +21,9 @@ const Cart = () => {
   const [couponError, setCouponError] = useState('');
   const [couponSuccess, setCouponSuccess] = useState('');
 
+  // Método de envío seleccionado (home/store)
+  const [shippingMethod, setShippingMethod] = useState('home');
+
   // Cargar carrito al iniciar
   React.useEffect(() => {
     const loadCart = async () => {
@@ -39,6 +42,7 @@ const Cart = () => {
   const handleRemoveItem = async (productId) => {
     await CartController.removeFromCart(productId);
     updateCart();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleUpdateQuantity = async (productId, newQuantity) => {
@@ -50,6 +54,7 @@ const Cart = () => {
     if (window.confirm('¿Estás seguro de que deseas vaciar el carrito?')) {
       await CartController.clearCart();
       updateCart();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -186,15 +191,27 @@ const Cart = () => {
 
                   <div className="cart-item-shipping">
                     <p className="shipping-method-title">Método de envío</p>
-                    <div className="shipping-option selected">
-                      <input type="radio" checked readOnly id={`ship-home-${item.product.id}`} name={`ship-${item.product.id}`} />
+                    <div className={`shipping-option ${shippingMethod === 'home' ? 'selected' : ''}`}>
+                      <input 
+                        type="radio" 
+                        id={`ship-home-${item.product.id}`} 
+                        name={`ship-${item.product.id}`} 
+                        checked={shippingMethod === 'home'}
+                        onChange={() => setShippingMethod('home')}
+                      />
                       <label htmlFor={`ship-home-${item.product.id}`} className="shipping-label">
                         <span className="shipping-icon">🚚</span>
                         <span className="shipping-text">Envío <strong>gratis</strong></span>
                       </label>
                     </div>
-                    <div className="shipping-option" aria-label="Recoger en tienda gratis">
-                      <input type="radio" readOnly id={`ship-store-${item.product.id}`} name={`ship-${item.product.id}`} />
+                    <div className={`shipping-option ${shippingMethod === 'store' ? 'selected' : ''}`} aria-label="Recoger en tienda gratis">
+                      <input 
+                        type="radio" 
+                        id={`ship-store-${item.product.id}`} 
+                        name={`ship-${item.product.id}`} 
+                        checked={shippingMethod === 'store'}
+                        onChange={() => setShippingMethod('store')}
+                      />
                       <label htmlFor={`ship-store-${item.product.id}`} className="shipping-label">
                         <span className="shipping-icon">🏬</span>
                         <span className="shipping-text">Recoger en tienda <strong>gratis</strong></span>

@@ -93,6 +93,20 @@ const Account = () => {
                 <div className="card-desc">Guarda y revisa tus productos</div>
               </Link>
 
+              {/*  Cupones  */}
+              <Link to="/perfil/cupones" className="account-card">
+                <div className="card-icon" aria-hidden>🎟️</div>
+                <div className="card-title">Cupones</div>
+                <div className="card-desc">Consulta y usa tus cupones</div>
+              </Link>
+
+              {/*  PQRS  */}
+              <Link to="/perfil/pqrs" className="account-card">
+                <div className="card-icon" aria-hidden>📝</div>
+                <div className="card-title">PQRS</div>
+                <div className="card-desc">Peticiones, Quejas, Reclamos y Sugerencias</div>
+              </Link>
+
                  {/*  Seguimiento de pedido lupa  */}
               <Link to="/seguimiento" className="account-card">
                 <RxMagnifyingGlass size={32} color="#ff5500ff" />

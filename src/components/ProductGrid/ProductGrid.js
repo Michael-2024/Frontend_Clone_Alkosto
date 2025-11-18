@@ -18,6 +18,7 @@ const ProductGrid = ({ products, onAddToCart }) => {
           key={product.id}
           product={product}
           onAddToCart={onAddToCart}
+          showFavorite={true}
         />
       ))}
     </div>

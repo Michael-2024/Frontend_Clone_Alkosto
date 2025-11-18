@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import OrderController from '../../controllers/OrderController';
 import '../Account/Account.css';
@@ -7,6 +7,7 @@ import './Tracking.css';
 
 const Tracking = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [trackingNumber, setTrackingNumber] = useState('');
   const [document, setDocument] = useState('');
   const [order, setOrder] = useState(null);
@@ -14,8 +15,24 @@ const Tracking = () => {
   const [searching, setSearching] = useState(false);
 
   useEffect(() => {
-    // No requiere login en la vida real, pero aquí dejamos acceso abierto
-  }, []);
+    // Auto-rellenar desde URL si viene de página de pedidos
+    const trackingFromUrl = searchParams.get('tracking');
+    const docFromUrl = searchParams.get('doc');
+    
+    if (trackingFromUrl && docFromUrl) {
+      setTrackingNumber(trackingFromUrl);
+      setDocument(docFromUrl);
+      // Auto-buscar el pedido
+      setTimeout(() => {
+        const foundOrder = OrderController.getOrderByTracking(trackingFromUrl.trim(), docFromUrl.trim());
+        if (foundOrder) {
+          setOrder(foundOrder);
+        } else {
+          setError('No se encontró el pedido con los datos proporcionados.');
+        }
+      }, 300);
+    }
+  }, [searchParams]);
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-CO', {

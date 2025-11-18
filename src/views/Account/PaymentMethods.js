@@ -149,6 +149,7 @@ const PaymentMethods = () => {
       setTimeout(() => setSuccessMessage(''), 3000);
       resetForm();
       loadPaymentMethods(currentUser.id);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setFormErrors({ general: result.message });
     }
@@ -178,6 +179,7 @@ const PaymentMethods = () => {
         setSuccessMessage('Método de pago eliminado');
         setTimeout(() => setSuccessMessage(''), 3000);
         loadPaymentMethods(currentUser.id);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   };
