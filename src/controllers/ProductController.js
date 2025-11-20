@@ -3,6 +3,47 @@ import Product from '../models/Product';
 
 // Controlador de Productos conectado al backend
 class ProductController {
+  // Mapeo de slugs del frontend a slugs reales en la BD
+  constructor() {
+    this.slugMap = {
+      // Celulares - categoría principal redirige a smartphones
+      'celulares': 'celulares-smartphones',
+      'smartphones': 'celulares-smartphones',
+      'celulares-basicos': 'celulares-celulares-basicos',
+      'accesorios': 'celulares-accesorios',
+      
+      // Computadores - categoría principal redirige a portátiles
+      'computadores': 'computadores-portatiles',
+      'portatiles': 'computadores-portatiles',
+      'gaming': 'computadores-gaming',
+      'accesorios-pc': 'computadores-accesorios-pc',
+      
+      // Electrodomésticos - categoría principal redirige a neveras
+      'electrodomesticos': 'electrodomesticos-neveras',
+      'neveras': 'electrodomesticos-neveras',
+      'lavadoras': 'electrodomesticos-lavadoras',
+      'microondas': 'electrodomesticos-microondas',
+      
+      // TV y Video - categoría principal redirige a smart tv
+      'tv': 'tv-smart-tv',
+      'smart-tv': 'tv-smart-tv',
+      'tv-led': 'tv-led',
+      'tv-oled': 'tv-tv-oled',  // Nota: slug real es tv-tv-oled
+      'televisores': 'tv-smart-tv',
+      
+      // Audio - categoría principal redirige a parlantes
+      'audio': 'audio-parlantes',
+      'parlantes': 'audio-parlantes',
+      'audifonos': 'audio-audifonos',
+      'barras-de-sonido': 'audio-barras-de-sonido',
+    };
+  }
+
+  // Obtener el slug correcto para la BD
+  getRealSlug(frontendSlug) {
+    return this.slugMap[frontendSlug] || frontendSlug;
+  }
+
   // Adaptar respuesta del backend a instancias de Product (si se requiere para métodos locales)
   toProductModel(raw) {
     return new Product(
@@ -48,8 +89,10 @@ class ProductController {
   }
 
   async porCategoria(slug, extra = {}) {
+    // Convertir slug del frontend al slug real de la BD
+    const realSlug = this.getRealSlug(slug);
     const qs = Object.keys(extra).length ? '?' + new URLSearchParams(extra).toString() : '';
-    const resp = await apiService.get(`/categoria/${slug}/${qs}`);
+    const resp = await apiService.get(`/categoria/${realSlug}/${qs}`);
     return resp.productos ? resp.productos.map(p => this.toProductModel(p)) : [];
   }
 
