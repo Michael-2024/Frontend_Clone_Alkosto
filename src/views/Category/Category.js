@@ -47,14 +47,10 @@ const Category = () => {
       try {
         const data = await productController.porCategoria(categoria, {});
         let list = Array.isArray(data) ? data : [];
-        if (!list.length) {
-          const fallback = getFallbackProducts(categoria);
-          list = fallback;
-        }
         setProducts(list);
       } catch (e) {
-        console.warn('Fallo cargando categoría, usando fallback local:', e);
-        setProducts(getFallbackProducts(categoria));
+        console.error('Error cargando categoría:', e);
+        setProducts([]);
       } finally {
         setLoading(false);
       }
@@ -292,36 +288,3 @@ const Category = () => {
 };
 
 export default Category;
-
-// --- Fallback dataset para demo/educativo ---
-function getFallbackProducts(slug){
-  const s = (slug || '').toLowerCase();
-  const items = [];
-  const idBase = Math.floor(Math.random()*100000);
-  if (s.includes('lavadora') || s.includes('lavado') || s === 'lavadoras' || s === 'lavadoras-y-secadoras'){
-    items.push(
-      new Product(idBase+1,'Lavadora Samsung 17Kg Carga Superior',1699050,2450000,30,'https://images.unsplash.com/photo-1597175848600-82ca914c5a7a?w=800','Lavadoras',4.6,15,'Eficiencia energética y múltiples programas'),
-      new Product(idBase+2,'Lavadora LG 19Kg Carga Superior',1859050,2599000,28,'https://images.unsplash.com/photo-1595433707802-6b2626ef1b4a?w=800','Lavadoras',4.8,12,'Motor Inverter y Smart Diagnosis'),
-      new Product(idBase+3,'Lavasecadora Whirlpool 20Kg Gris',2399050,3299000,27,'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800','Lavadoras',4.5,8,'Lavado y secado en un solo equipo')
-    );
-  } else if (s.includes('secadora') || s === 'secadoras'){
-    items.push(
-      new Product(idBase+4,'Secadora Samsung 20Kg Bomba de Calor',2699050,3599000,25,'https://images.unsplash.com/photo-1581579188871-45ea61f2e7b9?w=800','Secadoras',4.7,10,'Cuidado avanzado de prendas'),
-      new Product(idBase+5,'Secadora LG 18Kg Doble Inverter',2399050,3199000,25,'https://images.unsplash.com/photo-1597175850400-2cc09ca4e8d0?w=800','Secadoras',4.6,9,'Eficiencia y bajo ruido'),
-      new Product(idBase+6,'Secadora Electrolux 16Kg',1899050,2499000,24,'https://images.unsplash.com/photo-1545153996-7a8b80d29031?w=800','Secadoras',4.4,7,'Programas para diferentes telas')
-    );
-  } else if (s.includes('celular') || s === 'celulares'){
-    items.push(
-      new Product(idBase+7,'Samsung Galaxy S24 256GB',3999050,4599000,13,'https://images.unsplash.com/photo-1510554310709-f54cee6b6c25?w=800','Celulares',4.9,20,'Pantalla AMOLED 120Hz'),
-      new Product(idBase+8,'iPhone 15 128GB',4999050,5499000,9,'https://images.unsplash.com/photo-1591337676887-a217a6970a8e?w=800','Celulares',4.8,15,'Chip A16 y cámara avanzada'),
-      new Product(idBase+9,'Xiaomi Redmi Note 13 Pro',1499050,1799000,17,'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800','Celulares',4.7,25,'Rendimiento y batería de larga duración')
-    );
-  } else if (s.includes('televisor') || s === 'televisores' || s.includes('tv')){
-    items.push(
-      new Product(idBase+10,'TV Samsung 55" 4K QLED',2399050,2999000,20,'https://images.unsplash.com/photo-1583225272837-757a36e79f34?w=800','Televisores',4.8,11,'Colores vivos y HDR'),
-      new Product(idBase+11,'TV LG 65" OLED C3',5999050,6999000,14,'https://images.unsplash.com/photo-1593359677879-01272ae2d1e8?w=800','Televisores',4.9,6,'Negros perfectos y Dolby Vision'),
-      new Product(idBase+12,'TV TCL 50" 4K',1599050,1999000,20,'https://images.unsplash.com/photo-1593359677721-78319f78146a?w=800','Televisores',4.6,18,'Google TV integrado')
-    );
-  }
-  return items;
-}
