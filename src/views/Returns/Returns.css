@@ -174,11 +174,13 @@
 }
 
 .product-card .product-image {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  border-radius: 8px;
-  margin-right: 20px;
+  position: relative;
+  inset-block-start: 0px;
+  inset-inline-start: 25px;
+  inline-size: 200px;           /* ← Reducir de 300 a 200 */
+  block-size: 200px;            /* ← Reducir de 250 a 200 */
+  border-radius: 8px;           /* ← Añadir esquinas redondeadas */
+  z-index: 1;
 }
 
 .product-card .product-info {
