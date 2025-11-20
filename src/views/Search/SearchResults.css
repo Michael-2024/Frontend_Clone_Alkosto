@@ -109,17 +109,31 @@
 .price-range {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   position: relative;
+  width: 84%;
 }
 
 .price-range input {
   flex: 1;
   min-width: 0;
-  padding: 4px 6px;
+  padding: 4px 2px;
   border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 13px;
+  border-radius: 2px;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Hide spinner for Chrome, Safari, Edge, Opera */
+.price-range input::-webkit-outer-spin-button,
+.price-range input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide spinner for Firefox */
+.price-range input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .price-range input:focus {
@@ -130,6 +144,7 @@
 .price-range span {
   color: #999;
   font-size: 12px;
+  flex-shrink: 0;
 }
 
 .btn-apply-price {
@@ -145,6 +160,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: background 0.2s;
 }
 
 .btn-apply-price:hover {
@@ -316,6 +332,10 @@
   .search-content {
     grid-template-columns: 200px 1fr;
     gap: 1.5rem;
+  }
+
+  .search-filters {
+    padding: 1rem;
   }
 
   .products-grid {
