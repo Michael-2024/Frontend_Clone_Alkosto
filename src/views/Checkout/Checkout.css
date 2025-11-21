@@ -2,7 +2,7 @@
 
 .checkout-page {
   background-color: #f5f5f5;
-  min-height: 100vh;
+  min-block-size: 100vh;
   padding: 20px 0 60px;
 }
 
@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 30px;
+  margin-block-end: 30px;
   padding: 0 20px;
   font-size: 14px;
   color: #666;
@@ -55,11 +55,11 @@
 /* Error Message */
 .checkout-error {
   background-color: #fff3f3;
-  border-left: 4px solid #dc3545;
+  border-inline-start: 4px solid #dc3545;
   color: #dc3545;
   padding: 15px;
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin-block-end: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -72,7 +72,7 @@
 
 /* Section */
 .checkout-section {
-  margin-bottom: 30px;
+  margin-block-end: 30px;
 }
 
 .section-title {
@@ -82,17 +82,17 @@
   font-size: 22px;
   font-weight: 700;
   color: #333;
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #f0f0f0;
+  margin-block-end: 25px;
+  padding-block-end: 15px;
+  border-block-end: 2px solid #f0f0f0;
 }
 
 .step-number {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  inline-size: 36px;
+  block-size: 36px;
   background-color: #004797;
   color: white;
   border-radius: 50%;
@@ -150,7 +150,7 @@
 
 .form-field textarea {
   resize: vertical;
-  min-height: 80px;
+  min-block-size: 80px;
 }
 
 /* Payment Methods */
@@ -158,7 +158,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 25px;
+  margin-block-end: 25px;
 }
 
 .payment-option {
@@ -201,7 +201,7 @@
   font-size: 16px;
   font-weight: 700;
   color: #333;
-  margin-bottom: 4px;
+  margin-block-end: 4px;
 }
 
 .payment-desc {
@@ -210,9 +210,9 @@
 }
 
 .payment-form {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
+  margin-block-start: 20px;
+  padding-block-start: 20px;
+  border-block-start: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -223,9 +223,9 @@
   display: flex;
   gap: 15px;
   justify-content: flex-end;
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
+  margin-block-start: 30px;
+  padding-block-start: 20px;
+  border-block-start: 1px solid #e0e0e0;
 }
 
 .btn-primary,
@@ -271,14 +271,14 @@
 }
 
 .btn-place-order {
-  min-width: 200px;
+  min-inline-size: 200px;
 }
 
 .spinner {
-  width: 16px;
-  height: 16px;
+  inline-size: 16px;
+  block-size: 16px;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
+  border-block-start-color: white;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -292,7 +292,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-block-end: 30px;
 }
 
 .summary-block {
@@ -307,8 +307,8 @@
   font-weight: 700;
   color: #333;
   margin: 0 0 15px 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
+  padding-block-end: 10px;
+  border-block-end: 1px solid #ddd;
 }
 
 .summary-block p {
@@ -325,7 +325,7 @@
   font-weight: 600;
   cursor: pointer;
   text-decoration: underline;
-  margin-top: 10px;
+  margin-block-start: 10px;
   padding: 0;
 }
 
@@ -335,14 +335,14 @@
 
 /* Productos en Checkout */
 .checkout-products {
-  margin-bottom: 30px;
+  margin-block-end: 30px;
 }
 
 .checkout-products h3 {
   font-size: 18px;
   font-weight: 700;
   color: #333;
-  margin-bottom: 15px;
+  margin-block-end: 15px;
 }
 
 .checkout-product {
@@ -352,13 +352,13 @@
   padding: 15px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  margin-bottom: 12px;
+  margin-block-end: 12px;
   background-color: #fafafa;
 }
 
 .checkout-product img {
-  width: 80px;
-  height: 80px;
+  inline-size: 80px;
+  block-size: 80px;
   object-fit: contain;
   border-radius: 4px;
   background-color: white;
@@ -390,7 +390,7 @@
 /* Sidebar - Resumen */
 .checkout-sidebar {
   position: sticky;
-  top: 20px;
+  inset-block-start: 20px;
 }
 
 .order-summary {
@@ -406,8 +406,8 @@
   font-weight: 700;
   color: #333;
   margin: 0 0 20px 0;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #f0f0f0;
+  padding-block-end: 15px;
+  border-block-end: 2px solid #f0f0f0;
 }
 
 .summary-item {
@@ -446,8 +446,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  margin-top: 15px;
-  border-top: 2px solid #e0e0e0;
+  margin-block-start: 15px;
+  border-block-start: 2px solid #e0e0e0;
   font-size: 18px;
   font-weight: 700;
   color: #333;
@@ -463,13 +463,13 @@
   padding: 15px;
   border-radius: 6px;
   text-align: center;
-  margin-top: 20px;
+  margin-block-start: 20px;
 }
 
 .security-badges .security-icon {
   font-size: 24px;
   display: block;
-  margin-bottom: 8px;
+  margin-block-end: 8px;
 }
 
 .security-badges p {
@@ -483,8 +483,8 @@
 .coupon-section {
   margin: 20px 0;
   padding: 15px 0;
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
+  border-block-start: 1px solid #e0e0e0;
+  border-block-end: 1px solid #e0e0e0;
 }
 
 .coupon-section h4 {
@@ -593,7 +593,7 @@
 }
 
 .coupon-message {
-  margin-top: 8px;
+  margin-block-start: 8px;
   padding: 8px 10px;
   border-radius: 4px;
   font-size: 13px;
@@ -623,18 +623,18 @@
 
 /* Saved Payment Methods */
 .saved-methods-section {
-  margin-bottom: 20px;
+  margin-block-end: 20px;
 }
 
 .subsection-title {
   font-size: 16px;
   font-weight: 600;
   color: #333;
-  margin-bottom: 15px;
+  margin-block-end: 15px;
 }
 
 .payment-option.saved {
-  margin-bottom: 10px;
+  margin-block-end: 10px;
 }
 
 .default-badge-inline {
@@ -646,7 +646,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 .or-divider {
@@ -658,10 +658,10 @@
 .or-divider::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
+  inset-block-start: 50%;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  block-size: 1px;
   background: #e0e0e0;
   z-index: 0;
 }
@@ -678,9 +678,9 @@
 
 /* Save Payment Option */
 .save-payment-option {
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px dashed #e0e0e0;
+  margin-block-start: 15px;
+  padding-block-start: 15px;
+  border-block-start: 1px dashed #e0e0e0;
 }
 
 .checkbox-label {
@@ -693,15 +693,15 @@
 }
 
 .checkbox-label input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
+  inline-size: 18px;
+  block-size: 18px;
   cursor: pointer;
 }
 
 .nickname-input {
-  width: 100%;
+  inline-size: 100%;
   padding: 10px;
-  margin-top: 10px;
+  margin-block-start: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
@@ -763,7 +763,7 @@
 
   .btn-primary,
   .btn-secondary {
-    width: 100%;
+    inline-size: 100%;
   }
 }
 
@@ -812,7 +812,7 @@ body.dark-mode .checkout-breadcrumb span.active {
 }
 
 body.dark-mode .section-title {
-  border-bottom-color: #3a3a3a;
+  border-block-end-color: #3a3a3a;
 }
 
 body.dark-mode .form-field label,
@@ -862,11 +862,11 @@ body.dark-mode .checkout-product p {
 }
 
 body.dark-mode .payment-form {
-  border-top-color: #3a3a3a;
+  border-block-start-color: #3a3a3a;
 }
 
 body.dark-mode .form-actions {
-  border-top-color: #3a3a3a;
+  border-block-start-color: #3a3a3a;
 }
 
 body.dark-mode .btn-secondary {
@@ -911,7 +911,7 @@ body.dark-mode .checkout-product .product-price {
 }
 
 body.dark-mode .summary-total {
-  border-top-color: #3a3a3a;
+  border-block-start-color: #3a3a3a;
   color: #ffffff;
 }
 
@@ -928,8 +928,8 @@ body.dark-mode .security-badges p {
 }
 
 body.dark-mode .coupon-section {
-  border-top-color: #3a3a3a;
-  border-bottom-color: #3a3a3a;
+  border-block-start-color: #3a3a3a;
+  border-block-end-color: #3a3a3a;
 }
 
 body.dark-mode .coupon-section h4 {
@@ -1005,12 +1005,12 @@ body.dark-mode .or-divider span {
 }
 
 body.dark-mode .save-payment-option {
-  border-top-color: #3a3a3a;
+  border-block-start-color: #3a3a3a;
 }
 
 body.dark-mode .checkout-error {
   background-color: rgba(220, 53, 69, 0.15);
-  border-left-color: #dc3545;
+  border-inline-start-color: #dc3545;
   color: #ff5252;
 }
 
