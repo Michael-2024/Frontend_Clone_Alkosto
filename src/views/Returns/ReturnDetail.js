@@ -4,8 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import ReturnController from '../../controllers/ReturnController';
 import OrderController from '../../controllers/OrderController';
-import './Returns.css';
 import AccountSidebar from '../Account/AccountSidebar';
+import '../Account/Account.css';
+import './Returns.css';
 
 /**
  * Vista de Detalle de Devolución (RF25)
@@ -100,22 +101,33 @@ const ReturnDetail = () => {
     }).format(amount);
   };
 
+  const handleLogout = () => {
+    UserController.logout();
+    navigate('/');
+  };
+
   if (!returnItem) {
     return (
-      <div className="account-container">
-        <AccountSidebar />
-        <div className="account-main">
-          <div className="loading">Cargando...</div>
+      <div className="account-page">
+        <div className="container">
+          <div className="account-layout">
+            <AccountSidebar onLogout={handleLogout} />
+            <section className="account-content">
+              <div className="loading">Cargando...</div>
+            </section>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="account-container">
-      <AccountSidebar />
-      <div className="account-main">
-        <div className="return-detail-container">
+    <div className="account-page">
+      <div className="container">
+        <div className="account-layout">
+          <AccountSidebar onLogout={handleLogout} />
+          <section className="account-content">
+            <div className="return-detail-container">
           <button 
             className="btn-link back-button"
             onClick={() => navigate('/perfil/devoluciones')}
@@ -400,6 +412,8 @@ const ReturnDetail = () => {
               </div>
             </div>
           )}
+            </div>
+          </section>
         </div>
       </div>
     </div>

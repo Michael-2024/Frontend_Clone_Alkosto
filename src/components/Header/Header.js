@@ -21,6 +21,7 @@ import { AiOutlineHome } from "react-icons/ai"; // icono home Mi cuenta
 import { MdOutlinePayments } from "react-icons/md"; // metodos de pagos
 import { GrMapLocation } from "react-icons/gr"; // Dirrecion de envio - ubicacion
 import { FaRegHeart } from "react-icons/fa"; //  corazon favoritos
+
 const Header = ({ cartItemsCount }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showLocationMenu, setShowLocationMenu] = useState(false);
@@ -36,33 +37,17 @@ const Header = ({ cartItemsCount }) => {
   const searchInputRef = useRef(null);
   const expandedSearchRef = useRef(null);
 
-  const [recentSearches, setRecentSearches] = useState([
-    'lavadora lg 22kg',
-    'nevera samsung',
-    'smart tv samsung 55'
-  ]);
+  // ✅ Cargar búsquedas reales desde localStorage
+  const [recentSearches, setRecentSearches] = useState(() => {
+    const saved = localStorage.getItem('recentSearches');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  // ✅ Productos vistos actualizados
-  const viewedProducts = [
-    {
-      id: 1,
-      name: 'iPhone 15 Pro Max 256GB',
-      image: '/images/productos/iphone 15.jpg',
-      rating: 4.8,
-      reviews: 124,
-      oldPrice: '$6,199,000',
-      price: '$5,499,000'
-    },
-    {
-      id: 6,
-      name: 'Nevera Samsung Side by Side',
-      image: '/images/productos/nevera.jpg',
-      rating: 4.5,
-      reviews: 48,
-      oldPrice: '$3,899,000',
-      price: '$3,299,000'
-    }
-  ];
+  // ✅ Productos vistos realmente por el usuario
+  const [viewedProducts, setViewedProducts] = useState(() => {
+    const saved = localStorage.getItem('viewedProducts');
+    return saved ? JSON.parse(saved) : [];
+  });
 
   // ✅ Ultima busqueda 
   const popularSearches = [
@@ -89,8 +74,36 @@ const Header = ({ cartItemsCount }) => {
     if (event) {
       event.stopPropagation();
     }
-    setRecentSearches(prev => prev.filter((_, i) => i !== index));
+    setRecentSearches(prev => {
+      const updated = prev.filter((_, i) => i !== index);
+      localStorage.setItem('recentSearches', JSON.stringify(updated));
+      return updated;
+    });
   };
+
+  // Escuchar cambios en productos vistos
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === 'viewedProducts') {
+        const updated = e.newValue ? JSON.parse(e.newValue) : [];
+        setViewedProducts(updated);
+      }
+    };
+    
+    const handleViewedProductsChanged = () => {
+      const saved = localStorage.getItem('viewedProducts');
+      const updated = saved ? JSON.parse(saved) : [];
+      setViewedProducts(updated);
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('viewedProductsChanged', handleViewedProductsChanged);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('viewedProductsChanged', handleViewedProductsChanged);
+    };
+  }, []);
 
   // Actualizar estado de usuario al cargar componente y escuchar cambios
   useEffect(() => {
@@ -121,6 +134,23 @@ const Header = ({ cartItemsCount }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
+      // Guardar búsqueda en localStorage
+      const newSearch = searchQuery.trim();
+      const saved = localStorage.getItem('recentSearches');
+      let searches = saved ? JSON.parse(saved) : [];
+      
+      // Eliminar si ya existe (para moverlo al inicio)
+      searches = searches.filter(s => s.toLowerCase() !== newSearch.toLowerCase());
+      
+      // Agregar al inicio
+      searches.unshift(newSearch);
+      
+      // Mantener solo las últimas 5 búsquedas
+      searches = searches.slice(0, 5);
+      
+      localStorage.setItem('recentSearches', JSON.stringify(searches));
+      setRecentSearches(searches);
+      
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
       setShowSearchOverlay(false);
     }
@@ -517,7 +547,10 @@ const Header = ({ cartItemsCount }) => {
                 <div className="search-section half">
                   <h3 className="search-section-title">Productos vistos</h3>
                   <div className="viewed-products-list">
-                    {viewedProducts.map((p) => (
+                    {viewedProducts.length === 0 ? (
+                      <p className="no-viewed-products">No has visto productos aún</p>
+                    ) : (
+                      viewedProducts.slice(0, 2).map((p) => (
                       <div
                         key={p.id}
                         className="viewed-product-card"
@@ -541,7 +574,8 @@ const Header = ({ cartItemsCount }) => {
                           </div>
                         </div>
                       </div>
-                    ))}
+                      ))
+                    )}
                   </div>
                 </div>
               </div>

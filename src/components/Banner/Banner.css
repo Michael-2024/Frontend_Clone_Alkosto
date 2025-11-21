@@ -58,4 +58,22 @@
   }
 }
 
+/* Estilos para modo oscuro */
+body.dark-mode .banner {
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+}
+
+body.dark-mode .banner-content h2,
+body.dark-mode .banner-content p {
+  color: #ffffff;
+}
+
+body.dark-mode .banner-btn {
+  background: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .banner-btn:hover {
+  background: #ffb347;
+}
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import OrderController from '../../controllers/OrderController';
+import AccountSidebar from '../Account/AccountSidebar';
 import '../Account/Account.css';
 import './Tracking.css';
 
@@ -78,10 +79,16 @@ const Tracking = () => {
     }, 500);
   };
 
+  const handleLogout = () => {
+    UserController.logout();
+    navigate('/');
+  };
+
   return (
     <div className="account-page">
       <div className="container">
-        <div className="account-layout" style={{gridTemplateColumns: '1fr'}}>
+        <div className="account-layout">
+          <AccountSidebar onLogout={handleLogout} />
           <section className="account-content">
             <div className="account-hero">
               <div className="hero-icon" aria-hidden>🔍</div>

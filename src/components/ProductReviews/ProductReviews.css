@@ -1,23 +1,53 @@
-.reviews-section { margin-top: 32px; border-top: 1px solid #eee; padding-top: 24px; }
+.reviews-section { margin-top: 32px; border-top: 1px solid #eee; padding-top: 24px; transition: border-color 0.3s ease; }
+body.dark-mode .reviews-section { border-top-color: var(--border-color); }
+
 .reviews-header { display:flex; align-items:center; justify-content:space-between; margin-bottom: 16px; }
-.reviews-title { font-size: 1.25rem; font-weight: 600; }
-.rating-summary { display:flex; align-items:center; gap:8px; color:#555; }
+.reviews-title { font-size: 1.25rem; font-weight: 600; color: #333; transition: color 0.3s ease; }
+body.dark-mode .reviews-title { color: var(--text-primary); }
+
+.rating-summary { display:flex; align-items:center; gap:8px; color:#555; transition: color 0.3s ease; }
+body.dark-mode .rating-summary { color: var(--text-secondary); }
+
 .stars { color: #FFB400; font-size: 18px; letter-spacing: 2px; }
 .reviews-list { display:flex; flex-direction:column; gap:16px; }
-.review-card { border:1px solid #eee; border-radius:8px; padding:12px 14px; }
+
+.review-card { border:1px solid #eee; border-radius:8px; padding:12px 14px; background: white; transition: background-color 0.3s ease, border-color 0.3s ease; }
+body.dark-mode .review-card { background: var(--card-bg); border-color: var(--border-color); }
+
 .review-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
-.review-user { font-weight:600; color:#333; }
-.review-date { color:#888; font-size:12px; }
-.review-comment { color:#444; line-height:1.4; white-space:pre-wrap; }
-.review-form { margin-top: 16px; border:1px dashed #ddd; border-radius:8px; padding:12px; }
+.review-user { font-weight:600; color:#333; transition: color 0.3s ease; }
+body.dark-mode .review-user { color: var(--text-primary); }
+
+.review-date { color:#888; font-size:12px; transition: color 0.3s ease; }
+body.dark-mode .review-date { color: var(--text-secondary); }
+
+.review-comment { color:#444; line-height:1.4; white-space:pre-wrap; transition: color 0.3s ease; }
+body.dark-mode .review-comment { color: var(--text-primary); }
+
+.review-form { margin-top: 16px; border:1px dashed #ddd; border-radius:8px; padding:12px; background: white; transition: background-color 0.3s ease, border-color 0.3s ease; }
+body.dark-mode .review-form { background: var(--card-bg); border-color: var(--border-color); }
+
 .form-row { display:flex; gap:12px; align-items:center; margin-bottom:10px; }
-.form-row textarea { width:100%; min-height:80px; resize:vertical; padding:8px; border:1px solid #ccc; border-radius:6px; }
-.form-row select { padding:8px; border:1px solid #ccc; border-radius:6px; }
+.form-row textarea { width:100%; min-height:80px; resize:vertical; padding:8px; border:1px solid #ccc; border-radius:6px; background: white; color: #333; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+body.dark-mode .form-row textarea { background: var(--card-bg); color: var(--text-primary); border-color: var(--border-color); }
+
+.form-row select { padding:8px; border:1px solid #ccc; border-radius:6px; background: white; color: #333; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+body.dark-mode .form-row select { background: var(--card-bg); color: var(--text-primary); border-color: var(--border-color); }
+
 .form-actions { display:flex; gap:12px; justify-content:flex-end; }
-.btn-primary { background:#00A859; color:#fff; border:none; padding:10px 14px; border-radius:6px; cursor:pointer; }
+.btn-primary { background:#00A859; color:#fff; border:none; padding:10px 14px; border-radius:6px; cursor:pointer; transition: background-color 0.3s ease; }
 .btn-primary:disabled { background:#9bd7be; cursor:not-allowed; }
-.btn-secondary { background:#f3f3f3; color:#333; border:1px solid #ddd; padding:10px 14px; border-radius:6px; cursor:pointer; }
-.helper-text { color:#666; font-size:12px; margin-top:-6px; margin-bottom:8px; }
-.empty-state { color:#666; font-style:italic; }
+body.dark-mode .btn-primary { background:#FF9A27; }
+body.dark-mode .btn-primary:disabled { background:#665c52; }
+
+.btn-secondary { background:#f3f3f3; color:#333; border:1px solid #ddd; padding:10px 14px; border-radius:6px; cursor:pointer; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+body.dark-mode .btn-secondary { background: var(--card-bg); color: var(--text-primary); border-color: var(--border-color); }
+
+.helper-text { color:#666; font-size:12px; margin-top:-6px; margin-bottom:8px; transition: color 0.3s ease; }
+body.dark-mode .helper-text { color: var(--text-secondary); }
+
+.empty-state { color:#666; font-style:italic; transition: color 0.3s ease; }
+body.dark-mode .empty-state { color: var(--text-secondary); }
+
 .error-text { color:#c23328; font-size:12px; margin-top:6px; }
 .success-text { color:#008a47; font-size:12px; margin-top:6px; }

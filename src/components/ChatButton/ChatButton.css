@@ -177,13 +177,44 @@
   outline-offset: 2px;
 }
 
-/* Dark mode support (opcional) */
-@media (prefers-color-scheme: dark) {
-  .chat-button-link {
-    color: #e0e0e0;
-  }
+/* Estilos para modo oscuro */
+body.dark-mode .chat-button-link {
+  color: #e0e0e0;
+}
 
-  .chat-button-link:hover {
-    color: #66b3ff;
-  }
+body.dark-mode .chat-button-link:hover {
+  color: #ff9a27;
+}
+
+body.dark-mode .status-indicator.online {
+  color: #66bb6a;
+}
+
+body.dark-mode .status-indicator.offline {
+  color: #666;
+}
+
+body.dark-mode .chat-button-primary {
+  background: linear-gradient(135deg, #ff9a27 0%, #ffb347 100%);
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(255, 154, 39, 0.2);
+}
+
+body.dark-mode .chat-button-primary:hover {
+  box-shadow: 0 4px 12px rgba(255, 154, 39, 0.3);
+}
+
+body.dark-mode .chat-button-floating {
+  background: linear-gradient(135deg, #ff9a27 0%, #ffb347 100%);
+  box-shadow: 0 4px 12px rgba(255, 154, 39, 0.3);
+}
+
+body.dark-mode .chat-button-floating:hover {
+  box-shadow: 0 6px 20px rgba(255, 154, 39, 0.4);
+}
+
+body.dark-mode .chat-button-link:focus,
+body.dark-mode .chat-button-primary:focus,
+body.dark-mode .chat-button-floating:focus {
+  outline-color: #ff9a27;
 }

@@ -480,3 +480,182 @@
     font-size: 18px;
   }
 }
+
+/* ===================================
+   MODO OSCURO
+   =================================== */
+
+body.dark-mode .btn-add-payment {
+  background: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .btn-add-payment:hover {
+  background: #ffb347;
+  box-shadow: 0 4px 12px rgba(255, 154, 39, 0.3);
+}
+
+body.dark-mode .payment-form-card {
+  background: #1e1e1e;
+}
+
+body.dark-mode .form-header {
+  border-bottom-color: #3a3a3a;
+}
+
+body.dark-mode .form-header h3 {
+  color: #ffffff;
+}
+
+body.dark-mode .btn-close-form {
+  color: #b0b0b0;
+}
+
+body.dark-mode .btn-close-form:hover {
+  background: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .type-option {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .type-option:hover {
+  border-color: #ff9a27;
+  background: #2f2f2f;
+}
+
+body.dark-mode .type-option.active {
+  border-color: #ff9a27;
+  background: #3a2a1a;
+}
+
+body.dark-mode .type-option .type-label {
+  color: #ffffff;
+}
+
+body.dark-mode .form-field label {
+  color: #e0e0e0;
+}
+
+body.dark-mode .form-field input,
+body.dark-mode .form-field select {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .form-field input:focus,
+body.dark-mode .form-field select:focus {
+  border-color: #ff9a27;
+  box-shadow: 0 0 0 3px rgba(255, 154, 39, 0.2);
+}
+
+body.dark-mode .form-field input::placeholder {
+  color: #666;
+}
+
+body.dark-mode .field-hint {
+  color: #b0b0b0;
+}
+
+body.dark-mode .phone-prefix {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .error-banner {
+  background: #4a2020;
+  color: #ff6b6b;
+  border-color: #663030;
+}
+
+body.dark-mode .success-banner {
+  background: #1a3a1a;
+  color: #6bff6b;
+  border-color: #2d5a2d;
+}
+
+body.dark-mode .list-title {
+  color: #ffffff;
+}
+
+body.dark-mode .payment-card {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .payment-card:hover {
+  border-color: #ff9a27;
+  box-shadow: 0 4px 12px rgba(255, 154, 39, 0.2);
+}
+
+body.dark-mode .payment-card.default {
+  border-color: #ff9a27;
+  background: linear-gradient(135deg, #2a2010 0%, #1e1e1e 100%);
+}
+
+body.dark-mode .payment-card.expired {
+  border-color: #663030;
+}
+
+body.dark-mode .default-badge {
+  background: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .payment-card-type {
+  color: #b0b0b0;
+}
+
+body.dark-mode .payment-card-nickname {
+  color: #ffffff;
+}
+
+body.dark-mode .payment-card-details {
+  color: #b0b0b0;
+}
+
+body.dark-mode .payment-card-last-used {
+  color: #808080;
+}
+
+body.dark-mode .payment-card-actions {
+  border-top-color: #3a3a3a;
+}
+
+body.dark-mode .btn-card-action {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .btn-card-action:hover {
+  background: #3a3a3a;
+  border-color: #ff9a27;
+  color: #ff9a27;
+}
+
+body.dark-mode .btn-card-action.delete:hover {
+  background: #4a2020;
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+body.dark-mode .empty-panel {
+  background: #1e1e1e;
+}
+
+body.dark-mode .empty-header .empty-title {
+  color: #ffffff;
+}
+
+body.dark-mode .empty-header .empty-subtitle {
+  color: #b0b0b0;
+}
+
+body.dark-mode .card-placeholder {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+}

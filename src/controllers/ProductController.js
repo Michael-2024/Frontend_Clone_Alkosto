@@ -46,7 +46,7 @@ class ProductController {
 
   // Adaptar respuesta del backend a instancias de Product (si se requiere para métodos locales)
   toProductModel(raw) {
-    return new Product(
+    const product = new Product(
       raw.id_producto,
       raw.nombre,
       Number(raw.precio),
@@ -59,6 +59,13 @@ class ProductController {
       raw.stock ? Number(raw.stock) : 0,
       raw.descripcion_corta || raw.descripcion || ''
     );
+    
+    // Agregar el array completo de imágenes al producto
+    if (raw.imagenes && Array.isArray(raw.imagenes)) {
+      product.imagenes = raw.imagenes;
+    }
+    
+    return product;
   }
 
   async list(params = {}) {

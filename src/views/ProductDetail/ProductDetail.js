@@ -19,12 +19,27 @@ const ProductDetail = () => {
   const [showCartDrawer, setShowCartDrawer] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [productImages, setProductImages] = useState([]);
+  const [imageTransition, setImageTransition] = useState(false);
 
   useEffect(() => {
     const loadProduct = async () => {
       try {
         const foundProduct = await ProductController.getProductById(id);
         setProduct(foundProduct);
+        
+        // Configurar galería de imágenes desde el backend
+        let images = [];
+        if (foundProduct.imagenes && Array.isArray(foundProduct.imagenes) && foundProduct.imagenes.length > 0) {
+          // Usar imágenes del array imagenes
+          images = foundProduct.imagenes.map(img => img.url_imagen || img);
+        } else if (foundProduct.image) {
+          // Fallback a imagen principal si no hay array
+          images = [foundProduct.image];
+        }
+        setProductImages(images);
+        setSelectedImageIndex(0);
         try { window.scrollTo({ top: 0, behavior: 'auto' }); } catch (_) { /* noop */ }
         // Sincroniza estado de favoritos por usuario si existe
         try {
@@ -118,6 +133,22 @@ const ProductDetail = () => {
     }
   };
 
+  const changeImage = (newIndex) => {
+    if (newIndex === selectedImageIndex || newIndex < 0 || newIndex >= productImages.length) return;
+    
+    // Activar efecto de transición
+    setImageTransition(true);
+    
+    // Cambiar imagen después de un breve delay para el efecto suave
+    setTimeout(() => {
+      setSelectedImageIndex(newIndex);
+      // Pequeño delay adicional antes de remover la clase de transición
+      setTimeout(() => {
+        setImageTransition(false);
+      }, 50);
+    }, 150);
+  };
+
   const shareProduct = async () => {
     if (!product) return;
     const shareData = {
@@ -166,6 +197,8 @@ const ProductDetail = () => {
       <div className="container">
         <div className="product-not-found">
           <h2>Producto no encontrado</h2>
+          <p>El producto con ID {id} no existe o no está disponible.</p>
+          <p>Por favor, verifica que el enlace sea correcto.</p>
           <Link to="/" className="back-link">Volver al inicio</Link>
         </div>
       </div>
@@ -182,13 +215,60 @@ const ProductDetail = () => {
         </div>
 
         <div className="product-detail-content">
-          <div className="product-detail-image">
-            <img src={product.image} alt={product.name} />
-            {product.discount > 0 && (
-              <span className="discount-badge">
-                -{product.getDiscountPercentage()}% OFF
-              </span>
-            )}
+          <div className="product-gallery">
+            {/* Miniaturas laterales */}
+            <div className="gallery-thumbnails">
+              {productImages.map((img, index) => (
+                <div
+                  key={index}
+                  className={`thumbnail ${selectedImageIndex === index ? 'active' : ''}`}
+                  onClick={() => changeImage(index)}
+                >
+                  <img src={img} alt={`${product.name} - ${index + 1}`} />
+                </div>
+              ))}
+              {productImages.length > 5 && (
+                <div className="thumbnail-more">
+                  +{productImages.length - 5} fotos
+                </div>
+              )}
+            </div>
+
+            {/* Imagen principal con flechas */}
+            <div className="product-detail-image">
+              {selectedImageIndex > 0 && (
+                <button
+                  className="gallery-nav gallery-nav-prev"
+                  onClick={() => changeImage(selectedImageIndex - 1)}
+                  aria-label="Imagen anterior"
+                >
+                  ❮
+                </button>
+              )}
+              
+              <div className={`image-container ${imageTransition ? 'fade-out' : 'fade-in'}`}>
+                <img 
+                  src={productImages[selectedImageIndex] || product.image} 
+                  alt={`${product.name} - Vista ${selectedImageIndex + 1}`} 
+                />
+              </div>
+              
+              {selectedImageIndex < productImages.length - 1 && (
+                <button
+                  className="gallery-nav gallery-nav-next"
+                  onClick={() => changeImage(selectedImageIndex + 1)}
+                  aria-label="Imagen siguiente"
+                >
+                  ❯
+                </button>
+              )}
+              
+              {product.discount > 0 && (
+                <span className="discount-badge">
+                  -{product.getDiscountPercentage()}% OFF
+                </span>
+              )}
+            </div>
           </div>
 
           <div className="product-detail-info">

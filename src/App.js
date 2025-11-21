@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import SkipLink from './components/SkipLink/SkipLink';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import LiveChat from './components/LiveChat/LiveChat';
@@ -61,9 +62,10 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <ScrollToTop />
-      <LiveChat />
+    <ThemeProvider>
+      <Router>
+        <ScrollToTop />
+        <LiveChat />
       <Routes>
         {/* Rutas de registro y login con layout especial */}
         <Route path="/register" element={<Register />} />
@@ -116,7 +118,8 @@ function App() {
           </div>
         } />
       </Routes>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 

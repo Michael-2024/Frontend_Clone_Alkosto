@@ -4,8 +4,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import OrderController from '../../controllers/OrderController';
 import ReturnController from '../../controllers/ReturnController';
-import './Returns.css';
 import AccountSidebar from '../Account/AccountSidebar';
+import '../Account/Account.css';
+import './Returns.css';
 
 /**
  * Vista de Solicitud de Devolución/Garantía (RF25)
@@ -277,11 +278,18 @@ const ReturnRequest = () => {
     );
   }
 
+  const handleLogout = () => {
+    UserController.logout();
+    navigate('/');
+  };
+
   return (
-    <div className="account-container">
-      <AccountSidebar />
-      <div className="account-main">
-        <div className="return-request-container">
+    <div className="account-page">
+      <div className="container">
+        <div className="account-layout">
+          <AccountSidebar onLogout={handleLogout} />
+          <section className="account-content">
+            <div className="return-request-container">
           <h1>Solicitar Devolución o Garantía</h1>
           
           {/* Progress Indicator */}
@@ -646,6 +654,8 @@ const ReturnRequest = () => {
               </div>
             </div>
           )}
+            </div>
+          </section>
         </div>
       </div>
     </div>

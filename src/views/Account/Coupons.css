@@ -291,3 +291,129 @@
     padding: var(--spacing-md);
   }
 }
+
+/* ===================================
+   MODO OSCURO
+   =================================== */
+
+body.dark-mode .coupon-filters .filter-btn {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .coupon-filters .filter-btn:hover {
+  background: #3a3a3a;
+  border-color: #ff9a27;
+}
+
+body.dark-mode .coupon-filters .filter-btn.active {
+  background: #ff9a27;
+  color: #000000;
+  border-color: #ff9a27;
+}
+
+/* Tarjeta de cupón */
+body.dark-mode .coupon-card {
+  background: #1e1e1e;
+  border-inline-start-color: #ff9a27;
+}
+
+body.dark-mode .coupon-card.used {
+  background: #252525;
+}
+
+body.dark-mode .coupon-card.expired {
+  background: #1a1a1a;
+  border-inline-start-color: #666;
+}
+
+/* Header del cupón */
+body.dark-mode .coupon-card-header {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+  border-block-end-color: #3a3a3a;
+}
+
+body.dark-mode .discount-value {
+  color: #ff9a27;
+}
+
+body.dark-mode .discount-label {
+  color: #b0b0b0;
+}
+
+/* Body del cupón */
+body.dark-mode .coupon-card-title {
+  color: #ffffff;
+}
+
+/* Código del cupón */
+body.dark-mode .coupon-code-display {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .coupon-code-display code {
+  color: #ff9a27;
+}
+
+body.dark-mode .btn-copy-code {
+  background: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .btn-copy-code:hover {
+  background: #ffb347;
+}
+
+/* Detalles del cupón */
+body.dark-mode .coupon-detail {
+  color: #b0b0b0;
+}
+
+/* Footer del cupón */
+body.dark-mode .coupon-card-footer {
+  background: #2a2a2a;
+  border-block-start-color: #3a3a3a;
+}
+
+body.dark-mode .used-status {
+  background: #3a3a3a;
+  color: #b0b0b0;
+}
+
+body.dark-mode .expired-status {
+  background: #4a2020;
+  color: #ff6b6b;
+}
+
+body.dark-mode .coupon-expiry {
+  color: #b0b0b0;
+}
+
+body.dark-mode .coupon-expiry.urgent {
+  color: #ff6b6b;
+}
+
+/* Información adicional */
+body.dark-mode .coupons-info {
+  background: #1e1e1e;
+}
+
+body.dark-mode .coupons-info h3 {
+  color: #ffffff;
+}
+
+body.dark-mode .coupons-info li {
+  color: #b0b0b0;
+}
+
+body.dark-mode .info-note {
+  background: #1a2a3a;
+  border-inline-start-color: #4a90e2;
+  color: #6bb6ff;
+}
+
+body.dark-mode .info-note strong {
+  color: #8ac7ff;
+}

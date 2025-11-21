@@ -322,3 +322,108 @@
 .cart-drawer-content::-webkit-scrollbar-thumb:hover {
   background: #a1a1a1;
 }
+
+/* Estilos para modo oscuro */
+body.dark-mode .cart-drawer-overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .cart-drawer {
+  background: #1e1e1e;
+}
+
+body.dark-mode .cart-drawer-header {
+  background: #2a2a2a;
+  border-bottom-color: #3a3a3a;
+}
+
+body.dark-mode .cart-drawer-title {
+  color: #ffffff;
+}
+
+body.dark-mode .cart-drawer-close {
+  color: #b0b0b0;
+}
+
+body.dark-mode .cart-drawer-close:hover {
+  background: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .added-product-card {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .added-product-name {
+  color: #ffffff;
+}
+
+body.dark-mode .added-product-price {
+  color: #ff9a27;
+}
+
+body.dark-mode .added-product-image {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .recommendations h3 {
+  color: #ffffff;
+}
+
+body.dark-mode .recommended-product {
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .recommended-product:hover {
+  border-color: #ff9a27;
+  background: #2a2a2a;
+}
+
+body.dark-mode .recommended-product-name {
+  color: #e0e0e0;
+}
+
+body.dark-mode .recommended-product-price {
+  color: #ff9a27;
+}
+
+body.dark-mode .cart-drawer-footer {
+  background: #2a2a2a;
+  border-top-color: #3a3a3a;
+}
+
+body.dark-mode .continue-shopping-btn {
+  background: #2a2a2a;
+  color: #ff9a27;
+  border-color: #ff9a27;
+}
+
+body.dark-mode .continue-shopping-btn:hover {
+  background: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .go-to-cart-btn {
+  background: #ff9a27;
+  color: #000000;
+  border-color: #ff9a27;
+}
+
+body.dark-mode .go-to-cart-btn:hover {
+  background: #ffb347;
+  border-color: #ffb347;
+}
+
+body.dark-mode .cart-drawer-content::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+body.dark-mode .cart-drawer-content::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+}
+
+body.dark-mode .cart-drawer-content::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}

@@ -1,7 +1,6 @@
 .pqrs-detail-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  padding: 0;
 }
 
 .pqrs-detail-header {

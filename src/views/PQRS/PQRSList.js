@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import pqrsController from '../../controllers/PQRSController';
 import UserController from '../../controllers/UserController';
+import AccountSidebar from '../Account/AccountSidebar';
+import '../Account/Account.css';
 import './PQRSList.css';
 
 const PQRSList = () => {
@@ -94,19 +96,36 @@ const PQRSList = () => {
     return classes[type] || 'badge-gray';
   };
 
+  const handleLogout = () => {
+    UserController.logout();
+    navigate('/');
+  };
+
   if (loading) {
     return (
-      <div className="pqrs-list-container">
-        <div className="loading-spinner">
-          <div className="spinner"></div>
-          <p>Cargando PQRS...</p>
+      <div className="account-page">
+        <div className="container">
+          <div className="account-layout">
+            <AccountSidebar onLogout={handleLogout} />
+            <section className="account-content">
+              <div className="loading-spinner">
+                <div className="spinner"></div>
+                <p>Cargando PQRS...</p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="pqrs-list-container">
+    <div className="account-page">
+      <div className="container">
+        <div className="account-layout">
+          <AccountSidebar onLogout={handleLogout} />
+          <section className="account-content">
+            <div className="pqrs-list-container">
       <div className="pqrs-list-header">
         <div className="header-content">
           <h1>Mis PQRS</h1>
@@ -297,6 +316,10 @@ const PQRSList = () => {
             <strong>📞 Contacto directo:</strong>
             <p>Línea: 01 8000 123 456</p>
           </div>
+        </div>
+      </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>

@@ -217,3 +217,43 @@
 .chat-offline-message .close-btn:hover {
   color: #333;
 }
+
+/* Estilos para modo oscuro */
+body.dark-mode .custom-chat-button {
+  background: linear-gradient(135deg, #ff9a27 0%, #ffb347 100%);
+  box-shadow: 0 4px 12px rgba(255, 154, 39, 0.3);
+}
+
+body.dark-mode .custom-chat-button:hover {
+  box-shadow: 0 6px 20px rgba(255, 154, 39, 0.4);
+}
+
+body.dark-mode .chat-tooltip {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+body.dark-mode .chat-tooltip::after {
+  border-left-color: #2a2a2a;
+}
+
+body.dark-mode .chat-offline-message {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .chat-offline-message h4 {
+  color: #ffffff;
+}
+
+body.dark-mode .chat-offline-message p {
+  color: #b0b0b0;
+}
+
+body.dark-mode .chat-offline-message .close-btn {
+  color: #b0b0b0;
+}
+
+body.dark-mode .chat-offline-message .close-btn:hover {
+  color: #ffffff;
+}

@@ -356,3 +356,101 @@
 .filter-chip button:hover { color:#eb5b25; }
 .clear-all-filters { padding:6px 12px; background:#eb5b25; color:#fff; border:none; border-radius:16px; font-size:13px; cursor:pointer; }
 .clear-all-filters:hover { background:#d14a1e; }
+
+/* Estilos para modo oscuro */
+body.dark-mode .search-results-page {
+  background-color: #121212;
+}
+
+body.dark-mode .breadcrumb a {
+  color: #b0b0b0;
+}
+
+body.dark-mode .breadcrumb a:hover {
+  color: #ff9a27;
+}
+
+body.dark-mode .breadcrumb .separator {
+  color: #4a4a4a;
+}
+
+body.dark-mode .search-header h1 {
+  color: #ffffff;
+}
+
+body.dark-mode .search-term {
+  color: #ff9a27;
+}
+
+body.dark-mode .results-count {
+  color: #b0b0b0;
+}
+
+body.dark-mode .search-filters {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .search-filters h2 {
+  color: #ffffff;
+  border-bottom-color: #ff9a27;
+}
+
+body.dark-mode .filter-group h3 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .filter-option label {
+  color: #e0e0e0;
+}
+
+body.dark-mode .price-range input {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .btn-apply-filters {
+  background: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .btn-apply-filters:hover {
+  background: #ffb347;
+}
+
+body.dark-mode .applied-filters {
+  background: #2a2a2a;
+}
+
+body.dark-mode .filters-label {
+  color: #e0e0e0;
+}
+
+body.dark-mode .filter-chip {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .filter-chip button {
+  color: #b0b0b0;
+}
+
+body.dark-mode .filter-chip button:hover {
+  color: #ff9a27;
+}
+
+body.dark-mode .clear-all-filters {
+  background: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .clear-all-filters:hover {
+  background: #ffb347;
+}
+
+body.dark-mode .loading-spinner,
+body.dark-mode .no-results {
+  color: #b0b0b0;
+}
