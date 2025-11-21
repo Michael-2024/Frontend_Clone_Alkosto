@@ -7,13 +7,13 @@
 }
 
 .megamenu-wrapper {
-  max-width: 1400px;
+  max-inline-size: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 .megamenu-container-fluid {
-  width: 100%;
+  inline-size: 100%;
 }
 
 /* Lista principal del menú */
@@ -52,13 +52,13 @@
 /* Dropdown / Menú desplegable */
 .megamenu-dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
+  inset-block-start: 100%;
+  inset-inline-start: 0;
   background-color: white;
   border-radius: 0 0 8px 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  min-width: 800px;
-  max-width: 900px;
+  min-inline-size: 800px;
+  max-inline-size: 900px;
   display: flex;
   animation: slideDown 0.2s ease-out;
   overflow: hidden;
@@ -78,9 +78,9 @@
 /* Columna izquierda - Sidebar de subcategorías */
 .megamenu-sidebar {
   background-color: #fafafa;
-  min-width: 220px;
+  min-inline-size: 220px;
   padding: 20px 0;
-  border-right: 1px solid #e0e0e0;
+  border-inline-end: 1px solid #e0e0e0;
 }
 
 .megamenu-sidebar-item {
@@ -89,7 +89,7 @@
   justify-content: space-between;
   padding: 10px 20px;
   color: #333;
-  fontSize: 14px;
+  font-size: 14px;
   text-decoration: none;
   transition: all 0.15s ease;
   font-weight: 400;
@@ -102,7 +102,7 @@
 
 .megamenu-sidebar-item:hover {
   background-color: #f0f0f0;
-  padding-left: 24px;
+  padding-inline-start: 24px;
 }
 
 .megamenu-arrow {
@@ -122,9 +122,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #f0f0f0;
+  margin-block-end: 20px;
+  padding-block-end: 15px;
+  border-block-end: 2px solid #f0f0f0;
 }
 
 .megamenu-title {
@@ -148,7 +148,7 @@
 
 /* Sección de marcas */
 .megamenu-section {
-  margin-bottom: 20px;
+  margin-block-end: 20px;
 }
 
 .megamenu-section-title {
@@ -188,7 +188,7 @@
 
 .megamenu-brand-icon {
   font-size: 32px;
-  margin-bottom: 6px;
+  margin-block-end: 6px;
 }
 
 .megamenu-brand-name {
@@ -200,7 +200,7 @@
 
 /* Productos relacionados */
 .megamenu-related {
-  margin-top: 20px;
+  margin-block-start: 20px;
   padding: 12px;
   background-color: #fff9f5;
   border-radius: 6px;
@@ -213,7 +213,7 @@
 }
 
 .megamenu-related-links {
-  margin-top: 8px;
+  margin-block-start: 8px;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -236,7 +236,7 @@
 
 /* Botón especial (Navidad/Hiperofertas) */
 .megamenu-special {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 .megamenu-special-link {
@@ -261,7 +261,7 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .megamenu-dropdown {
-    min-width: 600px;
+    min-inline-size: 600px;
   }
   
   .megamenu-brands {
@@ -280,9 +280,9 @@
   }
   
   .megamenu-dropdown {
-    min-width: auto;
-    width: 100vw;
-    left: -20px;
+    min-inline-size: auto;
+    inline-size: 100vw;
+    inset-inline-start: -20px;
   }
   
   .megamenu-brands {
@@ -302,7 +302,7 @@ body.dark-mode .megamenu-dropdown {
 
 body.dark-mode .megamenu-sidebar {
   background-color: #1e1e1e;
-  border-right: 1px solid #3a3a3a;
+  border-inline-end: 1px solid #3a3a3a;
 }
 
 body.dark-mode .megamenu-sidebar-item {
@@ -322,7 +322,7 @@ body.dark-mode .megamenu-content {
 }
 
 body.dark-mode .megamenu-header {
-  border-bottom: 2px solid #3a3a3a;
+  border-block-end: 2px solid #3a3a3a;
 }
 
 body.dark-mode .megamenu-title {

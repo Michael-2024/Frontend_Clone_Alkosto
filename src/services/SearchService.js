@@ -10,6 +10,95 @@ class SearchService {
     }
     SearchService.instance = this;
     this.productController = ProductController;
+    
+    // Mapeo de términos de búsqueda a categorías padre
+    this.categoryMap = {
+      'celulares': 'Celulares',
+      'smartphones': 'Celulares',
+      'telefonos': 'Celulares',
+      'teléfonos': 'Celulares',
+      'moviles': 'Celulares',
+      'móviles': 'Celulares',
+      
+      'computadores': 'computadores',
+      'portatiles': 'computadores',
+      'portátiles': 'computadores',
+      'laptops': 'computadores',
+      'pc': 'computadores',
+      
+      'electrodomesticos': 'electrodomesticos',
+      'electrodomésticos': 'electrodomesticos',
+      'lavadoras': 'electrodomesticos',
+      'neveras': 'electrodomesticos',
+      'estufas': 'electrodomesticos',
+      
+      'televisores': 'tv',
+      'televisiones': 'tv',
+      'tv': 'tv',
+      'smart tv': 'tv',
+      
+      'audio': 'audio',
+      'parlantes': 'audio',
+      'audifonos': 'audio',
+      'audífonos': 'audio',
+      'auriculares': 'audio',
+    };
+    
+    // Mapeo de términos de búsqueda populares y sus variantes (fallback)
+    this.searchTermsMap = {
+      // Celulares y smartphones
+      'celulares': ['smartphone', 'celular', 'iphone', 'galaxy', 'teléfono', 'telefono', 'móvil', 'movil'],
+      'smartphones': ['smartphone', 'celular', 'iphone', 'galaxy', 'teléfono', 'telefono'],
+      'telefonos': ['teléfono', 'telefono', 'celular', 'smartphone', 'iphone', 'galaxy'],
+      'moviles': ['móvil', 'movil', 'celular', 'smartphone', 'iphone'],
+      
+      // Computadores
+      'computadores': ['portátil', 'portatil', 'laptop', 'computador', 'macbook', 'pc'],
+      'portatiles': ['portátil', 'portatil', 'laptop', 'computador', 'macbook'],
+      'laptops': ['laptop', 'portátil', 'portatil', 'computador', 'macbook'],
+      
+      // Electrodomésticos
+      'lavadoras': ['lavadora'],
+      'neveras': ['nevera', 'refrigerador', 'refrigeradora'],
+      'refrigeradores': ['refrigerador', 'refrigeradora', 'nevera'],
+      'estufas': ['estufa', 'cocina'],
+      
+      // TV y Video
+      'televisores': ['televisor', 'tv', 'smart tv', 'television'],
+      'televisiones': ['televisión', 'television', 'tv', 'televisor'],
+      
+      // Audio
+      'audifonos': ['audífono', 'audifono', 'auricular', 'headphone'],
+      'auriculares': ['auricular', 'audífono', 'audifono'],
+      'parlantes': ['parlante', 'altavoz', 'bocina'],
+      'altavoces': ['altavoz', 'parlante', 'bocina'],
+      
+      // Tablets
+      'tablets': ['tablet', 'tableta'],
+      'tabletas': ['tableta', 'tablet'],
+      
+      // Otros
+      'licuadoras': ['licuadora', 'batidora'],
+      'ventiladores': ['ventilador'],
+      'cafeteras': ['cafetera'],
+    };
+  }
+
+  /**
+   * Normaliza el término de búsqueda para buscar variantes
+   * @param {string} term - Término a normalizar
+   * @returns {Array} Array de variantes del término
+   */
+  normalizeSearchTerm(term) {
+    const normalized = term.toLowerCase().trim();
+    
+    // Si el término está en el mapa, devolver sus variantes
+    if (this.searchTermsMap[normalized]) {
+      return [normalized, ...this.searchTermsMap[normalized]];
+    }
+    
+    // Si no está en el mapa, devolver el término original
+    return [normalized];
   }
 
   /**
@@ -25,11 +114,59 @@ class SearchService {
     const searchTerm = palabraClave.toLowerCase().trim();
     
     try {
-      // Usar el método de búsqueda del backend si está disponible
-      const productos = await this.productController.buscar(searchTerm);
+      // PRIMERO: Verificar si el término corresponde a una categoría padre
+      if (this.categoryMap[searchTerm]) {
+        const categoria = this.categoryMap[searchTerm];
+        console.log(`🔍 Buscando por categoría padre: "${categoria}"`);
+        
+        try {
+          const productos = await this.productController.porCategoria(categoria);
+          console.log(`✅ Encontrados ${productos.length} productos en categoría "${categoria}"`);
+          
+          if (productos.length > 0) {
+            return productos;
+          }
+        } catch (categoryError) {
+          console.warn(`⚠️ Error buscando categoría "${categoria}":`, categoryError);
+          // Continuar con búsqueda por variantes si falla la categoría
+        }
+      }
+      
+      // SEGUNDO: Búsqueda por variantes (fallback)
+      const searchVariants = this.normalizeSearchTerm(searchTerm);
+      console.log(`🔍 Buscando "${searchTerm}" con variantes:`, searchVariants);
+      
+      // Buscar con cada variante y combinar resultados
+      const allResults = [];
+      const seenIds = new Set();
+      
+      for (const variant of searchVariants) {
+        try {
+          console.log(`  ➜ Probando variante: "${variant}"`);
+          const productos = await this.productController.buscar(variant);
+          console.log(`  ✓ Encontrados ${productos.length} productos con "${variant}"`);
+          
+          // Agregar solo productos que no hayamos visto antes
+          productos.forEach(producto => {
+            if (!seenIds.has(producto.id)) {
+              seenIds.add(producto.id);
+              allResults.push(producto);
+            }
+          });
+        } catch (variantError) {
+          // Continuar con la siguiente variante si hay error
+          console.warn(`❌ Error buscando variante "${variant}":`, variantError);
+        }
+      }
+      
+      console.log(`✅ Total de resultados únicos encontrados: ${allResults.length}`);
+      
+      if (allResults.length === 0) {
+        console.log(`❌ No se encontraron resultados para "${searchTerm}"`);
+      }
       
       // Ordenar por relevancia (primero coincidencias en nombre, luego en categoría)
-      productos.sort((a, b) => {
+      allResults.sort((a, b) => {
         const aNameMatch = a.name.toLowerCase().includes(searchTerm);
         const bNameMatch = b.name.toLowerCase().includes(searchTerm);
         
@@ -40,7 +177,7 @@ class SearchService {
         return b.rating - a.rating;
       });
 
-      return productos;
+      return allResults;
     } catch (error) {
       console.error('Error en búsqueda:', error);
       return [];

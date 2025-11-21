@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
+import ProductController from '../../controllers/ProductController';
 import './Header.css';
 
 // Iconos
@@ -43,11 +44,8 @@ const Header = ({ cartItemsCount }) => {
     return saved ? JSON.parse(saved) : [];
   });
 
-  // ✅ Productos vistos realmente por el usuario
-  const [viewedProducts, setViewedProducts] = useState(() => {
-    const saved = localStorage.getItem('viewedProducts');
-    return saved ? JSON.parse(saved) : [];
-  });
+  // ✅ Productos vistos desde BD
+  const [viewedProducts, setViewedProducts] = useState([]);
 
   // ✅ Ultima busqueda 
   const popularSearches = [
@@ -81,28 +79,27 @@ const Header = ({ cartItemsCount }) => {
     });
   };
 
-  // Escuchar cambios en productos vistos
+  // Cargar productos más vistos desde BD
   useEffect(() => {
-    const handleStorageChange = (e) => {
-      if (e.key === 'viewedProducts') {
-        const updated = e.newValue ? JSON.parse(e.newValue) : [];
-        setViewedProducts(updated);
+    const loadViewedProducts = async () => {
+      try {
+        const products = await ProductController.list();
+        const viewed = products.slice(0, 2).map(product => ({
+          id: product.id_producto,
+          name: product.nombre,
+          image: product.imagen || '/images/productos/default.jpg',
+          rating: product.calificacion_promedio || 4.5,
+          reviews: product.numero_resenas || 0,
+          oldPrice: product.precio_original ? `$${product.precio_original.toLocaleString('es-CO')}` : null,
+          price: `$${product.precio.toLocaleString('es-CO')}`
+        }));
+        setViewedProducts(viewed);
+      } catch (error) {
+        console.error('Error al cargar productos vistos:', error);
+        setViewedProducts([]);
       }
     };
-    
-    const handleViewedProductsChanged = () => {
-      const saved = localStorage.getItem('viewedProducts');
-      const updated = saved ? JSON.parse(saved) : [];
-      setViewedProducts(updated);
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('viewedProductsChanged', handleViewedProductsChanged);
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('viewedProductsChanged', handleViewedProductsChanged);
-    };
+    loadViewedProducts();
   }, []);
 
   // Actualizar estado de usuario al cargar componente y escuchar cambios
@@ -293,7 +290,7 @@ const Header = ({ cartItemsCount }) => {
                                 Bienvenido    <span className="user-name">{userName}</span>
                               </div>
                               <button onClick={handleLogout} className="close-session-link">
-                                <TbLogout size={40} style={{marginRight: '6px'}} color='#ff9a27ff' />
+                                <TbLogout size={40} style={{marginInlineEnd: '6px'}} color='#ff9a27ff' />
                                 Cerrar sesión
                               </button>
                             </div>
@@ -390,7 +387,7 @@ const Header = ({ cartItemsCount }) => {
                                   required
                                 />
                                 {loginError && (
-                                  <div className="error-message" style={{color: 'red', fontSize: '12px', marginTop: '-10px', marginBottom: '10px'}}>
+                                  <div className="error-message" style={{color: 'red', fontSize: '12px', marginBlockStart: '-10px', marginBlockEnd: '10px'}}>
                                     {loginError}
                                   </div>
                                 )}
@@ -547,10 +544,7 @@ const Header = ({ cartItemsCount }) => {
                 <div className="search-section half">
                   <h3 className="search-section-title">Productos vistos</h3>
                   <div className="viewed-products-list">
-                    {viewedProducts.length === 0 ? (
-                      <p className="no-viewed-products">No has visto productos aún</p>
-                    ) : (
-                      viewedProducts.slice(0, 2).map((p) => (
+                    {viewedProducts.map((p) => (
                       <div
                         key={p.id}
                         className="viewed-product-card"
@@ -574,8 +568,7 @@ const Header = ({ cartItemsCount }) => {
                           </div>
                         </div>
                       </div>
-                      ))
-                    )}
+                    ))}
                   </div>
                 </div>
               </div>
