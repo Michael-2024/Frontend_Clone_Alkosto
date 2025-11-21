@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import ReturnController from '../../controllers/ReturnController';
-import './Returns.css';
 import AccountSidebar from '../Account/AccountSidebar';
+import '../Account/Account.css';
+import './Returns.css';
 
 /**
  * Vista de Lista de Devoluciones (RF25)
@@ -64,11 +65,18 @@ const ReturnsList = () => {
 
   const filteredReturns = getFilteredReturns();
 
+  const handleLogout = () => {
+    UserController.logout();
+    navigate('/');
+  };
+
   return (
-    <div className="account-container">
-      <AccountSidebar />
-      <div className="account-main">
-        <div className="returns-list-container">
+    <div className="account-page">
+      <div className="container">
+        <div className="account-layout">
+          <AccountSidebar onLogout={handleLogout} />
+          <section className="account-content">
+            <div className="returns-list-container">
           <div className="page-header">
             <div>
               <h1>Mis Devoluciones</h1>
@@ -223,6 +231,8 @@ const ReturnsList = () => {
               ))}
             </div>
           )}
+            </div>
+          </section>
         </div>
       </div>
     </div>

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import pqrsController from '../../controllers/PQRSController';
+import UserController from '../../controllers/UserController';
+import AccountSidebar from '../Account/AccountSidebar';
+import '../Account/Account.css';
 import './PQRSDetail.css';
 
 const PQRSDetail = () => {
@@ -53,12 +56,24 @@ const PQRSDetail = () => {
     return icons[type] || '📋';
   };
 
+  const handleLogout = () => {
+    UserController.logout();
+    navigate('/');
+  };
+
   if (loading) {
     return (
-      <div className="pqrs-detail-container">
-        <div className="loading-spinner">
-          <div className="spinner"></div>
-          <p>Cargando detalles...</p>
+      <div className="account-page">
+        <div className="container">
+          <div className="account-layout">
+            <AccountSidebar onLogout={handleLogout} />
+            <section className="account-content">
+              <div className="loading-spinner">
+                <div className="spinner"></div>
+                <p>Cargando detalles...</p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     );
@@ -66,24 +81,36 @@ const PQRSDetail = () => {
 
   if (error || !pqrs) {
     return (
-      <div className="pqrs-detail-container">
-        <div className="error-state">
-          <div className="error-icon">⚠️</div>
-          <h2>{error || 'PQRS no encontrado'}</h2>
-          <p>Verifica el número de radicado e intenta nuevamente.</p>
-          <button
-            className="btn-primary"
-            onClick={() => navigate('/perfil/pqrs')}
-          >
-            Volver a mis PQRS
-          </button>
+      <div className="account-page">
+        <div className="container">
+          <div className="account-layout">
+            <AccountSidebar onLogout={handleLogout} />
+            <section className="account-content">
+              <div className="error-state">
+                <div className="error-icon">⚠️</div>
+                <h2>{error || 'PQRS no encontrado'}</h2>
+                <p>Verifica el número de radicado e intenta nuevamente.</p>
+                <button
+                  className="btn-primary"
+                  onClick={() => navigate('/perfil/pqrs')}
+                >
+                  Volver a mis PQRS
+                </button>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="pqrs-detail-container">
+    <div className="account-page">
+      <div className="container">
+        <div className="account-layout">
+          <AccountSidebar onLogout={handleLogout} />
+          <section className="account-content">
+            <div className="pqrs-detail-container">
       {/* Header */}
       <div className="pqrs-detail-header">
         <button
@@ -244,6 +271,10 @@ const PQRSDetail = () => {
               <p>Disponible 24/7</p>
             </div>
           </div>
+        </div>
+      </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>

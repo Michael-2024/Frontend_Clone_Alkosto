@@ -213,3 +213,44 @@
     right: 5px;
   }
 }
+
+/* Estilos para modo oscuro */
+body.dark-mode .carousel {
+  background-color: #121212;
+}
+
+body.dark-mode .carousel-container {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .carousel-content h2,
+body.dark-mode .carousel-content p {
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .carousel-button {
+  background-color: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .carousel-button:hover {
+  background-color: #ffb347;
+}
+
+body.dark-mode .carousel-control {
+  background-color: rgba(42, 42, 42, 0.9);
+  color: #ffffff;
+}
+
+body.dark-mode .carousel-control:hover {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .carousel-dot {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .carousel-dot.active {
+  background-color: #ff9a27;
+}

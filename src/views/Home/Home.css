@@ -1,5 +1,8 @@
 .home {
   min-height: 100vh;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Sección Hero: Carousel + Categorías lado a lado */
@@ -25,7 +28,7 @@
 .section-title {
   font-size: 32px;
   margin-bottom: 30px;
-  color: #333;
+  color: var(--text-primary);
   font-weight: bold;
 }
 
@@ -140,10 +143,15 @@
   font-size: 22px;
   margin: 10px 0;
   color: #0033A0;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .category-item h3 {
+  color: #FF9A27;
 }
 
 .category-item p {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 15px;
   margin: 0;
 }
@@ -251,4 +259,52 @@
   height: 100%;
   object-fit: contain;
   display: block;
+}
+
+/* Estilos completos para modo oscuro */
+body.dark-mode .home {
+  background-color: #121212;
+}
+
+body.dark-mode .section-title {
+  color: #ffffff;
+}
+
+body.dark-mode .daily-offers-section {
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+}
+
+body.dark-mode .bestsellers-section {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .recommended-section {
+  background-color: #121212;
+}
+
+body.dark-mode .category-item {
+  background: #1e1e1e;
+  border: 1px solid #3a3a3a;
+}
+
+body.dark-mode .category-item:hover {
+  border-color: #ff9a27;
+  box-shadow: 0 4px 16px rgba(255, 154, 39, 0.2);
+}
+
+body.dark-mode .category-item p {
+  color: #b0b0b0;
+}
+
+body.dark-mode .promo-banner {
+  background: linear-gradient(135deg, #ff9a27 0%, #ffb347 100%);
+}
+
+body.dark-mode .promo-content h3,
+body.dark-mode .promo-content p {
+  color: #000000;
+}
+
+body.dark-mode .countdown {
+  background-color: rgba(255, 154, 39, 0.2);
 }

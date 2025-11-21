@@ -1,7 +1,6 @@
 .pqrs-list-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  padding: 0;
 }
 
 .pqrs-list-header {
@@ -454,4 +453,178 @@
   .pqrs-statistics {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===================================
+   MODO OSCURO
+   =================================== */
+
+body.dark-mode .pqrs-list-header h1 {
+  color: #ffffff;
+}
+
+body.dark-mode .btn-new-pqrs {
+  background-color: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .btn-new-pqrs:hover {
+  background-color: #ffb347;
+  box-shadow: 0 4px 12px rgba(255, 154, 39, 0.3);
+}
+
+body.dark-mode .subtitle {
+  color: #b0b0b0;
+}
+
+body.dark-mode .stat-card {
+  background: #1e1e1e;
+}
+
+body.dark-mode .stat-content h3 {
+  color: #ff9a27;
+}
+
+body.dark-mode .stat-content p {
+  color: #b0b0b0;
+}
+
+body.dark-mode .pqrs-filters {
+  background: #1e1e1e;
+}
+
+body.dark-mode .search-box input {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .search-box input:focus {
+  border-color: #ff9a27;
+  box-shadow: 0 0 0 3px rgba(255, 154, 39, 0.2);
+}
+
+body.dark-mode .search-box input::placeholder {
+  color: #666;
+}
+
+body.dark-mode .filter-group label {
+  color: #e0e0e0;
+}
+
+body.dark-mode .filter-group select {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .filter-group select:focus {
+  border-color: #ff9a27;
+}
+
+body.dark-mode .pqrs-card {
+  background: #1e1e1e;
+}
+
+body.dark-mode .pqrs-card-header {
+  border-bottom-color: #3a3a3a;
+}
+
+body.dark-mode .pqrs-info h3 {
+  color: #ff9a27;
+}
+
+body.dark-mode .badge-info { background-color: #1a2a3a; color: #6bb6ff; }
+body.dark-mode .badge-warning { background-color: #3a2a1a; color: #ffb347; }
+body.dark-mode .badge-danger { background-color: #4a2020; color: #ff6b6b; }
+body.dark-mode .badge-success { background-color: #1a3a1a; color: #6bff6b; }
+body.dark-mode .badge-blue { background-color: #1a2a3a; color: #6bb6ff; }
+body.dark-mode .badge-orange { background-color: #3a2a1a; color: #ffb347; }
+body.dark-mode .badge-green { background-color: #1a3a1a; color: #6bff6b; }
+body.dark-mode .badge-gray { background-color: #2a2a2a; color: #b0b0b0; }
+
+body.dark-mode .date-value {
+  color: #ffffff;
+}
+
+body.dark-mode .elapsed-time {
+  color: #b0b0b0;
+}
+
+body.dark-mode .pqrs-subject {
+  color: #ffffff;
+}
+
+body.dark-mode .pqrs-description {
+  color: #b0b0b0;
+}
+
+body.dark-mode .pqrs-card-footer {
+  border-top-color: #3a3a3a;
+}
+
+body.dark-mode .warning-badge {
+  background-color: #3a2a1a;
+  color: #ffb347;
+}
+
+body.dark-mode .order-badge {
+  background-color: #1a2a3a;
+  color: #6bb6ff;
+}
+
+body.dark-mode .btn-view-detail {
+  background-color: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .btn-view-detail:hover {
+  background-color: #ffb347;
+}
+
+body.dark-mode .empty-state {
+  background: #1e1e1e;
+}
+
+body.dark-mode .empty-state h3 {
+  color: #ffffff;
+}
+
+body.dark-mode .empty-state p {
+  color: #b0b0b0;
+}
+
+body.dark-mode .btn-primary {
+  background-color: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .btn-primary:hover {
+  background-color: #ffb347;
+  box-shadow: 0 4px 12px rgba(255, 154, 39, 0.3);
+}
+
+body.dark-mode .pqrs-info-footer {
+  background: #1e1e1e;
+}
+
+body.dark-mode .pqrs-info-footer h3 {
+  color: #ffffff;
+}
+
+body.dark-mode .info-item strong {
+  color: #ff9a27;
+}
+
+body.dark-mode .info-item p {
+  color: #b0b0b0;
+}
+
+body.dark-mode .loading-spinner p {
+  color: #b0b0b0;
+}
+
+body.dark-mode .loading-spinner .spinner {
+  border-color: #3a3a3a;
+  border-top-color: #ff9a27;
 }

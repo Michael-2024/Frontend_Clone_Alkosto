@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import pqrsController from '../../controllers/PQRSController';
 import UserController from '../../controllers/UserController';
+import AccountSidebar from '../Account/AccountSidebar';
+import '../Account/Account.css';
 import './PQRSForm.css';
 
 const PQRSForm = () => {
@@ -197,8 +199,18 @@ const PQRSForm = () => {
     }
   ];
 
+  const handleLogout = () => {
+    UserController.logout();
+    navigate('/');
+  };
+
   return (
-    <div className="pqrs-form-container">
+    <div className="account-page">
+      <div className="container">
+        <div className="account-layout">
+          <AccountSidebar onLogout={handleLogout} />
+          <section className="account-content">
+            <div className="pqrs-form-container">
       <div className="pqrs-form-header">
         <h1>Enviar PQRS</h1>
         <p className="subtitle">
@@ -369,6 +381,10 @@ const PQRSForm = () => {
           <li>📧 Email: ayuda@alkosto.com</li>
           <li>💬 Chat en línea (disponible en la esquina inferior derecha)</li>
         </ul>
+      </div>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );

@@ -3,9 +3,8 @@
 
 /* ==================== Return Request ==================== */
 .return-request-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 100%;
+  padding: 0;
 }
 
 .return-request-container h1 {
@@ -613,7 +612,8 @@
 
 /* ==================== Returns List ==================== */
 .returns-list-container {
-  padding: 20px;
+  width: 100%;
+  padding: 0;
 }
 
 .page-header {
@@ -850,9 +850,8 @@
 
 /* ==================== Return Detail ==================== */
 .return-detail-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 100%;
+  padding: 0;
 }
 
 .return-detail-header {

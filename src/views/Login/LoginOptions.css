@@ -189,3 +189,77 @@
     max-width: none;
   }
 }
+
+/* Estilos para modo oscuro */
+body.dark-mode .login-page {
+  background-color: #121212;
+}
+
+body.dark-mode .login-title {
+  color: #ffffff;
+}
+
+body.dark-mode .email-label-login {
+  color: #b0b0b0;
+}
+
+body.dark-mode .login-options-container {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .login-help-section {
+  background: #2a2a2a;
+  border-top-color: #3a3a3a;
+}
+
+body.dark-mode .login-help-title {
+  color: #b0b0b0;
+}
+
+body.dark-mode .login-help-link,
+body.dark-mode .forgot-password-button,
+body.dark-mode .forgot-password-link,
+body.dark-mode .modify-link-inline {
+  color: #ff9a27;
+}
+
+body.dark-mode .login-help-link:hover,
+body.dark-mode .forgot-password-button:hover,
+body.dark-mode .forgot-password-link:hover {
+  color: #ffb347;
+}
+
+body.dark-mode .login-option-item {
+  border-bottom-color: #3a3a3a;
+}
+
+body.dark-mode .login-option-item:hover {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .login-option-icon {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .whatsapp-icon {
+  background-color: rgba(37, 211, 102, 0.2);
+}
+
+body.dark-mode .sms-icon,
+body.dark-mode .email-icon,
+body.dark-mode .password-icon {
+  background-color: rgba(255, 154, 39, 0.2);
+}
+
+body.dark-mode .login-option-title {
+  color: #ffffff;
+}
+
+body.dark-mode .login-option-description {
+  color: #b0b0b0;
+}
+
+body.dark-mode .login-option-arrow {
+  color: #ff9a27;
+}

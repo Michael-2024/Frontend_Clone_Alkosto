@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../context/ThemeContext';
 import './Footer.css';
 import ChatButton from '../ChatButton/ChatButton';
 // iconos
 import { IoLogoGooglePlaystore } from "react-icons/io5"; // google play
 import { FaAppStoreIos } from "react-icons/fa"; // app store
 import { FaCcVisa } from "react-icons/fa"; // visa
+import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2"; // iconos de tema
 
 
 const Footer = () => {
+  const { theme, toggleTheme } = useTheme();
+  
   return (
     <footer className="footer">
       <div className="container">
@@ -125,6 +129,23 @@ const Footer = () => {
             <span className="separator">|</span>
             <Link to="/cookies">Política de Cookies</Link>
           </div>
+          <button 
+            className="footer-theme-toggle"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+          >
+            {theme === 'dark' ? (
+              <>
+                <HiOutlineSun size={24} />
+                <span>Modo Claro</span>
+              </>
+            ) : (
+              <>
+                <HiOutlineMoon size={24} />
+                <span>Modo Oscuro</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
     </footer>

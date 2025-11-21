@@ -41,3 +41,79 @@
   .category-content { grid-template-columns: 1fr; }
   .filters { position:static; }
 }
+
+/* Estilos para modo oscuro */
+body.dark-mode .category-page .breadcrumb {
+  color: #b0b0b0;
+}
+
+body.dark-mode .category-page .separator {
+  color: #4a4a4a;
+}
+
+body.dark-mode .category-header h1 {
+  color: #ffffff;
+}
+
+body.dark-mode .results-count {
+  color: #b0b0b0;
+}
+
+body.dark-mode .filters {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .filter-group h3 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .filter-group select {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .brand-item {
+  color: #e0e0e0;
+}
+
+body.dark-mode .price-range input {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .price-range span {
+  color: #666;
+}
+
+body.dark-mode .loading-state {
+  color: #b0b0b0;
+}
+
+body.dark-mode .no-results {
+  color: #b0b0b0;
+}
+
+body.dark-mode .applied-filters {
+  background: #2a2a2a;
+}
+
+body.dark-mode .filters-label {
+  color: #e0e0e0;
+}
+
+body.dark-mode .filter-chip {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .filter-chip button {
+  color: #b0b0b0;
+}
+
+body.dark-mode .filter-chip button:hover {
+  color: #ff9a27;
+}

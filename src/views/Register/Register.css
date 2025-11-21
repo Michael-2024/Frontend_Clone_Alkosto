@@ -149,6 +149,87 @@
 }
 
 .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  color: #666;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #E75114;
+  box-shadow: 0 0 0 3px rgba(231, 81, 20, 0.1);
+}
+
+/* Estilos para modo oscuro */
+body.dark-mode .register-page {
+  background-color: #121212;
+}
+
+body.dark-mode .register-title {
+  color: #ffffff;
+}
+
+body.dark-mode .register-form-container {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .email-info {
+  border-bottom-color: #3a3a3a;
+}
+
+body.dark-mode .email-label {
+  color: #b0b0b0;
+}
+
+body.dark-mode .email-value {
+  color: #ffffff;
+}
+
+body.dark-mode .modify-button,
+body.dark-mode .back-button {
+  color: #ff9a27;
+}
+
+body.dark-mode .email-edit-label,
+body.dark-mode .form-label {
+  color: #b0b0b0;
+}
+
+body.dark-mode .email-edit-input,
+body.dark-mode .form-input {
+  background-color: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #ffffff;
+}
+
+body.dark-mode .email-edit-input:focus,
+body.dark-mode .form-input:focus {
+  border-color: #ff9a27;
+  box-shadow: 0 0 0 3px rgba(255, 154, 39, 0.2);
+}
+
+body.dark-mode .email-cancel-button {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+.form-group {
   position: relative;
   margin-bottom: 1.8rem; /* Aumentar el margen inferior */
 }

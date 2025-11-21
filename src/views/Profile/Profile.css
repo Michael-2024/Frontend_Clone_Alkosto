@@ -94,3 +94,67 @@
   cursor: pointer;
 }
 .btn-remove:hover { background: #fafafa; }
+
+/* Estilos para modo oscuro */
+body.dark-mode .profile-page {
+  background-color: #121212;
+}
+
+body.dark-mode .profile-name {
+  color: #ffffff;
+}
+
+body.dark-mode .profile-email {
+  color: #b0b0b0;
+}
+
+body.dark-mode .profile-actions .btn-link {
+  color: #ff9a27;
+}
+
+body.dark-mode .profile-actions .btn-link:hover {
+  color: #ffb347;
+}
+
+body.dark-mode .profile-section {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .section-header h3 {
+  color: #ffffff;
+}
+
+body.dark-mode .pill {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .btn-remove-all {
+  background: #1e1e1e;
+  border-color: #ff9a27;
+  color: #ff9a27;
+}
+
+body.dark-mode .btn-remove-all:hover {
+  background: #ff9a27;
+  color: #000000;
+}
+
+body.dark-mode .empty-state {
+  color: #b0b0b0;
+}
+
+body.dark-mode .profile-avatar {
+  background: #2a2a2a;
+}
+
+body.dark-mode .btn-remove {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .btn-remove:hover {
+  background: #2a2a2a;
+}

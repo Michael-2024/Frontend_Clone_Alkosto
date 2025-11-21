@@ -113,12 +113,22 @@
   font-size: 14px;
   color: #999;
   text-decoration: line-through;
+  transition: color 0.3s ease;
 }
 
 .current-price {
   font-size: 22px;
   font-weight: bold;
   color: #0033A0;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .original-price {
+  color: var(--text-secondary);
+}
+
+body.dark-mode .current-price {
+  color: #FF9A27;
 }
 
 .add-to-cart-btn {
