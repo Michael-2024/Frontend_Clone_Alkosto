@@ -481,7 +481,7 @@ const Header = ({ cartItemsCount }) => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <button type="submit" className="search-button-expanded">
-                    <FaMagnifyingGlass className="search-icon" />
+                    //<FaMagnifyingGlass className="search-icon" />
                     <span className="search-text">Buscar</span>
                   </button>
                 </form>
