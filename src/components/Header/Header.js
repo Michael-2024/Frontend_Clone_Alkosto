@@ -254,7 +254,7 @@ const Header = ({ cartItemsCount }) => {
                   onFocus={() => setShowSearchOverlay(true)}
                 />
                 <button type="submit" className="search-button">
-                  <RxMagnifyingGlass className="search-icon" />
+                  //<RxMagnifyingGlass className="search-icon" />
                   <span className="search-text">Buscar</span>
                 </button>
               </form>
