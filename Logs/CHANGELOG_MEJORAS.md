@@ -2,6 +2,78 @@
 
 ---
 
+## 🔧 Versión 2.3.1 - Corrección Sistema de Plantillas (Noviembre 2025)
+
+### 🎯 **MEJORA-023: Auditoría y Corrección del Sistema de Plantillas Homepage**
+
+#### Resumen
+Auditoría completa del sistema de plantillas con identificación y corrección de bug crítico que impedía el cambio entre plantillas. El sistema ahora funciona correctamente al 100%.
+
+#### 🐛 Bug Crítico Corregido
+
+**Problema identificado:**
+- ❌ El cambio de `ACTIVE_TEMPLATE` no afectaba la homepage
+- ❌ Siempre se mostraba Black Days, nunca la plantilla general
+- ❌ Variable `activeTemplate` se obtenía pero NO se usaba
+
+**Solución implementada:**
+- ✅ Renderizado condicional en `Home.js` basado en `activeTemplate.layout`
+- ✅ Sistema responde correctamente a cambios de configuración
+
+#### 🔄 Archivos Modificados
+
+**Correcciones:**
+- ✅ `src/views/Home/Home.js` - Renderizado condicional implementado
+- ✅ `src/components/BlackDaysBanner/BlackDaysBanner.js` - Configuración dinámica
+
+**Nuevos:**
+- ✅ `src/__tests__/homeTemplates.test.js` - Suite completa de tests (20 tests)
+- ✅ `scripts/test-templates.sh` - Script de cambio rápido entre plantillas
+- ✅ `docs/AUDITORIA_SISTEMA_PLANTILLAS.md` - Documentación completa de hallazgos
+
+**Actualizados:**
+- ✅ `docs/GUIA_PLANTILLAS_HOMEPAGE.md` - Estado actualizado
+- ✅ `Logs/MEJORA_023_Sistema_Plantillas_Fix.md` - Changelog de la mejora
+
+#### ✨ Mejoras Implementadas
+
+**Sistema de plantillas operativo:**
+- ✅ Cambio entre `plant_general` y `plant_blackdays` funcional
+- ✅ `BlackDaysBanner` usa textos/imágenes configurables
+- ✅ Logs de debug mejorados en consola
+- ✅ Script bash para cambio rápido de plantilla
+
+**Testing:**
+- ✅ 20 tests automatizados pasando
+- ✅ Validación de estructura de plantillas
+- ✅ Cobertura de funciones auxiliares
+- ✅ Tests de integración con Home.js
+
+**Documentación:**
+- ✅ Auditoría completa con análisis técnico
+- ✅ Guía actualizada con estado funcional
+- ✅ Scripts de prueba documentados
+
+#### 📊 Resultados
+
+**Antes:**
+- ❌ Sistema no funcional a pesar de estar bien diseñado
+- ❌ Imposible cambiar entre diseños
+- ❌ Configuración ignorada
+
+**Después:**
+- ✅ Sistema 100% operativo
+- ✅ Cambio de plantilla en 1 línea
+- ✅ Tests validando funcionalidad
+- ✅ Documentación actualizada
+
+#### 🔗 Referencias
+- Auditoría: `docs/AUDITORIA_SISTEMA_PLANTILLAS.md`
+- Tests: `src/__tests__/homeTemplates.test.js`
+- Changelog: `Logs/MEJORA_023_Sistema_Plantillas_Fix.md`
+
+---
+
 ## 🛍️ Versión 2.3.0 - Implementación RF07 y RF08 (Diciembre 2024)
 
 ### 🎯 **MEJORA-004: Sistema Completo de Checkout y Gestión de Pedidos**

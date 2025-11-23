@@ -1,6 +1,8 @@
 // src/views/Home/Home.js
 import React, { useState, useEffect } from 'react';
+import { getActiveTemplate } from '../../config/homeTemplates';
 import Carousel from '../../components/Carousel/Carousel';
+import BlackDaysBanner from '../../components/BlackDaysBanner/BlackDaysBanner';
 import CategorySection from '../../components/CategorySection/CategorySection';
 import ProductGrid from '../../components/ProductGrid/ProductGrid';
 import productController from '../../controllers/ProductController';
@@ -9,6 +11,7 @@ import CartDrawer from '../../components/CartDrawer/CartDrawer';
 import './Home.css';
 
 const Home = () => {
+  const activeTemplate = getActiveTemplate();
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [discountedProducts, setDiscountedProducts] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
@@ -18,34 +21,12 @@ const Home = () => {
   const [addedProduct, setAddedProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-  const [countdown, setCountdown] = useState({ hours: 12, minutes: 34, seconds: 56 });
 
-  const carouselSlides = [
-    {
-      image: 'https://okdiario.com/img/2024/12/08/iphone-17-1-635x358.jpeg',
-      title: '¡Tu nuevo Iphone te espera!',
-      description: 'Hasta 50% de descuento en productos seleccionados',
-      buttonText: 'Ver Ofertas',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1400&h=450&fit=crop',
-      title: 'Lo Último en Laptops',
-      description: 'Potencia y rendimiento para tu trabajo',
-      buttonText: 'Comprar Ahora',
-    },
-    {
-      image: 'https://live.mrf.io/statics/i/ps/www.muycomputer.com/wp-content/uploads/2018/07/smartphone.jpg?width=1200&enable=upscale',
-      title: 'Smartphones al Mejor Precio',
-      description: 'Los modelos más recientes con increíbles descuentos',
-      buttonText: 'Explorar',
-    },
-    {
-      image: 'https://hiraoka.com.pe/media/mageplaza/blog/post/a/u/audio_premium-parlantes-audifonos-hiraoka.jpg',
-      title: 'Audio Premium',
-      description: 'Audífonos y parlantes de alta calidad',
-      buttonText: 'Descubrir',
-    },
-  ];
+  // Logs para debug
+  console.log('🎨 Plantilla activa:', activeTemplate.name);
+  console.log('📐 Configuración:', activeTemplate.layout);
+  console.log('📦 Mostrar carrusel:', activeTemplate.layout.showCarousel);
+  console.log('🎯 Mostrar banner:', activeTemplate.layout.showBanner);
 
   useEffect(() => {
     // Cargar productos desde backend
@@ -68,39 +49,6 @@ const Home = () => {
     load();
   }, []);
 
-  // Temporizador de cuenta regresiva
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown(prev => {
-        let { hours, minutes, seconds } = prev;
-        
-        // Decrementar segundos
-        seconds--;
-        
-        if (seconds < 0) {
-          seconds = 59;
-          minutes--;
-        }
-        
-        if (minutes < 0) {
-          minutes = 59;
-          hours--;
-        }
-        
-        // Si llega a 0, reiniciar a 24 horas
-        if (hours < 0) {
-          hours = 23;
-          minutes = 59;
-          seconds = 59;
-        }
-        
-        return { hours, minutes, seconds };
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
   const handleAddToCart = async (product) => {
     try {
       await CartController.addToCart(product, 1);
@@ -114,27 +62,35 @@ const Home = () => {
     }
   };
 
+  // Si la plantilla activa es Black Days, agrega clase 'blackdays-bg' al contenedor
+  const homeClass = `home${activeTemplate.id === 'plant_blackdays' ? ' blackdays-bg' : ''}`;
   return (
-    <div className="home">
-      {/* 🔹 Hero Section combinada (Carousel + Categorías) */}
-      <div className="hero-section">
-        <Carousel slides={carouselSlides} />
-        <CategorySection />
-      </div>
+    <div className={homeClass}>
+      {/* 🔹 Renderizado Condicional según Plantilla Activa */}
+      
+      {/* Plantilla General: Carrusel + Categorías lado a lado */}
+      {activeTemplate.layout.showCarousel && (
+        <div className="hero-section">
+          <Carousel slides={activeTemplate.carousel.slides} />
+          <CategorySection />
+        </div>
+      )}
+      
+      {/* Plantilla Black Days: Banner + Categorías debajo */}
+      {activeTemplate.layout.showBanner && (
+        <>
+          <BlackDaysBanner />
+          <div className="home-categories-section">
+            <CategorySection />
+          </div>
+        </>
+      )}
 
       <div className="container">
         {/* 🔸 Ofertas del día */}
         <section className="daily-offers-section">
           <div className="section-header-special">
             <h2 className="section-title">⚡ Ofertas del Día</h2>
-            <div className="countdown">
-              <span className="countdown-label">Termina en:</span>
-              <span className="countdown-time">
-                {String(countdown.hours).padStart(2, '0')}:
-                {String(countdown.minutes).padStart(2, '0')}:
-                {String(countdown.seconds).padStart(2, '0')}
-              </span>
-            </div>
           </div>
           <ProductGrid
             products={discountedProducts}
@@ -205,8 +161,8 @@ const Home = () => {
           <div className="category-item">
             <div className="category-icon">
               <img 
-                src="https://media.aws.alkomprar.com/ymarketingcolcomercio/Alkosto/2024/agosto-alkosto/home/assets/c-televisores.webp" 
-                alt="Categoría videojuegos" 
+                src="https://media.aws.alkomprar.com/ymarketingcolcomercio/Alkosto/2024/agosto-alkosto/home/assets/c-tv-video.webp" 
+                alt="Categoría entretenimiento" 
                 className="category-image" 
               />
             </div>
@@ -224,7 +180,6 @@ const Home = () => {
             <h3>Gaming</h3>
             <p>Consolas y juegos</p>
           </div>
-
         </section>
       </div>
 

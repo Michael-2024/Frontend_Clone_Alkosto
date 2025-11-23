@@ -1,0 +1,403 @@
+/* Info Pages General Styles */
+.info-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.info-hero {
+  background: linear-gradient(135deg, #004797 0%, #0066cc 100%);
+  color: white;
+  padding: 60px 0 40px;
+  text-align: center;
+}
+
+.info-hero h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+}
+
+.info-hero p {
+  font-size: 18px;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.info-content {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  margin: -30px auto 40px;
+  max-width: 1200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info-content h2 {
+  font-size: 28px;
+  color: #333;
+  margin: 30px 0 20px 0;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #ff9a27;
+}
+
+.info-content h3 {
+  font-size: 20px;
+  color: #004797;
+  margin: 20px 0 10px 0;
+}
+
+.info-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+  margin: 15px 0;
+}
+
+.info-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-content ul li {
+  padding: 10px 0 10px 30px;
+  position: relative;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.info-content ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #00A859;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Stores Page */
+.stores-intro {
+  text-align: center;
+  padding: 20px 0 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.city-stores {
+  margin: 40px 0;
+}
+
+.city-name {
+  font-size: 32px !important;
+  color: #004797 !important;
+  margin: 40px 0 30px 0 !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid #ff9a27 !important;
+}
+
+.stores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.store-card {
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.store-card:hover {
+  border-color: #ff9a27;
+  box-shadow: 0 4px 12px rgba(255, 154, 39, 0.2);
+  transform: translateY(-2px);
+}
+
+.store-card h3 {
+  font-size: 22px;
+  color: #004797;
+  margin: 0 0 20px 0;
+}
+
+.store-details p {
+  margin: 12px 0;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.stores-services {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 2px solid #e0e0e0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.service-item {
+  text-align: center;
+  padding: 30px 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.service-item:hover {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+}
+
+.service-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.service-item h3 {
+  font-size: 18px;
+  color: #004797;
+  margin: 15px 0 10px 0;
+}
+
+.service-item p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Contact Cards */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.contact-card {
+  background: #f8f9fa;
+  border-left: 4px solid #ff9a27;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+.contact-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  margin: 0 0 20px 0;
+}
+
+.contact-card .contact-icon {
+  font-size: 32px;
+}
+
+.contact-card .contact-detail {
+  margin: 15px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.contact-card .contact-detail strong {
+  display: block;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* FAQ Section */
+.faq-section {
+  margin: 40px 0;
+}
+
+.faq-item {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin: 15px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  font-size: 18px;
+  font-weight: 600;
+  color: #004797;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  font-size: 16px;
+  color: #555;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.btn-secondary {
+  background: #004797;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
+
+.btn-secondary:hover {
+  background: #003366;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 71, 151, 0.3);
+}
+
+/* Dark Mode */
+body.dark-mode .info-page {
+  background: #121212;
+}
+
+body.dark-mode .info-hero {
+  background: linear-gradient(135deg, #ff9a27 0%, #ffb347 100%);
+  color: #000;
+}
+
+body.dark-mode .info-content {
+  background: #1e1e1e;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .info-content h2 {
+  color: #ffffff;
+  border-bottom-color: #ff9a27;
+}
+
+body.dark-mode .info-content h3 {
+  color: #ff9a27;
+}
+
+body.dark-mode .info-content p {
+  color: #b0b0b0;
+}
+
+body.dark-mode .city-name {
+  color: #ff9a27 !important;
+}
+
+body.dark-mode .store-card {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .store-card:hover {
+  border-color: #ff9a27;
+}
+
+body.dark-mode .store-card h3 {
+  color: #ff9a27;
+}
+
+body.dark-mode .store-details p {
+  color: #b0b0b0;
+}
+
+body.dark-mode .service-item {
+  background: #2a2a2a;
+}
+
+body.dark-mode .service-item:hover {
+  background: #3a3a3a;
+}
+
+body.dark-mode .service-item h3 {
+  color: #ff9a27;
+}
+
+body.dark-mode .service-item p {
+  color: #b0b0b0;
+}
+
+body.dark-mode .contact-card {
+  background: #2a2a2a;
+  border-left-color: #ff9a27;
+}
+
+body.dark-mode .contact-card .contact-detail {
+  color: #e0e0e0;
+}
+
+body.dark-mode .contact-card .contact-detail strong {
+  color: #b0b0b0;
+}
+
+body.dark-mode .faq-item {
+  background: #2a2a2a;
+}
+
+body.dark-mode .faq-item:hover {
+  background: #3a3a3a;
+}
+
+body.dark-mode .faq-question {
+  color: #ff9a27;
+}
+
+body.dark-mode .faq-answer {
+  color: #b0b0b0;
+}
+
+body.dark-mode .btn-secondary {
+  background: #ff9a27;
+  color: #000;
+}
+
+body.dark-mode .btn-secondary:hover {
+  background: #ffb347;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .info-hero h1 {
+    font-size: 28px;
+  }
+
+  .info-hero p {
+    font-size: 16px;
+  }
+
+  .info-content {
+    padding: 30px 20px;
+  }
+
+  .info-content h2 {
+    font-size: 24px;
+  }
+
+  .stores-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
+}

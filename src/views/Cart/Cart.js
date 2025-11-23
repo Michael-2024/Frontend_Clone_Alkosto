@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import CartController from '../../controllers/CartController';
 import UserController from '../../controllers/UserController';
 import CouponController from '../../controllers/CouponController';
+import Coupon from '../../models/Coupon';
 import './Cart.css';
 
 // iconos 
@@ -31,6 +32,23 @@ const Cart = () => {
       setCart(loadedCart);
     };
     loadCart();
+
+    // Cargar cupón guardado si existe
+    const savedCoupon = CartController.getAppliedCoupon();
+    if (savedCoupon) {
+      // Reconstruir el objeto Coupon desde los datos guardados
+      const restoredCoupon = new Coupon({
+        code: savedCoupon.code,
+        type: savedCoupon.type,
+        value: savedCoupon.value,
+        description: savedCoupon.description,
+        minPurchase: savedCoupon.minPurchase,
+        maxDiscount: savedCoupon.maxDiscount,
+        validUntil: savedCoupon.validUntil
+      });
+      setAppliedCoupon(restoredCoupon);
+      setCouponSuccess(`Cupón ${savedCoupon.code} aplicado`);
+    }
   }, []);
 
   const updateCart = async () => {
@@ -101,6 +119,8 @@ const Cart = () => {
       setAppliedCoupon(validation.coupon);
       setCouponSuccess(`¡Cupón aplicado! Descuento de ${formatPrice(validation.discount)}`);
       setCouponCode('');
+      // Guardar cupón en CartController para persistencia
+      CartController.saveAppliedCoupon(validation.coupon);
     } else {
       setCouponError(validation.reason);
     }
@@ -111,6 +131,8 @@ const Cart = () => {
     setCouponSuccess('');
     setCouponError('');
     setCouponCode('');
+    // Limpiar cupón guardado
+    CartController.clearAppliedCoupon();
   };
 
   const calculateDiscount = () => {

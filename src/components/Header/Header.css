@@ -204,6 +204,11 @@
   font-weight: 600;
 }
 
+/* Ocultar ícono de lupa */
+.search-button .search-icon {
+  display: none; /* Ocultar ícono de lupa del botón */
+}
+
 .search-button:hover {
   background: #003580;
 }

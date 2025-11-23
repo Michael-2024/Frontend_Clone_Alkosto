@@ -5,6 +5,7 @@ import OrderController from '../../controllers/OrderController';
 import UserController from '../../controllers/UserController';
 import CouponController from '../../controllers/CouponController';
 import PaymentMethodController from '../../controllers/PaymentMethodController';
+import Coupon from '../../models/Coupon';
 import './Checkout.css';
 
 const Checkout = () => {
@@ -85,6 +86,23 @@ const Checkout = () => {
       setCartItems(items);
     };
     loadCart();
+
+    // Cargar cupón guardado si existe
+    const savedCoupon = CartController.getAppliedCoupon();
+    if (savedCoupon) {
+      // Reconstruir el objeto Coupon desde los datos guardados
+      const restoredCoupon = new Coupon({
+        code: savedCoupon.code,
+        type: savedCoupon.type,
+        value: savedCoupon.value,
+        description: savedCoupon.description,
+        minPurchase: savedCoupon.minPurchase,
+        maxDiscount: savedCoupon.maxDiscount,
+        validUntil: savedCoupon.validUntil
+      });
+      setAppliedCoupon(restoredCoupon);
+      setCouponSuccess(`Cupón ${savedCoupon.code} aplicado`);
+    }
   }, [navigate]);
 
   const handleShippingChange = (e) => {
@@ -209,6 +227,8 @@ const Checkout = () => {
       setAppliedCoupon(validation.coupon);
       setCouponSuccess(`¡Cupón aplicado! Descuento de ${formatPrice(validation.discount)}`);
       setCouponCode('');
+      // Guardar cupón en CartController para persistencia
+      CartController.saveAppliedCoupon(validation.coupon);
     } else {
       setCouponError(validation.reason);
     }
@@ -219,6 +239,8 @@ const Checkout = () => {
     setCouponSuccess('');
     setCouponError('');
     setCouponCode('');
+    // Limpiar cupón guardado
+    CartController.clearAppliedCoupon();
   };
 
   const handlePlaceOrder = async () => {
@@ -259,6 +281,9 @@ const Checkout = () => {
       if (result.success) {
         // Limpiar carrito
         await CartController.clearCart();
+        
+        // Limpiar cupón aplicado
+        CartController.clearAppliedCoupon();
 
         // Simular delay de procesamiento
         await new Promise(resolve => setTimeout(resolve, 1500));
@@ -310,13 +335,18 @@ const Checkout = () => {
     return calculateSubtotal() >= 150000 ? 0 : 15000;
   };
 
+  const calculateIVA = () => {
+    const subtotal = calculateSubtotal();
+    return Math.round(subtotal * 0.19);
+  };
+
   const calculateDiscount = () => {
     if (!appliedCoupon) return 0;
     return appliedCoupon.calculateDiscount(calculateSubtotal());
   };
 
   const calculateTotal = () => {
-    return calculateSubtotal() + calculateShipping() - calculateDiscount();
+    return calculateSubtotal() + calculateShipping() + calculateIVA() - calculateDiscount();
   };
 
   const formatPrice = (price) => {
@@ -1025,6 +1055,11 @@ const Checkout = () => {
                 <span className={calculateShipping() === 0 ? 'free-shipping' : ''}>
                   {calculateShipping() === 0 ? 'GRATIS' : formatPrice(calculateShipping())}
                 </span>
+              </div>
+
+              <div className="summary-item">
+                <span>IVA (19%)</span>
+                <span>{formatPrice(calculateIVA())}</span>
               </div>
 
               {calculateShipping() === 0 && (

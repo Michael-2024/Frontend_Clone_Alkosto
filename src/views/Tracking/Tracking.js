@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import OrderController from '../../controllers/OrderController';
-import AccountSidebar from '../Account/AccountSidebar';
-import '../Account/Account.css';
+import Header from '../../components/Header/Header';
+import Navigation from '../../components/Navigation/Navigation';
+import Footer from '../../components/Footer/Footer';
 import './Tracking.css';
 
 const Tracking = () => {
@@ -79,26 +80,26 @@ const Tracking = () => {
     }, 500);
   };
 
-  const handleLogout = () => {
-    UserController.logout();
-    navigate('/');
-  };
-
   return (
-    <div className="account-page">
+    <div className="tracking-page">
+      <Header />
+      <Navigation />
       <div className="container">
-        <div className="account-layout">
-          <AccountSidebar onLogout={handleLogout} />
-          <section className="account-content">
-            <div className="account-hero">
-              <div className="hero-icon" aria-hidden>🔍</div>
-              <div className="hero-texts">
-                <h1 className="account-title">Sigue tu pedido</h1>
-                <p className="account-sub">Consulta el estado actual de tu pedido</p>
-              </div>
+        <div className="tracking-container">
+          <div className="tracking-hero">
+            <div className="hero-icon" aria-hidden>📦</div>
+            <div className="hero-texts">
+              <h1 className="tracking-title">Sigue tu pedido</h1>
+              <p className="tracking-subtitle">Consulta el estado por factura o pedido:</p>
             </div>
+          </div>
+          
+          <div className="tracking-tabs">
+            <button className="tab-btn active">Factura o tiquete</button>
+            <button className="tab-btn">Pedido</button>
+          </div>
 
-            <form className="profile-form" onSubmit={onSubmit}>
+          <form className="profile-form" onSubmit={onSubmit}>
               <div className="form-row">
                 <div className="form-field">
                   <label>Número de pedido</label>
@@ -234,9 +235,9 @@ const Tracking = () => {
                 </div>
               </div>
             )}
-          </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
