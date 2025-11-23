@@ -208,6 +208,52 @@ class CartController {
     }
   }
 
+  // Guardar cupón aplicado
+  saveAppliedCoupon(coupon) {
+    try {
+      if (coupon) {
+        localStorage.setItem('alkosto_applied_coupon', JSON.stringify({
+          code: coupon.code,
+          type: coupon.type,
+          value: coupon.value,
+          description: coupon.description,
+          minPurchase: coupon.minPurchase,
+          validUntil: coupon.validUntil,
+          usedBy: coupon.usedBy,
+          category: coupon.category,
+          maxDiscount: coupon.maxDiscount
+        }));
+      } else {
+        localStorage.removeItem('alkosto_applied_coupon');
+      }
+    } catch (error) {
+      console.error('Error guardando cupón:', error);
+    }
+  }
+
+  // Obtener cupón aplicado
+  getAppliedCoupon() {
+    try {
+      const savedCoupon = localStorage.getItem('alkosto_applied_coupon');
+      if (savedCoupon) {
+        return JSON.parse(savedCoupon);
+      }
+      return null;
+    } catch (error) {
+      console.error('Error obteniendo cupón guardado:', error);
+      return null;
+    }
+  }
+
+  // Limpiar cupón aplicado
+  clearAppliedCoupon() {
+    try {
+      localStorage.removeItem('alkosto_applied_coupon');
+    } catch (error) {
+      console.error('Error limpiando cupón:', error);
+    }
+  }
+
   // Cargar carrito desde localStorage (solo al iniciar)
   loadCartFromStorage() {
     try {

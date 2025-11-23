@@ -20,6 +20,7 @@ class Order {
     this.updatedAt = new Date();
     this.subtotal = this.calculateSubtotal();
     this.shipping = this.calculateShipping();
+    this.iva = this.calculateIVA();
     this.discount = coupon ? coupon.discount : 0;
     this.total = this.calculateTotal();
     this.trackingNumber = this.generateTrackingNumber();
@@ -37,8 +38,17 @@ class Order {
     return subtotal >= 150000 ? 0 : 15000;
   }
 
+  calculateIVA() {
+    // IVA del 19% sobre el subtotal
+    const subtotal = this.calculateSubtotal();
+    return Math.round(subtotal * 0.19);
+  }
+
   calculateTotal() {
-    return this.calculateSubtotal() + this.calculateShipping() - this.discount;
+    const subtotal = this.calculateSubtotal();
+    const shipping = this.calculateShipping();
+    const iva = this.calculateIVA();
+    return subtotal + shipping + iva - this.discount;
   }
 
   generateTrackingNumber() {
@@ -215,6 +225,7 @@ class Order {
       total: this.total,
       subtotal: this.subtotal,
       shipping: this.shipping,
+      iva: this.iva,
       trackingNumber: this.trackingNumber,
       cancellationReason: this.cancellationReason || null,
       cancelledAt: this.cancelledAt || null,

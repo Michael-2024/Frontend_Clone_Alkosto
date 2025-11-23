@@ -1,3 +1,4 @@
+
 .home {
   min-height: 100vh;
   background-color: var(--bg-secondary);
@@ -5,7 +6,12 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Sección Hero: Carousel + Categorías lado a lado */
+/* Fondo negro SIEMPRE para Black Days en Home */
+.home.blackdays-bg {
+  background: #000 !important;
+}
+
+/* Sección Hero para Plantilla General (Carousel + Categorías lado a lado) */
 .hero-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -15,6 +21,14 @@
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Sección de Categorías debajo del banner */
+.home-categories-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background-color: var(--bg-primary);
 }
 
 .featured-section,
@@ -261,50 +275,51 @@ body.dark-mode .category-item h3 {
   display: block;
 }
 
-/* Estilos completos para modo oscuro */
+/* Estilos de modo oscuro SOLO para la página Home (no afecta otras vistas) */
 body.dark-mode .home {
   background-color: #121212;
 }
 
-body.dark-mode .section-title {
+/* Solo aplicar dark mode a elementos dentro de .home */
+body.dark-mode .home .section-title {
   color: #ffffff;
 }
 
-body.dark-mode .daily-offers-section {
+body.dark-mode .home .daily-offers-section {
   background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
 }
 
-body.dark-mode .bestsellers-section {
+body.dark-mode .home .bestsellers-section {
   background-color: #1e1e1e;
 }
 
-body.dark-mode .recommended-section {
+body.dark-mode .home .recommended-section {
   background-color: #121212;
 }
 
-body.dark-mode .category-item {
+body.dark-mode .home .category-item {
   background: #1e1e1e;
   border: 1px solid #3a3a3a;
 }
 
-body.dark-mode .category-item:hover {
+body.dark-mode .home .category-item:hover {
   border-color: #ff9a27;
   box-shadow: 0 4px 16px rgba(255, 154, 39, 0.2);
 }
 
-body.dark-mode .category-item p {
+body.dark-mode .home .category-item h3 {
+  color: #FF9A27;
+}
+
+body.dark-mode .home .category-item p {
   color: #b0b0b0;
 }
 
-body.dark-mode .promo-banner {
+body.dark-mode .home .promo-banner {
   background: linear-gradient(135deg, #ff9a27 0%, #ffb347 100%);
 }
 
-body.dark-mode .promo-content h3,
-body.dark-mode .promo-content p {
+body.dark-mode .home .promo-content h3,
+body.dark-mode .home .promo-content p {
   color: #000000;
-}
-
-body.dark-mode .countdown {
-  background-color: rgba(255, 154, 39, 0.2);
 }

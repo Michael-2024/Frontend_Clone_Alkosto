@@ -42,6 +42,21 @@ import ReturnRequest from './views/Returns/ReturnRequest';
 import ReturnsList from './views/Returns/ReturnsList';
 import ReturnDetail from './views/Returns/ReturnDetail';
 import Test from './Test';
+import { 
+  Stores, 
+  Help, 
+  Returns, 
+  Warranties, 
+  Shipping, 
+  AboutUs, 
+  Terms, 
+  Privacy, 
+  Offers, 
+  Catalog, 
+  Cookies, 
+  Careers,
+  Contact 
+} from './views/Info';
 import './App.css';
 
 function App() {
@@ -80,6 +95,9 @@ function App() {
         {/* Ruta de prueba */}
         <Route path="/test" element={<Test />} />
         {/* Resto de rutas con layout normal */}
+        {/* Ruta de seguimiento de pedido sin layout de cuenta */}
+        <Route path="/seguimiento" element={<Tracking />} />
+        
         <Route path="*" element={
           <div className="app">
             <SkipLink />
@@ -108,10 +126,29 @@ function App() {
                 <Route path="/perfil/pqrs/nuevo" element={<PQRSForm />} />
                 <Route path="/perfil/pqrs/:ticketNumber" element={<PQRSDetail />} />
                 <Route path="/pqrs/seguimiento" element={<PQRSTracking />} />
-                <Route path="/seguimiento" element={<Tracking />} />
                 <Route path="/perfil" element={<Profile />} />
                 <Route path="/categoria/:categoria" element={<Category />} />
-                <Route path="/ofertas" element={<Home />} />
+                
+                {/* Info Pages */}
+                <Route path="/tiendas" element={<Stores />} />
+                <Route path="/ayuda" element={<Help />} />
+                <Route path="/cambios" element={<Returns />} />
+                <Route path="/garantias" element={<Warranties />} />
+                <Route path="/envios" element={<Shipping />} />
+                <Route path="/nosotros" element={<AboutUs />} />
+                <Route path="/terminos" element={<Terms />} />
+                <Route path="/privacidad" element={<Privacy />} />
+                <Route path="/ofertas" element={<Offers />} />
+                <Route path="/catalogo" element={<Catalog />} />
+                <Route path="/cookies" element={<Cookies />} />
+                <Route path="/trabaja" element={<Careers />} />
+                <Route path="/contacto" element={<Contact />} />
+                <Route path="/telefono" element={<Contact />} />
+                <Route path="/servicio" element={<Help />} />
+                <Route path="/promociones" element={<Offers />} />
+                <Route path="/responsabilidad" element={<AboutUs />} />
+                <Route path="/credito" element={<Help />} />
+                <Route path="/tarjeta" element={<Help />} />
               </Routes>
             </main>
             <Footer />

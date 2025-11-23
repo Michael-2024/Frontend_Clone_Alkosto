@@ -1194,3 +1194,74 @@ body.dark-mode .panel-warning {
   border-color: #ff9a27;
   color: #ffb347;
 }
+
+/* Modal de cancelación - Modo oscuro */
+body.dark-mode .cancel-modal .modal-header {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+body.dark-mode .cancel-modal .modal-body {
+  background: #1e1e1e;
+}
+
+body.dark-mode .cancel-order-info {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .cancel-order-info .info-label {
+  color: #b0b0b0;
+}
+
+body.dark-mode .cancel-order-info .info-value {
+  color: #ffffff;
+}
+
+body.dark-mode .cancel-timer {
+  background: rgba(255, 154, 39, 0.15);
+  border-color: #ff9a27;
+  color: #ffb347;
+}
+
+body.dark-mode .cancel-reasons-title {
+  color: #ffffff;
+}
+
+body.dark-mode .cancel-reason-option {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .cancel-reason-option:hover {
+  background: #3a3a3a;
+  border-color: #ff9a27;
+}
+
+body.dark-mode .cancel-reason-option input:checked + label {
+  background: rgba(255, 154, 39, 0.2);
+  border-color: #ff9a27;
+  color: #ff9a27;
+}
+
+body.dark-mode .cancel-reason-label {
+  color: #e0e0e0;
+}
+
+body.dark-mode .modal-actions .btn-cancel {
+  background: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #3a3a3a;
+}
+
+body.dark-mode .modal-actions .btn-cancel:hover {
+  background: #3a3a3a;
+}
+
+body.dark-mode .modal-actions .btn-confirm {
+  background: #ef5350;
+}
+
+body.dark-mode .modal-actions .btn-confirm:hover {
+  background: #d32f2f;
+}

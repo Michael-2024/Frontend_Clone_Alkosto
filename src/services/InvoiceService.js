@@ -77,13 +77,15 @@ const InvoiceService = {
 
     const subtotal = order.subtotal ?? order.items.reduce((s, it) => s + (it.product?.price || 0) * it.quantity, 0);
     const shipping = order.shipping ?? 0;
+    const iva = order.iva ?? Math.round(subtotal * 0.19);
     const discount = order.discount ?? (order.coupon?.discount || 0);
-    const total = order.total ?? (subtotal + shipping - discount);
+    const total = order.total ?? (subtotal + shipping + iva - discount);
 
     doc.setFontSize(10);
     const amounts = [
       ['Subtotal:', formatCOP(subtotal)],
       ['Envío:', shipping === 0 ? 'GRATIS' : formatCOP(shipping)],
+      ['IVA (19%):', formatCOP(iva)],
       ['Descuento:', discount ? `- ${formatCOP(discount)}` : formatCOP(0)],
       ['Total:', formatCOP(total)]
     ];
