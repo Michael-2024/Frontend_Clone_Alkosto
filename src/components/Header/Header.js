@@ -126,6 +126,7 @@ const Header = ({ cartItemsCount }) => {
     }
   };
 
+
   // Validación de email
   const validateEmail = (email) => {
     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -180,6 +181,29 @@ const Header = ({ cartItemsCount }) => {
     document.addEventListener('click', closeMenus);
     return () => document.removeEventListener('click', closeMenus);
   }, [showLocationMenu, showAccountMenu]);
+
+  useEffect(() => {
+  const handleClickOutside = (e) => {
+    // Si el overlay NO está abierto, no hacer nada
+    if (!showSearchOverlay) return;
+
+    const isInside =
+      e.target.closest('.search-dropdown') ||
+      e.target.closest('.search-bar') ||
+      e.target.closest('.search-bar-expanded');
+
+    if (!isInside) {
+      setShowSearchOverlay(false);
+    }
+  };
+
+  document.addEventListener('click', handleClickOutside);
+
+  return () => {
+    document.removeEventListener('click', handleClickOutside);
+  };
+}, [showSearchOverlay]);
+
 
   return (
     <>
@@ -431,6 +455,7 @@ const Header = ({ cartItemsCount }) => {
           ></div>
 
           <div className="search-dropdown">
+          
             {/* BARRA AZUL SUPERIOR */}
             <div className="search-dropdown-blue-bar">
               <div className="search-dropdown-container">
@@ -514,7 +539,9 @@ const Header = ({ cartItemsCount }) => {
                       <div
                         key={p.id}
                         className="viewed-product-card"
-                        onClick={() => navigate(`/producto/${p.id}`)}
+                        onClick={() =>{ 
+                          setShowSearchOverlay(false);
+                          navigate(`/producto/${p.id}`)}}
                       >
                         <img src={p.image} alt={p.name} className="viewed-product-image" />
                         <div className="viewed-product-info">
