@@ -133,7 +133,7 @@ const Header = ({ cartItemsCount }) => {
     return re.test(String(email).toLowerCase());
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (!email.trim()) {
@@ -145,7 +145,8 @@ const Header = ({ cartItemsCount }) => {
       return;
     }
     localStorage.setItem('pendingEmail', email);
-    if (UserController.isEmailRegistered(email)) {
+    const isRegistered = await UserController.isEmailRegistered(email);
+    if (isRegistered) {
       // Redirigir a la pantalla de opciones de login (no loguear automáticamente)
       navigate(`/login/options?email=${encodeURIComponent(email)}`);
       setShowAccountMenu(false);

@@ -20,6 +20,11 @@ class ApiService {
     return headers;
   }
 
+  // Obtener token actual
+  getToken() {
+    return this.token || localStorage.getItem('auth_token');
+  }
+
   // Actualizar token
   setToken(token) {
     this.token = token;
@@ -53,6 +58,7 @@ class ApiService {
   // POST request
   async post(endpoint, data, requiresAuth = false) {
     try {
+      console.log(`POST ${endpoint}:`, data);
       const response = await fetch(`${this.baseURL}${endpoint}`, {
         method: 'POST',
         headers: this.getHeaders(requiresAuth),
@@ -60,12 +66,17 @@ class ApiService {
         body: JSON.stringify(data),
       });
 
+      console.log(`Response status ${endpoint}:`, response.status);
+
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        console.error(`Error response ${endpoint}:`, errorData);
+        throw new Error(errorData.error || errorData.detail || `HTTP error! status: ${response.status}`);
       }
 
-      return await response.json();
+      const jsonResponse = await response.json();
+      console.log(`Success response ${endpoint}:`, jsonResponse);
+      return jsonResponse;
     } catch (error) {
       console.error('POST Error:', error);
       throw error;
@@ -176,26 +187,26 @@ class ApiService {
 
   // === ENDPOINTS DE CARRITO ===
   async getCart() {
-    return await this.get('/carrito/');
+    return await this.get('/carrito/obtener/', true);
   }
 
   async addToCart(productId, quantity = 1) {
-    return await this.post('/carrito/', {
+    return await this.post('/carrito/agregar/', {
       id_producto: productId,
       cantidad: quantity,
-    });
+    }, true);
   }
 
   async updateCartItem(itemId, quantity) {
-    return await this.patch(`/carrito/${itemId}/`, { cantidad: quantity });
+    return await this.patch(`/carrito/${itemId}/`, { cantidad: quantity }, true);
   }
 
   async removeFromCart(itemId) {
-    return await this.delete(`/carrito/${itemId}/`);
+    return await this.delete(`/carrito/${itemId}/`, true);
   }
 
   async clearCart() {
-    return await this.delete('/carrito/vaciar/');
+    return await this.delete('/carrito/limpiar/', true);
   }
 
   // === ENDPOINTS DE AUTENTICACIÓN ===

@@ -1,64 +1,63 @@
+import apiService from '../services/ApiService';
 import Product from '../models/Product';
 
-// Controlador de Productos
+// Controlador de Productos conectado al backend
 class ProductController {
-  constructor() {
-    // Datos mock de productos (en producción vendrían del backend)
-    this.products = [
-      // ----  Celulares  ---
-      new Product(1, 'iPhone 15 Pro Max 256GB', 5499000, 6199000, 700000, '/images/productos/iphone 15.jpg', 'Celulares', 4.8, 10, 'iPhone 15 Pro Max con pantalla Super Retina XDR, chip A17 Pro y cámara de 48MP'),
-      new Product(2, 'Samsung Galaxy S24 Ultra', 4899000, 5499000, 600000, '/images/productos/samsung galaxy s24 ultra.jpg', 'Celulares', 4.7, 15, 'Samsung Galaxy S24 Ultra con S Pen integrado, cámara de 200MP y procesador Snapdragon'),
-      
-      // ----  Eletrodomesticos  ---
-      new Product(6, 'Nevera Samsung Side by Side', 3299000, 3899000, 600000, '/images/productos/nevera.jpg', 'Electrodomésticos', 4.5, 12, 'Nevera Samsung Side by Side con dispensador de agua y hielo, tecnología Twin Cooling Plus'),
-      new Product(7, 'Lavadora LG 22Kg TurboWash', 2199000, 2599000, 400000, '/images/productos/lavadora.jpg', 'Electrodomésticos', 4.4, 18, 'Lavadora LG de 22Kg con tecnología TurboWash, Motor Inverter Direct Drive y vapor'),
-      new Product(4, 'Smart TV Samsung 55" QLED 4K', 2499000, 2999000, 500000, '/images/productos/tv.jpg', 'Televisores', 4.6, 20, 'Smart TV Samsung QLED 4K de 55 pulgadas con tecnología Quantum Dot y procesador Crystal 4K'),
-      // ----  Computadores  ---
-      new Product(3, 'MacBook Pro 14" M3', 8999000, 9999000, 1000000, '/images/productos/macbook pro 14.jpg', 'Computadores', 4.9, 5, 'MacBook Pro 14 pulgadas con chip M3, pantalla Liquid Retina XDR y hasta 22 horas de batería'),
-      
-      new Product(5, 'PlayStation 5 + 2 Controles', 2899000, 3199000, 300000, 'images/productos/ps5.jpg', 'Videojuegos', 4.9, 8, 'PlayStation 5 con 2 controles DualSense, gráficos en 4K y SSD ultrarrápido'),
-      new Product(8, 'AirPods Pro 2da Generación', 1099000, 1299000, 200000, '/images/productos/airpods.jpg', 'Audio', 4.7, 30, 'AirPods Pro con cancelación activa de ruido, audio espacial personalizado y estuche MagSafe'),
-      
-      new Product(9, 'AirPods Pro 2da Generación', 1099000, 1299000, 200000, '/images/productos/airpods.jpg', 'Audio', 4.7, 30, 'AirPods Pro con cancelación activa de ruido, audio espacial personalizado y estuche MagSafe'),
-    
-    
-    
-    
-    ];
-  }
-
-  getAllProducts() {
-    return this.products;
-  }
-
-  getProductById(id) {
-    return this.products.find(product => product.id === parseInt(id));
-  }
-
-  getProductsByCategory(category) {
-    return this.products.filter(product => 
-      product.category.toLowerCase() === category.toLowerCase()
+  // Adaptar respuesta del backend a instancias de Product (si se requiere para métodos locales)
+  toProductModel(raw) {
+    return new Product(
+      raw.id_producto,
+      raw.nombre,
+      Number(raw.precio),
+      raw.precio_original ? Number(raw.precio_original) : null,
+      raw.descuento_porcentaje ? Number(raw.descuento_porcentaje) : 0,
+      // Imagen principal (si existe array de imágenes)
+      raw.imagenes && raw.imagenes.length > 0 ? raw.imagenes[0].url_imagen : null,
+      raw.categoria_nombre || '',
+      raw.calificacion_promedio ? Number(raw.calificacion_promedio) : 0,
+      raw.stock ? Number(raw.stock) : 0,
+      raw.descripcion_corta || raw.descripcion || ''
     );
   }
 
-  searchProducts(query) {
-    const searchTerm = query.toLowerCase();
-    return this.products.filter(product => 
-      product.name.toLowerCase().includes(searchTerm) ||
-      product.category.toLowerCase().includes(searchTerm)
-    );
+  async list(params = {}) {
+    const data = await apiService.get(`/productos/${Object.keys(params).length ? '?' + new URLSearchParams(params).toString() : ''}`);
+    return Array.isArray(data) ? data.map(p => this.toProductModel(p)) : [];
   }
 
-  getFeaturedProducts(limit = 4) {
-    return this.products
-      .sort((a, b) => b.rating - a.rating)
-      .slice(0, limit);
+  async getById(id) {
+    const raw = await apiService.get(`/productos/${id}/`);
+    return this.toProductModel(raw);
   }
 
-  getDiscountedProducts() {
-    return this.products.filter(product => product.discount > 0);
+  async destacados() {
+    const data = await apiService.get('/destacados/');
+    return data.map(p => this.toProductModel(p));
+  }
+
+  async ofertas() {
+    const data = await apiService.get('/ofertas/');
+    return data.map(p => this.toProductModel(p));
+  }
+
+  async buscar(query, extra = {}) {
+    const params = { q: query, ...extra };
+    const qs = new URLSearchParams(params).toString();
+    const resp = await apiService.get(`/buscar/?${qs}`);
+    return resp.resultados ? resp.resultados.map(p => this.toProductModel(p)) : [];
+  }
+
+  async porCategoria(slug, extra = {}) {
+    const qs = Object.keys(extra).length ? '?' + new URLSearchParams(extra).toString() : '';
+    const resp = await apiService.get(`/categoria/${slug}/${qs}`);
+    return resp.productos ? resp.productos.map(p => this.toProductModel(p)) : [];
+  }
+
+  // Alias para compatibilidad con código existente
+  async getProductById(id) {
+    return this.getById(id);
   }
 }
 
-const productControllerInstance = new ProductController();
-export default productControllerInstance;
+const productController = new ProductController();
+export default productController;

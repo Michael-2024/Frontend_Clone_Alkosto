@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import UserController from '../../controllers/UserController';
 import RegisterLayout from '../../layouts/RegisterLayout/RegisterLayout';
+import PasswordStrength from '../../components/PasswordStrength/PasswordStrength';
+import { validatePassword } from '../../utils/userUtils';
 import './Register.css';
 
 const RegisterPassword = () => {
@@ -21,6 +23,9 @@ const RegisterPassword = () => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [passwordValidation, setPasswordValidation] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
   // Verificar que tengamos todos los datos necesarios
   useEffect(() => {
@@ -36,6 +41,12 @@ const RegisterPassword = () => {
       [name]: value
     });
     
+    // Validar contraseña en tiempo real
+    if (name === 'password') {
+      const validation = validatePassword(value);
+      setPasswordValidation(validation);
+    }
+    
     // Limpiar error del campo modificado
     if (errors[name]) {
       setErrors({
@@ -45,20 +56,25 @@ const RegisterPassword = () => {
     }
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Validar contraseñas
+    // Validar contraseñas con el nuevo sistema
     const newErrors = {};
     
     if (!form.password) {
       newErrors.password = 'Ingresa una contraseña';
-    } else if (form.password.length < 6) {
-      newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
+    } else {
+      const validation = validatePassword(form.password);
+      if (!validation.isValid) {
+        newErrors.password = 'La contraseña no cumple con los requisitos de seguridad';
+      }
     }
     
-    if (form.password !== form.confirmPassword) {
+    if (!form.confirmPassword) {
+      newErrors.confirmPassword = 'Confirma tu contraseña';
+    } else if (form.password !== form.confirmPassword) {
       newErrors.confirmPassword = 'Las contraseñas no coinciden';
     }
     
@@ -68,26 +84,22 @@ const RegisterPassword = () => {
       return;
     }
     
-    // Registrar usuario
+    // Registrar usuario (backend)
     try {
-      const result = UserController.registerUser({
+      const result = await UserController.registerUser({
         email,
         firstName,
         lastName,
         phone,
         password: form.password
       });
-      
       if (result.success) {
-        // Redirigir a verificación en lugar de login automático
         navigate('/verify', { 
-          state: { 
-            email, 
-            phone, 
-            fromRegister: true 
-          } 
+          state: { email, phone, fromRegister: true } 
         });
+        return;
       }
+      setErrors({ general: result.error || 'Ocurrió un error durante el registro.' });
     } catch (error) {
       console.error('Error al registrar:', error);
       setErrors({ general: 'Ocurrió un error durante el registro. Intenta nuevamente.' });
@@ -119,26 +131,55 @@ const RegisterPassword = () => {
             <div className="register-form-container">
               <form onSubmit={handleSubmit} className="register-form">
                 <div className="form-group">
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Contraseña"
-                    value={form.password}
-                    onChange={handleFormChange}
-                    className={errors.password ? 'error' : ''}
-                  />
+                  <div className="password-input-wrapper">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      name="password"
+                      placeholder="Contraseña"
+                      value={form.password}
+                      onChange={handleFormChange}
+                      className={errors.password ? 'error' : ''}
+                    />
+                    <button
+                      type="button"
+                      className="toggle-password-btn"
+                      onClick={() => setShowPassword(!showPassword)}
+                      tabIndex="-1"
+                    >
+                      {showPassword ? '👁️' : '👁️‍🗨️'}
+                    </button>
+                  </div>
+                  
+                  {/* Componente de fortaleza de contraseña */}
+                  {form.password && passwordValidation && (
+                    <PasswordStrength 
+                      password={form.password} 
+                      validation={passwordValidation}
+                    />
+                  )}
+                  
                   {errors.password && <div className="error-message">{errors.password}</div>}
                 </div>
                 
                 <div className="form-group">
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirmar contraseña"
-                    value={form.confirmPassword}
-                    onChange={handleFormChange}
-                    className={errors.confirmPassword ? 'error' : ''}
-                  />
+                  <div className="password-input-wrapper">
+                    <input
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      name="confirmPassword"
+                      placeholder="Confirmar contraseña"
+                      value={form.confirmPassword}
+                      onChange={handleFormChange}
+                      className={errors.confirmPassword ? 'error' : ''}
+                    />
+                    <button
+                      type="button"
+                      className="toggle-password-btn"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      tabIndex="-1"
+                    >
+                      {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                    </button>
+                  </div>
                   {errors.confirmPassword && <div className="error-message">{errors.confirmPassword}</div>}
                 </div>
                 
